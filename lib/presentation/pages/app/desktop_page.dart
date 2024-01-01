@@ -130,54 +130,38 @@ class _DesktopPageState extends State<DesktopPage> {
       builder: (BuildContext context) {
         return Dialog(
           alignment: Alignment.topCenter,
-          child: SearchAnchor(
-            builder: (context, controller) {
-              return SearchBar(
-                controller: controller,
-                hintText: 'Search',
-                padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            width: 600,
+            height: 600,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
                 ),
-                onTap: () {
-                  controller.openView();
-                },
-                onChanged: (_) {
-                  controller.openView();
-                },
-                leading: const Icon(Icons.search),
-                // trailing: <Widget>[
-                //   Tooltip(
-                //     message: 'Change brightness mode',
-                //     child: IconButton(
-                //       isSelected: isDark,
-                //       onPressed: () {
-                //         setState(() {
-                //           isDark = !isDark;
-                //         });
-                //       },
-                //       icon: const Icon(Icons.wb_sunny_outlined),
-                //       selectedIcon: const Icon(Icons.brightness_2_outlined),
-                //     ),
-                //   ),
-                // ],
-              );
-            },
-            suggestionsBuilder:
-                (BuildContext context, SearchController controller) {
-              return List<ListTile>.generate(_elements.length, (int index) {
-                final item = _elements[index];
-                return ListTile(
-                  title: Text(item),
-                  onTap: () {
-                    setState(() {
-                      controller.closeView(item);
-                    });
-                    Navigator.of(context).pop();
-                  },
-                );
-              });
-              ;
-            },
+                const Text('Add new element'),
+                const Divider(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _elements.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(_elements[index]),
+                        onTap: () {},
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

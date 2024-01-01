@@ -6,8 +6,9 @@ class MobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: Center(
-      child: Text('Mobile Page'),
-    ));
+      body: Center(
+        child: Text('Mobile Page'),
+      ),
+    );
   }
 }
