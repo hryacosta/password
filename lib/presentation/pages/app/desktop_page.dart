@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password/presentation/pages/home/home_page.dart';
@@ -13,6 +12,30 @@ class DesktopPage extends StatefulWidget {
 
 class _DesktopPageState extends State<DesktopPage> {
   int _selectedIndex = 0;
+  final List<String> _elements = [
+    'Login',
+    'Secure Note',
+    'Credit Card',
+    'Identity',
+    'Password',
+    'Document',
+    'SSH Key',
+    'API Credential',
+    'Bank Account',
+    'Crypto Wallet',
+    'Database',
+    'Driver License',
+    'Email Account',
+    'Medical Record',
+    'Membership',
+    'Outdoor License',
+    'Passport',
+    'Reward Program',
+    'Server',
+    'Social Security Number',
+    'Software License',
+    'Wireless Router',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +85,14 @@ class _DesktopPageState extends State<DesktopPage> {
                       children: [
                         const Icon(Icons.add, size: 16, color: Colors.white),
                         const SizedBox(width: 2),
-                        Text('Nuevo elemento',
-                            style: GoogleFonts.roboto(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            )),
+                        Text(
+                          'Nuevo elemento',
+                          style: GoogleFonts.roboto(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -103,9 +128,57 @@ class _DesktopPageState extends State<DesktopPage> {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return const CupertinoAlertDialog(
-          title: Text('Success!'),
-          content: Text('You are in the football universe!'),
+        return Dialog(
+          alignment: Alignment.topCenter,
+          child: SearchAnchor(
+            builder: (context, controller) {
+              return SearchBar(
+                controller: controller,
+                hintText: 'Search',
+                padding: const MaterialStatePropertyAll<EdgeInsets>(
+                  EdgeInsets.symmetric(horizontal: 16),
+                ),
+                onTap: () {
+                  controller.openView();
+                },
+                onChanged: (_) {
+                  controller.openView();
+                },
+                leading: const Icon(Icons.search),
+                // trailing: <Widget>[
+                //   Tooltip(
+                //     message: 'Change brightness mode',
+                //     child: IconButton(
+                //       isSelected: isDark,
+                //       onPressed: () {
+                //         setState(() {
+                //           isDark = !isDark;
+                //         });
+                //       },
+                //       icon: const Icon(Icons.wb_sunny_outlined),
+                //       selectedIcon: const Icon(Icons.brightness_2_outlined),
+                //     ),
+                //   ),
+                // ],
+              );
+            },
+            suggestionsBuilder:
+                (BuildContext context, SearchController controller) {
+              return List<ListTile>.generate(_elements.length, (int index) {
+                final item = _elements[index];
+                return ListTile(
+                  title: Text(item),
+                  onTap: () {
+                    setState(() {
+                      controller.closeView(item);
+                    });
+                    Navigator.of(context).pop();
+                  },
+                );
+              });
+              ;
+            },
+          ),
         );
       },
     );

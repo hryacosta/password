@@ -62,12 +62,14 @@ class _TabletPageState extends State<TabletPage> {
                       children: [
                         const Icon(Icons.add, size: 16, color: Colors.white),
                         const SizedBox(width: 2),
-                        Text('Nuevo elemento',
-                            style: GoogleFonts.roboto(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            )),
+                        Text(
+                          'Nuevo elemento',
+                          style: GoogleFonts.roboto(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -103,9 +105,55 @@ class _TabletPageState extends State<TabletPage> {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return const CupertinoAlertDialog(
-          title: Text('Success!'),
-          content: Text('You are in the football universe!'),
+        return CupertinoAlertDialog(
+          title: SearchAnchor(
+            builder: (context, controller) {
+              return SearchBar(
+                controller: controller,
+                hintText: 'Search',
+                padding: const MaterialStatePropertyAll<EdgeInsets>(
+                  EdgeInsets.symmetric(horizontal: 16),
+                ),
+                onTap: () {
+                  controller.openView();
+                },
+                onChanged: (_) {
+                  controller.openView();
+                },
+                leading: const Icon(Icons.search),
+                // trailing: <Widget>[
+                //   Tooltip(
+                //     message: 'Change brightness mode',
+                //     child: IconButton(
+                //       isSelected: isDark,
+                //       onPressed: () {
+                //         setState(() {
+                //           isDark = !isDark;
+                //         });
+                //       },
+                //       icon: const Icon(Icons.wb_sunny_outlined),
+                //       selectedIcon: const Icon(Icons.brightness_2_outlined),
+                //     ),
+                //   ),
+                // ],
+              );
+            },
+            suggestionsBuilder:
+                (BuildContext context, SearchController controller) {
+              return List<ListTile>.generate(5, (int index) {
+                final item = 'item $index';
+                return ListTile(
+                  title: Text(item),
+                  onTap: () {
+                    setState(() {
+                      controller.closeView(item);
+                    });
+                  },
+                );
+              });
+            },
+          ),
+          content: const Text('You are in the football universe!'),
         );
       },
     );
