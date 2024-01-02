@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:password/presentation/pages/app/dialog_new_element.dart';
 import 'package:password/presentation/pages/home/home_page.dart';
 import 'package:password/presentation/pages/settings/settings_page.dart';
 
@@ -12,30 +13,6 @@ class DesktopPage extends StatefulWidget {
 
 class _DesktopPageState extends State<DesktopPage> {
   int _selectedIndex = 0;
-  final List<String> _elements = [
-    'Login',
-    'Secure Note',
-    'Credit Card',
-    'Identity',
-    'Password',
-    'Document',
-    'SSH Key',
-    'API Credential',
-    'Bank Account',
-    'Crypto Wallet',
-    'Database',
-    'Driver License',
-    'Email Account',
-    'Medical Record',
-    'Membership',
-    'Outdoor License',
-    'Passport',
-    'Reward Program',
-    'Server',
-    'Social Security Number',
-    'Software License',
-    'Wireless Router',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -126,44 +103,9 @@ class _DesktopPageState extends State<DesktopPage> {
   void addElement() {
     showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
-        return Dialog(
-          alignment: Alignment.topCenter,
-          child: SizedBox(
-            width: 600,
-            height: 600,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                ),
-                const Text('Add new element'),
-                const Divider(),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: _elements.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(_elements[index]),
-                        onTap: () {},
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
+        return const DialogNewElement();
       },
     );
   }

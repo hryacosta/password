@@ -1,3 +1,25 @@
 {
-  "helloWorld": "¡Hola Mundo!"
+  "addNewElement": "¿Qué te gustaría añadir?",
+  "login": "Login",
+  "secureNote": "Secure Note",
+  "creditCard": "Credit Card",
+  "identity": "Identity",
+  "password": "Password",
+  "document": "Document",
+  "sshKey": "SSH Key",
+  "apiCredential": "API Credential",
+  "bankAccount": "Bank Account",
+  "cryptoWallet": "Crypto Wallet",
+  "database": "Database",
+  "driverLicense": "Driver License",
+  "emailAccount": "Email Account",
+  "medicalRecord": "Medical Record",
+  "membership": "Membership",
+  "outdoorLicense": "Outdoor License",
+  "passport": "Passport",
+  "rewardProgram": "Reward Program",
+  "server": "server",
+  "socialSecurityNumber": "Social Security Number",
+  "softwareLicense": "Software License",
+  "wirelessRouter": "Wireless Router"
 }
