@@ -1,7 +1,8 @@
 {
   "addNewElement": "What would you like to add?",
-  "login":  "Login",
-  "secureNote":  "Secure Note",
+  "newElement": "New element",
+  "login": "Login",
+  "secureNote": "Secure Note",
   "creditCard": "Credit Card",
   "identity": "Identity",
   "password": "Password",

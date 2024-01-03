@@ -73,7 +73,7 @@ class _DialogNewElementState extends State<DialogNewElement> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(_elements[index]),
-                    onTap: () {},
+                    onTap: onTap,
                   );
                 },
               ),
@@ -81,6 +81,52 @@ class _DialogNewElementState extends State<DialogNewElement> {
           ],
         ),
       ),
+    );
+  }
+
+  void onTap() {
+    Navigator.of(context).pop();
+
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: SizedBox(
+            width: 600,
+            height: 600,
+            child: Scaffold(
+              appBar: AppBar(
+                title: const Text('New Element'),
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    showDialog<void>(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return const DialogNewElement();
+                      },
+                    );
+                  },
+                ),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+              body: const Center(
+                child: Text('New Element'),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

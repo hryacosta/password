@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:password/core/utils/app_localization.dart';
 import 'package:password/presentation/pages/app/dialog_new_element.dart';
 import 'package:password/presentation/pages/home/home_page.dart';
 import 'package:password/presentation/pages/settings/settings_page.dart';
@@ -63,7 +64,7 @@ class _DesktopPageState extends State<DesktopPage> {
                         const Icon(Icons.add, size: 16, color: Colors.white),
                         const SizedBox(width: 2),
                         Text(
-                          'Nuevo elemento',
+                          AppLocalization.of(context).newElement,
                           style: GoogleFonts.roboto(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
