@@ -15,13 +15,21 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-.vscode/
+
+# Visual Studio Code related
+.classpath
+.project
+.settings/
+.vscode/*
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
 #.vscode/
 
+# packages file containing multi-root paths
+.packages.generated
+ 
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -31,6 +39,11 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.packages
+flutter_*.png
+linked_*.ds
+unlinked_*.ds
+unlinked_spec.ds
 
 # Symbolication related
 app.*.symbols
@@ -42,3 +55,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# dotenv environment variables file
+.env*
+
+# Coverage
+coverage/
