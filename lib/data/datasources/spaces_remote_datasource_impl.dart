@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:password/data/datasources/spaces_remote_data_source.dart';
+import 'package:password/data/datasources/spaces_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
 
 class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {

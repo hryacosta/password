@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:password/core/error/server_error.dart';
-import 'package:password/data/datasources/spaces_remote_data_source_impl.dart';
+import 'package:password/data/datasources/spaces_remote_datasource_impl.dart';
 import 'package:password/data/models/space_model.dart';
 
 @injectable

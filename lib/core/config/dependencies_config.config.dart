@@ -11,9 +11,8 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:http/http.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:password/core/config/config_register_module.dart' as _i8;
-import 'package:password/data/datasources/spaces_remote_data_source.dart'
-    as _i6;
+import 'package:password/core/config/register_module_config.dart' as _i8;
+import 'package:password/data/datasources/spaces_remote_datasource.dart' as _i6;
 import 'package:password/domain/repositories/spaces_repository.dart' as _i7;
 import 'package:password/domain/usecases/add_space.dart' as _i3;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;

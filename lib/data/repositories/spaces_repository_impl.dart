@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:password/core/error/failure.dart';
-import 'package:password/data/datasources/spaces_remote_data_source.dart';
+import 'package:password/data/datasources/spaces_remote_datasource.dart';
 import 'package:password/domain/entities/space.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
