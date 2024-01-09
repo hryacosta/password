@@ -13,8 +13,13 @@ class HomeController with ChangeNotifier {
     final result = await sl<GetSpaces>().call(const Param());
 
     result.fold(
-      logger.d,
-      (r) => spaces.addAll(r),
+      logger.e,
+      (r) {
+        logger.d(r);
+        spaces.addAll(r);
+      },
     );
+
+    notifyListeners();
   }
 }

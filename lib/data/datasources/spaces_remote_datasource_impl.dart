@@ -5,6 +5,7 @@ import 'package:password/core/config/injectable.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/extension/http_response.dart';
 import 'package:password/core/services/auth_service.dart';
+import 'package:password/core/utils/logger.dart';
 import 'package:password/data/datasources/constants.dart';
 import 'package:password/data/datasources/spaces_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
@@ -31,11 +32,15 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
       headers: sl<AuthService>().headers,
     );
 
+    logger.d(result);
+
     final data = jsonDecode(result.body);
 
     if (result.isOk) {
       return SpaceModel.fromJson(data);
     }
+
+    logger.e(data);
 
     return throw ServerException.fromJson(data);
   }
