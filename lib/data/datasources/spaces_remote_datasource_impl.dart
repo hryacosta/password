@@ -25,9 +25,7 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
   }
 
   @override
-  Future<List<SpaceModel>> getSpaces() async {
-    // if i had session
-    // if i had internet
+  Future<SpaceModel> getSpaces() async {
     final result = await client.get(
       spacesUrl,
       headers: sl<AuthService>().headers,
@@ -36,7 +34,7 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
     final data = jsonDecode(result.body);
 
     if (result.isOk) {
-      return data;
+      return SpaceModel.fromJson(data);
     }
 
     return throw ServerException.fromJson(data);

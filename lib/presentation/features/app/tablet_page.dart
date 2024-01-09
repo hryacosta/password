@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:password/presentation/pages/home/home_page.dart';
-import 'package:password/presentation/pages/settings/settings_page.dart';
+import 'package:password/presentation/features/home/home_page.dart';
+import 'package:password/presentation/features/settings/settings_page.dart';
 
 class TabletPage extends StatefulWidget {
   const TabletPage({super.key});

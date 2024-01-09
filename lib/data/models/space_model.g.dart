@@ -7,18 +7,12 @@ part of 'space_model.dart';
 // **************************************************************************
 
 SpaceModel _$SpaceModelFromJson(Map<String, dynamic> json) => SpaceModel(
-      id: json['id'] as String,
-      location: json['location'] as String,
-      name: json['name'] as String,
-      photoUrl: json['photoUrl'] as String,
-      timestamp: json['timestamp'] as int,
+      (json['spaces'] as List<dynamic>)
+          .map((e) => Space.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$SpaceModelToJson(SpaceModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'location': instance.location,
-      'name': instance.name,
-      'photoUrl': instance.photoUrl,
-      'timestamp': instance.timestamp,
+      'spaces': instance.spaces,
     };

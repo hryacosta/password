@@ -15,7 +15,7 @@ abstract class SpaceRemoteDataSource {
   /// Calls https://api endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
-  Future<List<SpaceModel>> getSpaces();
+  Future<SpaceModel> getSpaces();
 
   /// Calls https://api endpoint.
   ///

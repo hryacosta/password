@@ -1,0 +1,40 @@
+{
+  "spaces": [
+    {
+      "location": "Honduras",
+      "id": "c36720ed-dac7-4ac4-86cb-46343718e4b9",
+      "name": "Tegucigalpa",
+      "timestamp": 1704609158
+    },
+    {
+      "location": "Estados Unidos",
+      "id": "97cea8c8-b0a1-4350-9d14-2dece683aa1f",
+      "name": "Washington",
+      "timestamp": 1704609438
+    },
+    {
+      "location": "París",
+      "id": "3fed5878-db77-408a-b410-94be7ca9b95c",
+      "name": "Notre Dame Cathedral",
+      "timestamp": 1703374975
+    },
+    {
+      "location": "Estados Unidos",
+      "id": "6f22aa16-a27f-4704-9b44-b8d7956550cd",
+      "name": "Washington",
+      "timestamp": 1704609562
+    },
+    {
+      "location": "Estados Unidos",
+      "id": "2725e125-2ad5-4f04-a609-0db8f565eb3e",
+      "name": "Washington",
+      "timestamp": 1704609397
+    },
+    {
+      "location": "Panamá",
+      "id": "7bf4958c-eaf0-4e51-9781-e1bfaefd610e",
+      "name": "Darien",
+      "timestamp": 1703109704
+    }
+  ]
+}

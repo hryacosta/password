@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:password/presentation/pages/app/app_page.dart';
-import 'package:password/presentation/pages/home/home_page.dart';
-import 'package:password/presentation/pages/settings/settings_page.dart';
+import 'package:password/presentation/features/app/app_page.dart';
+import 'package:password/presentation/features/home/home_page.dart';
+import 'package:password/presentation/features/settings/settings_page.dart';
 
 part 'app_route.g.dart';
 

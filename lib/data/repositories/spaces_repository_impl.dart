@@ -20,7 +20,7 @@ class SpaceRepositoryImpl implements SpaceRepository {
     try {
       final result = await remoteDateSource.getSpaces();
 
-      return Right(result);
+      return Right(result.spaces);
     } on ServerException catch (error, stackTrace) {
       logger.e(
         'authentication ServerException',
