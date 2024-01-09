@@ -4,18 +4,24 @@ import 'package:injectable/injectable.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/core/usecase/use_case.dart';
 import 'package:password/domain/entities/space.dart';
+import 'package:password/domain/repositories/spaces_repository.dart';
 
 @lazySingleton
-class AddSpace implements UseCase<Space, Params> {
+class AddSpace implements UseCase<String, Param> {
+  AddSpace(this.repository);
+
+  final SpaceRepository repository;
+
   @override
-  Future<Either<Failure, Space>> call(Params params) {
-    throw UnimplementedError();
-  }
+  Future<Either<Failure, String>> call(Param arg) async =>
+      repository.addSpace(arg.space);
 }
 
-class Params extends Equatable {
-  const Params();
+class Param extends Equatable {
+  const Param({required this.space});
+
+  final Space space;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [space];
 }

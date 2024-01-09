@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:password/app.dart';
-import 'package:password/core/config/dependencies_config.dart';
-import 'package:password/core/config/google_fonts_config.dart';
+import 'package:password/core/config/google_fonts.dart';
+import 'package:password/core/config/injectable.dart';
 import 'package:password/core/utils/logger.dart';
 
 void main() {
@@ -11,7 +11,7 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      await Future.wait([dependenciesConfig(), googleFontsConfig()]);
+      await Future.wait([injectable(), googleFonts()]);
 
       runApp(App());
     },

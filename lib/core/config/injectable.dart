@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:password/core/config/dependencies_config.config.dart';
+import 'package:password/core/config/injectable.config.dart';
 
 /// Instance.
 final sl = GetIt.instance;
@@ -10,4 +10,4 @@ final sl = GetIt.instance;
   preferRelativeImports: false,
   asExtension: false,
 )
-Future<void> dependenciesConfig() async => $initGetIt(sl);
+Future<void> injectable() async => $initGetIt(sl);

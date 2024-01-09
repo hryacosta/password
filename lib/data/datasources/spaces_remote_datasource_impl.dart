@@ -1,4 +1,11 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'package:password/core/config/injectable.dart';
+import 'package:password/core/error/exception.dart';
+import 'package:password/core/extension/http_response.dart';
+import 'package:password/core/services/auth_service.dart';
+import 'package:password/data/datasources/constants.dart';
 import 'package:password/data/datasources/spaces_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
 
@@ -8,26 +15,35 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
   final http.Client client;
 
   @override
-  Future<void> addSpace({required SpaceModel space}) {
-    // TODO: implement addSpace
+  Future<void> addSpace({required SpaceModel space}) async {
     throw UnimplementedError();
   }
 
   @override
   Future<void> deleteSpace({required String id}) {
-    // TODO: implement deleteSpace
     throw UnimplementedError();
   }
 
   @override
-  Future<List<SpaceModel>> getSpaces() {
-    // TODO: implement getSpaces
-    throw UnimplementedError();
+  Future<List<SpaceModel>> getSpaces() async {
+    // if i had session
+    // if i had internet
+    final result = await client.get(
+      spacesUrl,
+      headers: sl<AuthService>().headers,
+    );
+
+    final data = jsonDecode(result.body);
+
+    if (result.isOk) {
+      return data;
+    }
+
+    return throw ServerException.fromJson(data);
   }
 
   @override
   Future<void> updateSpace({required SpaceModel space}) {
-    // TODO: implement updateSpace
     throw UnimplementedError();
   }
 }

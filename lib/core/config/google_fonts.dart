@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart'; //import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Future<void> googleFontsConfig() async {
+Future<void> googleFonts() async {
   GoogleFonts.config.allowRuntimeFetching = false;
 
   LicenseRegistry.addLicense(() async* {

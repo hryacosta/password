@@ -10,20 +10,18 @@ abstract class SpaceRepository {
   @factoryMethod
   factory SpaceRepository.from({
     required SpaceRemoteDataSource remoteDateSource,
-    //required MangaDexLocalDataSource localDataSource,
-    //required NetworkInfo networkInfo,
+    //required SpaceLocalDataSource localDataSource,
   }) =>
       SpaceRepositoryImpl(
         remoteDateSource: remoteDateSource,
         // localDataSource: localDataSource,
-        // networkInfo: networkInfo,
       );
 
   Future<Either<Failure, List<Space>>> getSpaces();
 
-  Future<Either<Failure, String>> addSpace();
+  Future<Either<Failure, String>> addSpace(Space space);
 
-  Future<Either<Failure, String>> updateSpace();
+  Future<Either<Failure, String>> updateSpace(Space space);
 
-  Future<Either<Failure, String>> deleteSpace();
+  Future<Either<Failure, String>> deleteSpace(String id);
 }

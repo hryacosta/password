@@ -7,19 +7,21 @@ import 'package:password/domain/entities/space.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
 @lazySingleton
-class GetSpaces extends UseCase<List<Space>, Param> {
-  GetSpaces(this.repository);
+class UpdateSpaces extends UseCase<String, Param> {
+  UpdateSpaces(this.repository);
 
   final SpaceRepository repository;
 
   @override
-  Future<Either<Failure, List<Space>>> call(Param arg) async =>
-      repository.getSpaces();
+  Future<Either<Failure, String>> call(Param arg) async =>
+      repository.updateSpace(arg.space);
 }
 
 class Param extends Equatable {
-  const Param();
+  const Param({required this.space});
+
+  final Space space;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [space];
 }

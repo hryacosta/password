@@ -26,3 +26,7 @@ class CacheFailure extends Failure {
   @override
   List<Object?> get props => [super.error, super.stackTrace];
 }
+
+class AuthenticationFailure extends Error {}
+
+class NetworkFailure extends Error {}
