@@ -5,7 +5,7 @@ import 'package:password/data/models/space_model.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../widget_test.mocks.dart';
+import '../../test_widget.mocks.dart';
 
 void main() {
   late GetSpaces useCase;
