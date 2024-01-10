@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'space.g.dart';
@@ -5,8 +6,8 @@ part 'space.g.dart';
 @JsonSerializable(
   includeIfNull: false,
 )
-class Space {
-  Space({
+class Space extends Equatable {
+  const Space({
     required this.id,
     required this.location,
     required this.name,
@@ -23,4 +24,7 @@ class Space {
   final int timestamp;
 
   Map<String, dynamic> toJson() => _$SpaceToJson(this);
+
+  @override
+  List<Object?> get props => [id, location, name, timestamp, photoUrl];
 }

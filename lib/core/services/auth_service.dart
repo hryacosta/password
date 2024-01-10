@@ -12,7 +12,7 @@ final class AuthService {
 
   @disposeMethod
   void dispose() {
-    destroySession();
+    _destroySession();
   }
 
   void createSession({required String idToken, int expires = 60}) {
@@ -21,7 +21,7 @@ final class AuthService {
     _createdTime = DateTime.now();
   }
 
-  void destroySession() {
+  void _destroySession() {
     _authorizationToken = '';
     _expiresIn = 60;
     _createdTime = null;

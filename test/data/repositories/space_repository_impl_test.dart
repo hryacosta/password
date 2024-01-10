@@ -7,8 +7,8 @@ import 'package:password/data/models/space_model.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space.dart';
 
-import '../fixtures/fixture_reader.dart';
-import '../test_widget.mocks.dart';
+import '../../fixtures/fixture_reader.dart';
+import '../../test_widget.mocks.dart';
 
 void main() {
   late MockSpaceRemoteDataSource mockRemoteDateSource;

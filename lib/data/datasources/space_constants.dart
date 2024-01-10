@@ -4,6 +4,6 @@ const scheme = 'https';
 
 final getSpacesUri = Uri(
   scheme: scheme,
-  host: '$host/$env',
-  path: 'spaces',
+  host: host,
+  path: '$env/spaces',
 );
