@@ -7,6 +7,7 @@ import 'package:password/core/extension/http_client.dart';
 import 'package:password/core/extension/http_response.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/models/space_model.dart';
+import 'package:password/domain/entities/space.dart';
 
 @injectable
 abstract class SpaceRemoteDataSource {
@@ -28,7 +29,7 @@ abstract class SpaceRemoteDataSource {
   ///
   /// Throws a [ServerException] for all error codes.
   /// Throws a [AuthenticationException] for all error codes.
-  Future<void> addSpace({required SpaceModel space});
+  Future<void> addSpace({required Space space});
 
   /// Calls https://api endpoint.
   ///
@@ -49,7 +50,7 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
   final http.Client client;
 
   @override
-  Future<void> addSpace({required SpaceModel space}) async {
+  Future<void> addSpace({required Space space}) async {
     throw UnimplementedError();
   }
 

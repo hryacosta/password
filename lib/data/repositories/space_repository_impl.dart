@@ -39,8 +39,23 @@ class SpaceRepositoryImpl implements SpaceRepository {
   }
 
   @override
-  Future<Either<Failure, String>> addSpace(Space space) {
-    throw UnimplementedError();
+  Future<Either<Failure, String>> addSpace(Space space) async {
+    try {
+      await remoteDateSource.addSpace(space: space);
+
+      return const Right('');
+    } on AuthenticationException catch (error, stackTrace) {
+      logger.e(
+        'AuthenticationException',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return Left(AuthenticationFailure());
+    } catch (error, stackTrace) {
+      logger.e('Exception', error: error, stackTrace: stackTrace);
+
+      return Left(ServerFailure(error));
+    }
   }
 
   @override

@@ -603,8 +603,7 @@ class MockSpaceRemoteDataSource extends _i1.Mock
       ) as _i5.Future<_i4.SpaceModel>);
 
   @override
-  _i5.Future<void> addSpace({required _i4.SpaceModel? space}) =>
-      (super.noSuchMethod(
+  _i5.Future<void> addSpace({required _i8.Space? space}) => (super.noSuchMethod(
         Invocation.method(
           #addSpace,
           [],
