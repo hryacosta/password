@@ -20,3 +20,7 @@ final class ServerFailure extends Failure {
 final class CacheFailure extends Failure {
   const CacheFailure(super.error, [super.stackTrace]);
 }
+
+final class AuthenticationFailure extends Failure {}
+
+final class NetworkFailure extends Failure {}

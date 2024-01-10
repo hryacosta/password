@@ -16,24 +16,30 @@ abstract class SpaceRemoteDataSource {
   }) =>
       SpaceRemoteDataSourceImpl(client: client);
 
-  /// Calls https://api endpoint.
+  /// Call [getSpacesUri] endpoint.
+  ///
+  /// return [SpaceModel]
   ///
   /// Throws a [ServerException] for all error codes.
+  /// Throws a [AuthenticationException] for all error codes.
   Future<SpaceModel> getSpaces();
 
   /// Calls https://api endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
+  /// Throws a [AuthenticationException] for all error codes.
   Future<void> addSpace({required SpaceModel space});
 
   /// Calls https://api endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
+  /// Throws a [AuthenticationException] for all error codes.
   Future<void> updateSpace({required SpaceModel space});
 
   /// Calls https://api endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
+  /// Throws a [AuthenticationException] for all error codes.
   Future<void> deleteSpace({required String id});
 }
 

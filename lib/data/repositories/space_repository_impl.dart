@@ -13,17 +13,23 @@ class SpaceRepositoryImpl implements SpaceRepository {
 
   final SpaceRemoteDataSource remoteDateSource;
 
-  // final MangaDexLocalDataSource localDataSource;
-
   @override
   Future<Either<Failure, List<Space>>> getSpaces() async {
     try {
       final result = await remoteDateSource.getSpaces();
 
       return Right(result.spaces);
-    } on ServerException catch (error, stackTrace) {
+    } on AuthenticationException catch (error, stackTrace) {
       logger.e(
-        'authentication ServerException',
+        'AuthenticationException',
+        error: error,
+        stackTrace: stackTrace,
+      );
+
+      return left(AuthenticationFailure());
+    } catch (error, stackTrace) {
+      logger.e(
+        'Exception',
         error: error,
         stackTrace: stackTrace,
       );
