@@ -10,7 +10,7 @@ class HomeController with ChangeNotifier {
   List<Space> spaces = [];
 
   Future<void> getSpaces() async {
-    final result = await sl<GetSpaces>().call(const Param());
+    final result = await sl<GetSpaces>()(const Param());
 
     result.fold(
       logger.e,

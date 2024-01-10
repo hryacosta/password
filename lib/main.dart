@@ -11,7 +11,7 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      await Future.wait([injectable(), googleFonts()]);
+      await Future.wait([injectableInit(), googleFonts()]);
 
       runApp(App());
     },

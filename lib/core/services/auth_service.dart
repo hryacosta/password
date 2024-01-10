@@ -6,7 +6,7 @@ final class AuthService {
   int _expiresIn = 60;
   DateTime? _createdTime;
 
-  String get token => _authorizationToken;
+  String get authorizationToken => _authorizationToken;
 
   int get expiresIn => _expiresIn;
 
@@ -40,13 +40,5 @@ final class AuthService {
     }
 
     return false;
-  }
-
-  Map<String, String> get headers {
-    return {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Accept': 'application/json',
-      'authorization': _authorizationToken,
-    };
   }
 }

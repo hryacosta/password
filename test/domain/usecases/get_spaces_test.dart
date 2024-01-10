@@ -19,7 +19,7 @@ void main() {
   );
 
   test(
-    'should get manga chapters from repository',
+    'should get spaces from repository',
     () async {
       final data = fixtureMap('get_spaces.json');
 
@@ -42,4 +42,15 @@ void main() {
       verifyNoMoreInteractions(mockSpaceRepository);
     },
   );
+
+  test('should param instance be equatable', () {
+    const param = Param();
+    const param_1 = Param();
+
+    expect(param, equals(param_1));
+
+    expect(param == param_1, true);
+
+    expect(param_1.props, equals(param_1.props));
+  });
 }

@@ -5,9 +5,3 @@ extension HttpResponse on http.Response {
     return (statusCode ~/ 100) == 2;
   }
 }
-
-extension Client on http.BaseClient {
-  bool get hasInternet {
-    return false;
-  }
-}

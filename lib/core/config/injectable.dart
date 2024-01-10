@@ -10,4 +10,4 @@ final sl = GetIt.instance;
   preferRelativeImports: false,
   asExtension: false,
 )
-Future<void> injectable() async => $initGetIt(sl);
+Future<void> injectableInit() async => $initGetIt(sl);

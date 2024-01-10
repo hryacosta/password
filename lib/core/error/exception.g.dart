@@ -7,16 +7,21 @@ part of 'exception.dart';
 // **************************************************************************
 
 ServerException _$ServerExceptionFromJson(Map<String, dynamic> json) =>
-    ServerException(
-      code: json['code'] as int,
-      message: json['message'] as String?,
-      extra: json['extra'],
+    $checkedCreate(
+      'ServerException',
+      json,
+      ($checkedConvert) {
+        final val = ServerException(
+          code: $checkedConvert('code', (v) => v as int),
+          message: $checkedConvert('message', (v) => v as String?),
+          extra: $checkedConvert('extra', (v) => v),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$ServerExceptionToJson(ServerException instance) {
-  final val = <String, dynamic>{
-    'code': instance.code,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -26,28 +31,6 @@ Map<String, dynamic> _$ServerExceptionToJson(ServerException instance) {
 
   writeNotNull('message', instance.message);
   writeNotNull('extra', instance.extra);
-  return val;
-}
-
-NetworkException _$NetworkExceptionFromJson(Map<String, dynamic> json) =>
-    NetworkException(
-      code: json['code'] as int,
-      message: json['message'] as String?,
-      extra: json['extra'],
-    );
-
-Map<String, dynamic> _$NetworkExceptionToJson(NetworkException instance) {
-  final val = <String, dynamic>{
-    'code': instance.code,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('message', instance.message);
-  writeNotNull('extra', instance.extra);
+  val['code'] = instance.code;
   return val;
 }
