@@ -18,6 +18,10 @@ format:
 	@echo "╠ Formatting the code"
 	@dart format lib
 
+outdate:
+	@echo "╠ Running Flutter pub outdated"
+	@flutter pub outdated
+
 doctor:
 	@echo "╠ checking if all its ok"
 	@flutter doctor --verbose
