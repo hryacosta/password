@@ -18,7 +18,7 @@ format:
 	@echo "╠ Formatting the code"
 	@dart format lib
 
-outdate:
+outdated:
 	@echo "╠ Running Flutter pub outdated"
 	@flutter pub outdated
 
