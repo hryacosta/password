@@ -1,5 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:mockito/mockito.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
@@ -10,8 +10,17 @@ import '../../test_widget.mocks.dart';
 void main() {
   late GetSpaces useCase;
   late MockSpaceRepository mockSpaceRepository;
+  final fixtureSpaces = fixtureMap('get_spaces.json');
+  final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
+      .getOrElse(() => <dynamic>[]);
 
-  setUp(
+  final spaces = option
+      .map(
+        (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
+      )
+      .toList();
+
+  setUpAll(
     () {
       mockSpaceRepository = MockSpaceRepository();
       useCase = GetSpaces(mockSpaceRepository);
@@ -21,21 +30,15 @@ void main() {
   test(
     'should get spaces from repository',
     () async {
-      final data = fixtureMap('get_spaces.json');
-
-      final spaceModel = SpaceModel.fromJson(data);
-
       when(
         mockSpaceRepository.getSpaces(),
       ).thenAnswer(
-        (_) async => Right(spaceModel.spaces),
+        (_) async => Right(spaces),
       );
 
-      final result = await useCase.call(
-        const Param(),
-      );
+      final result = await useCase();
 
-      expect(result.fold((l) => l, (r) => r), spaceModel.spaces);
+      expect(result.fold((l) => l, (r) => r), spaces);
 
       verify(mockSpaceRepository.getSpaces());
 

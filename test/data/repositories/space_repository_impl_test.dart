@@ -1,11 +1,11 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:mockito/mockito.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
-import 'package:password/domain/entities/space.dart';
+import 'package:password/domain/entities/space_entity.dart';
 
 import '../../fixtures/fixture_reader.dart';
 import '../../test_widget.mocks.dart';
@@ -13,12 +13,21 @@ import '../../test_widget.mocks.dart';
 void main() {
   late MockSpaceRemoteDataSource mockRemoteDateSource;
   late SpaceRepositoryImpl repository;
-  late SpaceModel tSpaceModel;
+  late List<SpaceModel> tSpaceModel;
+
+  final fixtureSpaces = fixtureMap('get_spaces.json');
+
+  final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
+      .getOrElse(() => <dynamic>[]);
 
   setUp(() {
-    tSpaceModel = SpaceModel.fromJson(fixtureMap('get_spaces.json'));
-    mockRemoteDateSource = MockSpaceRemoteDataSource();
+    tSpaceModel = option
+        .map(
+          (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
+        )
+        .toList();
 
+    mockRemoteDateSource = MockSpaceRemoteDataSource();
     repository = SpaceRepositoryImpl(
       remoteDateSource: mockRemoteDateSource,
     );
@@ -37,8 +46,8 @@ void main() {
         expect(
           result,
           equals(
-            Right<Failure, List<Space>>(
-              tSpaceModel.spaces,
+            Right<Failure, List<SpaceEntity>>(
+              tSpaceModel,
             ),
           ),
         );
@@ -57,7 +66,7 @@ void main() {
         expect(
           result,
           equals(
-            Left<Failure, List<Space>>(
+            Left<Failure, List<SpaceEntity>>(
               ServerFailure(error),
             ),
           ),
@@ -77,7 +86,7 @@ void main() {
         expect(
           result,
           equals(
-            Left<Failure, List<Space>>(
+            Left<Failure, List<SpaceEntity>>(
               AuthenticationFailure(),
             ),
           ),

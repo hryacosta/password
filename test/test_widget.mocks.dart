@@ -3,21 +3,20 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 import 'dart:convert' as _i10;
-import 'dart:typed_data' as _i12;
+import 'dart:typed_data' as _i11;
 
-import 'package:dartz/dartz.dart' as _i2;
-import 'package:get_it/get_it.dart' as _i14;
-import 'package:http/http.dart' as _i3;
+import 'package:fpdart/fpdart.dart' as _i5;
+import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i11;
-import 'package:password/core/error/failure.dart' as _i7;
+import 'package:mockito/src/dummies.dart' as _i8;
+import 'package:password/core/error/failure.dart' as _i6;
 import 'package:password/data/datasources/spaces_remote_datasource.dart'
-    as _i13;
-import 'package:password/data/models/space_model.dart' as _i4;
-import 'package:password/domain/entities/space.dart' as _i8;
-import 'package:password/domain/repositories/spaces_repository.dart' as _i6;
+    as _i12;
+import 'package:password/data/models/space_model.dart' as _i13;
+import 'package:password/domain/entities/space_entity.dart' as _i7;
+import 'package:password/domain/repositories/spaces_repository.dart' as _i3;
 import 'package:shared_preferences/shared_preferences.dart' as _i9;
 
 // ignore_for_file: type=lint
@@ -33,8 +32,8 @@ import 'package:shared_preferences/shared_preferences.dart' as _i9;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(
+class _FakeResponse_0 extends _i1.SmartFake implements _i2.Response {
+  _FakeResponse_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -43,39 +42,9 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-class _FakeResponse_1 extends _i1.SmartFake implements _i3.Response {
-  _FakeResponse_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeStreamedResponse_2 extends _i1.SmartFake
-    implements _i3.StreamedResponse {
-  _FakeStreamedResponse_2(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeSpaceModel_3 extends _i1.SmartFake implements _i4.SpaceModel {
-  _FakeSpaceModel_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeFuture_4<T1> extends _i1.SmartFake implements _i5.Future<T1> {
-  _FakeFuture_4(
+class _FakeStreamedResponse_1 extends _i1.SmartFake
+    implements _i2.StreamedResponse {
+  _FakeStreamedResponse_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -87,78 +56,81 @@ class _FakeFuture_4<T1> extends _i1.SmartFake implements _i5.Future<T1> {
 /// A class which mocks [SpaceRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSpaceRepository extends _i1.Mock implements _i6.SpaceRepository {
+class MockSpaceRepository extends _i1.Mock implements _i3.SpaceRepository {
   MockSpaceRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.Either<_i7.Failure, List<_i8.Space>>> getSpaces() =>
+  _i4.Future<_i5.Either<_i6.Failure, List<_i7.SpaceEntity>>> getSpaces() =>
       (super.noSuchMethod(
         Invocation.method(
           #getSpaces,
           [],
         ),
-        returnValue: _i5.Future<_i2.Either<_i7.Failure, List<_i8.Space>>>.value(
-            _FakeEither_0<_i7.Failure, List<_i8.Space>>(
+        returnValue:
+            _i4.Future<_i5.Either<_i6.Failure, List<_i7.SpaceEntity>>>.value(
+                _i8.dummyValue<_i5.Either<_i6.Failure, List<_i7.SpaceEntity>>>(
           this,
           Invocation.method(
             #getSpaces,
             [],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i7.Failure, List<_i8.Space>>>);
+      ) as _i4.Future<_i5.Either<_i6.Failure, List<_i7.SpaceEntity>>>);
 
   @override
-  _i5.Future<_i2.Either<_i7.Failure, String>> addSpace(_i8.Space? space) =>
+  _i4.Future<_i5.Either<_i6.Failure, String>> addSpace(
+          _i7.SpaceEntity? space) =>
       (super.noSuchMethod(
         Invocation.method(
           #addSpace,
           [space],
         ),
-        returnValue: _i5.Future<_i2.Either<_i7.Failure, String>>.value(
-            _FakeEither_0<_i7.Failure, String>(
+        returnValue: _i4.Future<_i5.Either<_i6.Failure, String>>.value(
+            _i8.dummyValue<_i5.Either<_i6.Failure, String>>(
           this,
           Invocation.method(
             #addSpace,
             [space],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i7.Failure, String>>);
+      ) as _i4.Future<_i5.Either<_i6.Failure, String>>);
 
   @override
-  _i5.Future<_i2.Either<_i7.Failure, String>> updateSpace(_i8.Space? space) =>
+  _i4.Future<_i5.Either<_i6.Failure, String>> updateSpace(
+          _i7.SpaceEntity? space) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateSpace,
           [space],
         ),
-        returnValue: _i5.Future<_i2.Either<_i7.Failure, String>>.value(
-            _FakeEither_0<_i7.Failure, String>(
+        returnValue: _i4.Future<_i5.Either<_i6.Failure, String>>.value(
+            _i8.dummyValue<_i5.Either<_i6.Failure, String>>(
           this,
           Invocation.method(
             #updateSpace,
             [space],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i7.Failure, String>>);
+      ) as _i4.Future<_i5.Either<_i6.Failure, String>>);
 
   @override
-  _i5.Future<_i2.Either<_i7.Failure, String>> deleteSpace(String? id) =>
+  _i4.Future<_i5.Either<_i6.Failure, String>> deleteSpace(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteSpace,
           [id],
         ),
-        returnValue: _i5.Future<_i2.Either<_i7.Failure, String>>.value(
-            _FakeEither_0<_i7.Failure, String>(
+        returnValue: _i4.Future<_i5.Either<_i6.Failure, String>>.value(
+            _i8.dummyValue<_i5.Either<_i6.Failure, String>>(
           this,
           Invocation.method(
             #deleteSpace,
             [id],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i7.Failure, String>>);
+      ) as _i4.Future<_i5.Either<_i6.Failure, String>>);
 }
 
 /// A class which mocks [SharedPreferences].
@@ -225,7 +197,7 @@ class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
       )) as List<String>?);
 
   @override
-  _i5.Future<bool> setBool(
+  _i4.Future<bool> setBool(
     String? key,
     bool? value,
   ) =>
@@ -237,11 +209,11 @@ class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> setInt(
+  _i4.Future<bool> setInt(
     String? key,
     int? value,
   ) =>
@@ -253,11 +225,11 @@ class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> setDouble(
+  _i4.Future<bool> setDouble(
     String? key,
     double? value,
   ) =>
@@ -269,11 +241,11 @@ class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> setString(
+  _i4.Future<bool> setString(
     String? key,
     String? value,
   ) =>
@@ -285,11 +257,11 @@ class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> setStringList(
+  _i4.Future<bool> setStringList(
     String? key,
     List<String>? value,
   ) =>
@@ -301,57 +273,57 @@ class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> remove(String? key) => (super.noSuchMethod(
+  _i4.Future<bool> remove(String? key) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [key],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> commit() => (super.noSuchMethod(
+  _i4.Future<bool> commit() => (super.noSuchMethod(
         Invocation.method(
           #commit,
           [],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<bool> clear() => (super.noSuchMethod(
+  _i4.Future<bool> clear() => (super.noSuchMethod(
         Invocation.method(
           #clear,
           [],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i5.Future<void> reload() => (super.noSuchMethod(
+  _i4.Future<void> reload() => (super.noSuchMethod(
         Invocation.method(
           #reload,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockClient extends _i1.Mock implements _i3.Client {
+class MockClient extends _i1.Mock implements _i2.Client {
   MockClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i3.Response> head(
+  _i4.Future<_i2.Response> head(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -361,7 +333,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
           Invocation.method(
             #head,
@@ -369,10 +341,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i4.Future<_i2.Response>);
 
   @override
-  _i5.Future<_i3.Response> get(
+  _i4.Future<_i2.Response> get(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -382,7 +354,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
           Invocation.method(
             #get,
@@ -390,10 +362,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i4.Future<_i2.Response>);
 
   @override
-  _i5.Future<_i3.Response> post(
+  _i4.Future<_i2.Response> post(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
@@ -409,7 +381,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
           Invocation.method(
             #post,
@@ -421,10 +393,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             },
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i4.Future<_i2.Response>);
 
   @override
-  _i5.Future<_i3.Response> put(
+  _i4.Future<_i2.Response> put(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
@@ -440,7 +412,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
           Invocation.method(
             #put,
@@ -452,10 +424,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             },
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i4.Future<_i2.Response>);
 
   @override
-  _i5.Future<_i3.Response> patch(
+  _i4.Future<_i2.Response> patch(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
@@ -471,7 +443,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
           Invocation.method(
             #patch,
@@ -483,10 +455,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             },
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i4.Future<_i2.Response>);
 
   @override
-  _i5.Future<_i3.Response> delete(
+  _i4.Future<_i2.Response> delete(
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
@@ -502,7 +474,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
             #encoding: encoding,
           },
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i4.Future<_i2.Response>.value(_FakeResponse_0(
           this,
           Invocation.method(
             #delete,
@@ -514,10 +486,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             },
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i4.Future<_i2.Response>);
 
   @override
-  _i5.Future<String> read(
+  _i4.Future<String> read(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -527,7 +499,7 @@ class MockClient extends _i1.Mock implements _i3.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i5.Future<String>.value(_i11.dummyValue<String>(
+        returnValue: _i4.Future<String>.value(_i8.dummyValue<String>(
           this,
           Invocation.method(
             #read,
@@ -535,10 +507,10 @@ class MockClient extends _i1.Mock implements _i3.Client {
             {#headers: headers},
           ),
         )),
-      ) as _i5.Future<String>);
+      ) as _i4.Future<String>);
 
   @override
-  _i5.Future<_i12.Uint8List> readBytes(
+  _i4.Future<_i11.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -548,25 +520,25 @@ class MockClient extends _i1.Mock implements _i3.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i5.Future<_i12.Uint8List>.value(_i12.Uint8List(0)),
-      ) as _i5.Future<_i12.Uint8List>);
+        returnValue: _i4.Future<_i11.Uint8List>.value(_i11.Uint8List(0)),
+      ) as _i4.Future<_i11.Uint8List>);
 
   @override
-  _i5.Future<_i3.StreamedResponse> send(_i3.BaseRequest? request) =>
+  _i4.Future<_i2.StreamedResponse> send(_i2.BaseRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #send,
           [request],
         ),
         returnValue:
-            _i5.Future<_i3.StreamedResponse>.value(_FakeStreamedResponse_2(
+            _i4.Future<_i2.StreamedResponse>.value(_FakeStreamedResponse_1(
           this,
           Invocation.method(
             #send,
             [request],
           ),
         )),
-      ) as _i5.Future<_i3.StreamedResponse>);
+      ) as _i4.Future<_i2.StreamedResponse>);
 
   @override
   void close() => super.noSuchMethod(
@@ -582,572 +554,53 @@ class MockClient extends _i1.Mock implements _i3.Client {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSpaceRemoteDataSource extends _i1.Mock
-    implements _i13.SpaceRemoteDataSource {
+    implements _i12.SpaceRemoteDataSource {
   MockSpaceRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i4.SpaceModel> getSpaces() => (super.noSuchMethod(
+  _i4.Future<List<_i13.SpaceModel>> getSpaces() => (super.noSuchMethod(
         Invocation.method(
           #getSpaces,
           [],
         ),
-        returnValue: _i5.Future<_i4.SpaceModel>.value(_FakeSpaceModel_3(
-          this,
-          Invocation.method(
-            #getSpaces,
-            [],
-          ),
-        )),
-      ) as _i5.Future<_i4.SpaceModel>);
+        returnValue:
+            _i4.Future<List<_i13.SpaceModel>>.value(<_i13.SpaceModel>[]),
+      ) as _i4.Future<List<_i13.SpaceModel>>);
 
   @override
-  _i5.Future<void> addSpace({required _i8.Space? space}) => (super.noSuchMethod(
+  _i4.Future<void> addSpace({required _i7.SpaceEntity? space}) =>
+      (super.noSuchMethod(
         Invocation.method(
           #addSpace,
           [],
           {#space: space},
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> updateSpace({required _i4.SpaceModel? space}) =>
+  _i4.Future<void> updateSpace({required _i7.SpaceEntity? space}) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateSpace,
           [],
           {#space: space},
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i5.Future<void> deleteSpace({required String? id}) => (super.noSuchMethod(
+  _i4.Future<void> deleteSpace({required String? id}) => (super.noSuchMethod(
         Invocation.method(
           #deleteSpace,
           [],
           {#id: id},
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-}
-
-/// A class which mocks [GetIt].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetIt extends _i1.Mock implements _i14.GetIt {
-  MockGetIt() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  set onScopeChanged(void Function(bool)? _onScopeChanged) =>
-      super.noSuchMethod(
-        Invocation.setter(
-          #onScopeChanged,
-          _onScopeChanged,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  bool get allowReassignment => (super.noSuchMethod(
-        Invocation.getter(#allowReassignment),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  set allowReassignment(bool? _allowReassignment) => super.noSuchMethod(
-        Invocation.setter(
-          #allowReassignment,
-          _allowReassignment,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  T get<T extends Object>({
-    dynamic param1,
-    dynamic param2,
-    String? instanceName,
-    Type? type,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #get,
-          [],
-          {
-            #param1: param1,
-            #param2: param2,
-            #instanceName: instanceName,
-            #type: type,
-          },
-        ),
-        returnValue: _i11.dummyValue<T>(
-          this,
-          Invocation.method(
-            #get,
-            [],
-            {
-              #param1: param1,
-              #param2: param2,
-              #instanceName: instanceName,
-              #type: type,
-            },
-          ),
-        ),
-      ) as T);
-
-  @override
-  _i5.Future<T> getAsync<T extends Object>({
-    String? instanceName,
-    dynamic param1,
-    dynamic param2,
-    Type? type,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getAsync,
-          [],
-          {
-            #instanceName: instanceName,
-            #param1: param1,
-            #param2: param2,
-            #type: type,
-          },
-        ),
-        returnValue: _i11.ifNotNull(
-              _i11.dummyValueOrNull<T>(
-                this,
-                Invocation.method(
-                  #getAsync,
-                  [],
-                  {
-                    #instanceName: instanceName,
-                    #param1: param1,
-                    #param2: param2,
-                    #type: type,
-                  },
-                ),
-              ),
-              (T v) => _i5.Future<T>.value(v),
-            ) ??
-            _FakeFuture_4<T>(
-              this,
-              Invocation.method(
-                #getAsync,
-                [],
-                {
-                  #instanceName: instanceName,
-                  #param1: param1,
-                  #param2: param2,
-                  #type: type,
-                },
-              ),
-            ),
-      ) as _i5.Future<T>);
-
-  @override
-  T call<T extends Object>({
-    String? instanceName,
-    dynamic param1,
-    dynamic param2,
-    Type? type,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-          {
-            #instanceName: instanceName,
-            #param1: param1,
-            #param2: param2,
-            #type: type,
-          },
-        ),
-        returnValue: _i11.dummyValue<T>(
-          this,
-          Invocation.method(
-            #call,
-            [],
-            {
-              #instanceName: instanceName,
-              #param1: param1,
-              #param2: param2,
-              #type: type,
-            },
-          ),
-        ),
-      ) as T);
-
-  @override
-  void registerFactory<T extends Object>(
-    _i14.FactoryFunc<T>? factoryFunc, {
-    String? instanceName,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerFactory,
-          [factoryFunc],
-          {#instanceName: instanceName},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void registerFactoryParam<T extends Object, P1, P2>(
-    _i14.FactoryFuncParam<T, P1, P2>? factoryFunc, {
-    String? instanceName,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerFactoryParam,
-          [factoryFunc],
-          {#instanceName: instanceName},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void registerFactoryAsync<T extends Object>(
-    _i14.FactoryFuncAsync<T>? factoryFunc, {
-    String? instanceName,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerFactoryAsync,
-          [factoryFunc],
-          {#instanceName: instanceName},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void registerFactoryParamAsync<T extends Object, P1, P2>(
-    _i14.FactoryFuncParamAsync<T, P1?, P2?>? factoryFunc, {
-    String? instanceName,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerFactoryParamAsync,
-          [factoryFunc],
-          {#instanceName: instanceName},
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  T registerSingleton<T extends Object>(
-    T? instance, {
-    String? instanceName,
-    bool? signalsReady,
-    _i14.DisposingFunc<T>? dispose,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #registerSingleton,
-          [instance],
-          {
-            #instanceName: instanceName,
-            #signalsReady: signalsReady,
-            #dispose: dispose,
-          },
-        ),
-        returnValue: _i11.dummyValue<T>(
-          this,
-          Invocation.method(
-            #registerSingleton,
-            [instance],
-            {
-              #instanceName: instanceName,
-              #signalsReady: signalsReady,
-              #dispose: dispose,
-            },
-          ),
-        ),
-      ) as T);
-
-  @override
-  void registerSingletonWithDependencies<T extends Object>(
-    _i14.FactoryFunc<T>? factoryFunc, {
-    String? instanceName,
-    Iterable<Type>? dependsOn,
-    bool? signalsReady,
-    _i14.DisposingFunc<T>? dispose,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerSingletonWithDependencies,
-          [factoryFunc],
-          {
-            #instanceName: instanceName,
-            #dependsOn: dependsOn,
-            #signalsReady: signalsReady,
-            #dispose: dispose,
-          },
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void registerSingletonAsync<T extends Object>(
-    _i14.FactoryFuncAsync<T>? factoryFunc, {
-    String? instanceName,
-    Iterable<Type>? dependsOn,
-    bool? signalsReady,
-    _i14.DisposingFunc<T>? dispose,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerSingletonAsync,
-          [factoryFunc],
-          {
-            #instanceName: instanceName,
-            #dependsOn: dependsOn,
-            #signalsReady: signalsReady,
-            #dispose: dispose,
-          },
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void registerLazySingleton<T extends Object>(
-    _i14.FactoryFunc<T>? factoryFunc, {
-    String? instanceName,
-    _i14.DisposingFunc<T>? dispose,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerLazySingleton,
-          [factoryFunc],
-          {
-            #instanceName: instanceName,
-            #dispose: dispose,
-          },
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void registerLazySingletonAsync<T extends Object>(
-    _i14.FactoryFuncAsync<T>? factoryFunc, {
-    String? instanceName,
-    _i14.DisposingFunc<T>? dispose,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerLazySingletonAsync,
-          [factoryFunc],
-          {
-            #instanceName: instanceName,
-            #dispose: dispose,
-          },
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  bool isRegistered<T extends Object>({
-    Object? instance,
-    String? instanceName,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #isRegistered,
-          [],
-          {
-            #instance: instance,
-            #instanceName: instanceName,
-          },
-        ),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  _i5.Future<void> reset({bool? dispose = true}) => (super.noSuchMethod(
-        Invocation.method(
-          #reset,
-          [],
-          {#dispose: dispose},
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> resetScope({bool? dispose = true}) => (super.noSuchMethod(
-        Invocation.method(
-          #resetScope,
-          [],
-          {#dispose: dispose},
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  void pushNewScope({
-    void Function(_i14.GetIt)? init,
-    String? scopeName,
-    _i14.ScopeDisposeFunc? dispose,
-    bool? isFinal,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #pushNewScope,
-          [],
-          {
-            #init: init,
-            #scopeName: scopeName,
-            #dispose: dispose,
-            #isFinal: isFinal,
-          },
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i5.Future<void> pushNewScopeAsync({
-    _i5.Future<void> Function(_i14.GetIt)? init,
-    String? scopeName,
-    _i14.ScopeDisposeFunc? dispose,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #pushNewScopeAsync,
-          [],
-          {
-            #init: init,
-            #scopeName: scopeName,
-            #dispose: dispose,
-          },
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> popScope() => (super.noSuchMethod(
-        Invocation.method(
-          #popScope,
-          [],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<bool> popScopesTill(
-    String? name, {
-    bool? inclusive = true,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #popScopesTill,
-          [name],
-          {#inclusive: inclusive},
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
-
-  @override
-  _i5.Future<void> dropScope(String? scopeName) => (super.noSuchMethod(
-        Invocation.method(
-          #dropScope,
-          [scopeName],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  bool hasScope(String? scopeName) => (super.noSuchMethod(
-        Invocation.method(
-          #hasScope,
-          [scopeName],
-        ),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  _i5.Future<void> allReady({
-    Duration? timeout,
-    bool? ignorePendingAsyncCreation = false,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #allReady,
-          [],
-          {
-            #timeout: timeout,
-            #ignorePendingAsyncCreation: ignorePendingAsyncCreation,
-          },
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> isReady<T extends Object>({
-    Object? instance,
-    String? instanceName,
-    Duration? timeout,
-    Object? callee,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #isReady,
-          [],
-          {
-            #instance: instance,
-            #instanceName: instanceName,
-            #timeout: timeout,
-            #callee: callee,
-          },
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  bool isReadySync<T extends Object>({
-    Object? instance,
-    String? instanceName,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #isReadySync,
-          [],
-          {
-            #instance: instance,
-            #instanceName: instanceName,
-          },
-        ),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  bool allReadySync([bool? ignorePendingAsyncCreation = false]) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #allReadySync,
-          [ignorePendingAsyncCreation],
-        ),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  void signalReady(Object? instance) => super.noSuchMethod(
-        Invocation.method(
-          #signalReady,
-          [instance],
-        ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

@@ -1,5 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/core/usecase/use_case.dart';

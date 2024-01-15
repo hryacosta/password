@@ -7,12 +7,27 @@ part of 'space_model.dart';
 // **************************************************************************
 
 SpaceModel _$SpaceModelFromJson(Map<String, dynamic> json) => SpaceModel(
-      (json['spaces'] as List<dynamic>)
-          .map((e) => Space.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      id: json['id'] as String,
+      location: json['location'] as String,
+      name: json['name'] as String,
+      timestamp: json['timestamp'] as int,
+      photoUrl: json['photoUrl'] as String?,
     );
 
-Map<String, dynamic> _$SpaceModelToJson(SpaceModel instance) =>
-    <String, dynamic>{
-      'spaces': instance.spaces,
-    };
+Map<String, dynamic> _$SpaceModelToJson(SpaceModel instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'location': instance.location,
+    'name': instance.name,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('photoUrl', instance.photoUrl);
+  val['timestamp'] = instance.timestamp;
+  return val;
+}

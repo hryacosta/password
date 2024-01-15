@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:password/core/config/injectable.dart';
+import 'package:password/config/injectable.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/services/auth_service.dart';
 

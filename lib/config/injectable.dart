@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:password/core/config/injectable.config.dart';
+import 'package:password/config/injectable.config.dart';
 
 /// Instance.
 final sl = GetIt.instance;

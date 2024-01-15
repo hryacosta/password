@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -14,10 +15,18 @@ import '../../test_widget.mocks.dart';
 void main() {
   late SpaceRemoteDataSourceImpl dataSource;
   late MockClient mockClient;
-  late SpaceModel tSpacesModel;
+  late List<SpaceModel> tSpacesModel;
   final mockAuthStatus = AuthService();
   final sl = GetIt.instance;
+  final fixtureSpaces = fixtureMap('get_spaces.json');
+  final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
+      .getOrElse(() => <dynamic>[]);
 
+  tSpacesModel = option
+      .map(
+        (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
+      )
+      .toList();
   setUpAll(() {
     sl.registerSingleton<AuthService>(
       mockAuthStatus,
@@ -25,9 +34,6 @@ void main() {
     );
     mockClient = MockClient();
     dataSource = SpaceRemoteDataSourceImpl(client: mockClient);
-    tSpacesModel = SpaceModel.fromJson(
-      fixtureMap('get_spaces.json'),
-    );
   });
 
   tearDown(() async {
@@ -86,7 +92,7 @@ void main() {
 
         final result = await dataSource.getSpaces();
 
-        expect(result, isA<SpaceModel>());
+        expect(result, isA<List<SpaceModel>>());
 
         expect(result, equals(tSpacesModel));
       },

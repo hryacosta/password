@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:password/core/error/failure.dart';
 
 abstract class UseCase<Type, Params> {

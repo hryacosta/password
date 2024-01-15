@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password/core/config/injectable.dart';
+import 'package:password/config/injectable.dart';
 import 'package:password/core/services/auth_service.dart';
 import 'package:password/core/utils/logger.dart';
 import 'package:password/presentation/controllers/home_controller.dart';

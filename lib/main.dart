@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:password/app.dart';
-import 'package:password/core/config/google_fonts.dart';
-import 'package:password/core/config/injectable.dart';
+import 'package:password/config/google_fonts.dart';
+import 'package:password/config/injectable.dart';
 import 'package:password/core/utils/logger.dart';
 
 void main() {

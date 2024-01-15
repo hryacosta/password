@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:password/core/error/exception.dart';
@@ -7,7 +8,7 @@ import 'package:password/core/extension/http_client.dart';
 import 'package:password/core/extension/http_response.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/models/space_model.dart';
-import 'package:password/domain/entities/space.dart';
+import 'package:password/domain/entities/space_entity.dart';
 
 @injectable
 abstract class SpaceRemoteDataSource {
@@ -23,19 +24,19 @@ abstract class SpaceRemoteDataSource {
   ///
   /// Throws a [ServerException] for all error codes.
   /// Throws a [AuthenticationException] for all error codes.
-  Future<SpaceModel> getSpaces();
+  Future<List<SpaceModel>> getSpaces();
 
   /// Calls https://api endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   /// Throws a [AuthenticationException] for all error codes.
-  Future<void> addSpace({required Space space});
+  Future<void> addSpace({required SpaceEntity space});
 
   /// Calls https://api endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   /// Throws a [AuthenticationException] for all error codes.
-  Future<void> updateSpace({required SpaceModel space});
+  Future<void> updateSpace({required SpaceEntity space});
 
   /// Calls https://api endpoint.
   ///
@@ -50,7 +51,7 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
   final http.Client client;
 
   @override
-  Future<void> addSpace({required Space space}) async {
+  Future<void> addSpace({required SpaceEntity space}) async {
     throw UnimplementedError();
   }
 
@@ -60,20 +61,27 @@ class SpaceRemoteDataSourceImpl implements SpaceRemoteDataSource {
   }
 
   @override
-  Future<SpaceModel> getSpaces() async {
+  Future<List<SpaceModel>> getSpaces() async {
     final result = await client.getWithAuthCheck(getSpacesUri);
 
-    final data = jsonDecode(result.body);
+    final Map<String, dynamic> data = jsonDecode(result.body);
 
     if (result.isOk) {
-      return SpaceModel.fromJson(data);
+      final option =
+          Option<List<dynamic>>.of(data['spaces']).getOrElse(() => <dynamic>[]);
+
+      return option
+          .map(
+            (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
+          )
+          .toList();
     }
 
     return throw ServerException.fromJson(data);
   }
 
   @override
-  Future<void> updateSpace({required SpaceModel space}) {
+  Future<void> updateSpace({required SpaceEntity space}) {
     throw UnimplementedError();
   }
 }

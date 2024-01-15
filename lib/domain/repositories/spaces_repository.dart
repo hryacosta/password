@@ -1,9 +1,9 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/data/datasources/spaces_remote_datasource.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
-import 'package:password/domain/entities/space.dart';
+import 'package:password/domain/entities/space_entity.dart';
 
 @injectable
 abstract class SpaceRepository {
@@ -17,11 +17,11 @@ abstract class SpaceRepository {
         // localDataSource: localDataSource,
       );
 
-  Future<Either<Failure, List<Space>>> getSpaces();
+  Future<Either<Failure, List<SpaceEntity>>> getSpaces();
 
-  Future<Either<Failure, String>> addSpace(Space space);
+  Future<Either<Failure, String>> addSpace(SpaceEntity space);
 
-  Future<Either<Failure, String>> updateSpace(Space space);
+  Future<Either<Failure, String>> updateSpace(SpaceEntity space);
 
   Future<Either<Failure, String>> deleteSpace(String id);
 }

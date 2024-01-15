@@ -43,3 +43,8 @@ final class NetworkException extends IException {
 final class AuthenticationException extends IException {
   AuthenticationException(super.message, {super.extra});
 }
+
+/// Exception is throw when response data cant be cast to map
+final class CastDataException extends IException {
+  CastDataException(super.message, {super.extra});
+}

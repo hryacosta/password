@@ -1,9 +1,9 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/core/utils/logger.dart';
 import 'package:password/data/datasources/spaces_remote_datasource.dart';
-import 'package:password/domain/entities/space.dart';
+import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
 class SpaceRepositoryImpl implements SpaceRepository {
@@ -14,11 +14,11 @@ class SpaceRepositoryImpl implements SpaceRepository {
   final SpaceRemoteDataSource remoteDateSource;
 
   @override
-  Future<Either<Failure, List<Space>>> getSpaces() async {
+  Future<Either<Failure, List<SpaceEntity>>> getSpaces() async {
     try {
       final result = await remoteDateSource.getSpaces();
 
-      return Right(result.spaces);
+      return Right(result);
     } on AuthenticationException catch (error, stackTrace) {
       logger.e(
         'AuthenticationException',
@@ -39,7 +39,7 @@ class SpaceRepositoryImpl implements SpaceRepository {
   }
 
   @override
-  Future<Either<Failure, String>> addSpace(Space space) async {
+  Future<Either<Failure, String>> addSpace(SpaceEntity space) async {
     try {
       await remoteDateSource.addSpace(space: space);
 
@@ -64,7 +64,7 @@ class SpaceRepositoryImpl implements SpaceRepository {
   }
 
   @override
-  Future<Either<Failure, String>> updateSpace(Space space) {
+  Future<Either<Failure, String>> updateSpace(SpaceEntity space) {
     throw UnimplementedError();
   }
 }
