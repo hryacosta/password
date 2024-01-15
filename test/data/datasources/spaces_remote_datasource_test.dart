@@ -21,12 +21,12 @@ void main() {
   final fixtureSpaces = fixtureMap('get_spaces.json');
   final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
       .getOrElse(() => <dynamic>[]);
-
   tSpacesModel = option
       .map(
         (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
       )
       .toList();
+
   setUpAll(() {
     sl.registerSingleton<AuthService>(
       mockAuthStatus,

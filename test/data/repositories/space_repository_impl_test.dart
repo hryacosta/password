@@ -14,9 +14,7 @@ void main() {
   late MockSpaceRemoteDataSource mockRemoteDateSource;
   late SpaceRepositoryImpl repository;
   late List<SpaceModel> tSpaceModel;
-
   final fixtureSpaces = fixtureMap('get_spaces.json');
-
   final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
       .getOrElse(() => <dynamic>[]);
 
