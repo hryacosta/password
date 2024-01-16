@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/core/utils/logger.dart';
-import 'package:password/data/datasources/spaces_remote_datasource.dart';
+import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
@@ -18,7 +18,9 @@ class SpaceRepositoryImpl implements SpaceRepository {
     try {
       final result = await remoteDateSource.getSpaces();
 
-      return Right(result);
+      final spaces = result.bodyOrThrow;
+
+      return Right(spaces);
     } on AuthenticationException catch (error, stackTrace) {
       logger.e(
         'AuthenticationException',
@@ -41,7 +43,7 @@ class SpaceRepositoryImpl implements SpaceRepository {
   @override
   Future<Either<Failure, String>> addSpace(SpaceEntity space) async {
     try {
-      await remoteDateSource.addSpace(space: space);
+      // await remoteDateSource.addSpace(space);
 
       return const Right('');
     } on AuthenticationException catch (error, stackTrace) {

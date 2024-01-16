@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:password/core/error/failure.dart';
-import 'package:password/data/datasources/spaces_remote_datasource.dart';
+import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space_entity.dart';
 
@@ -10,11 +10,9 @@ abstract class SpaceRepository {
   @factoryMethod
   factory SpaceRepository.from({
     required SpaceRemoteDataSource remoteDateSource,
-    //required SpaceLocalDataSource localDataSource,
   }) =>
       SpaceRepositoryImpl(
         remoteDateSource: remoteDateSource,
-        // localDataSource: localDataSource,
       );
 
   Future<Either<Failure, List<SpaceEntity>>> getSpaces();

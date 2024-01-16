@@ -1,6 +1,7 @@
+import 'package:chopper/chopper.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @module
@@ -10,5 +11,9 @@ abstract class RegisterModule {
 
   Connectivity get connectivity => Connectivity();
 
-  http.Client get client => http.Client();
+  ChopperClient get client => ChopperClient(
+        services: [
+          SpaceRemoteDataSource.create(),
+        ],
+      );
 }
