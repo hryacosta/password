@@ -1,7 +1,17 @@
-import 'package:injectable/injectable.dart';
+final class AuthenticationService {
+  factory AuthenticationService() {
+    return _instance;
+  }
 
-@singleton
-final class AuthService {
+  factory AuthenticationService.getInstance() {
+    return _instance;
+  }
+
+  AuthenticationService._internal();
+
+  static final AuthenticationService _instance =
+      AuthenticationService._internal();
+
   String _authorizationToken = '';
   int _expiresIn = 60;
   DateTime? _createdTime;
@@ -10,7 +20,6 @@ final class AuthService {
 
   int get expiresIn => _expiresIn;
 
-  @disposeMethod
   void dispose() {
     _destroySession();
   }

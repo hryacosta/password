@@ -10,14 +10,13 @@ import 'package:password/data/models/space_model.dart';
 import 'package:password/data/services/auth_service.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../test_widget.mocks.dart';
+import '../../test_widget.dart';
 
 void main() {
-  late SpaceRemoteDataSourceImpl dataSource;
+  late SpaceRemoteDataSource dataSource;
   late MockClient mockClient;
   late List<SpaceModel> tSpacesModel;
-  final mockAuthStatus = AuthService();
-  final sl = GetIt.instance;
+  final mockAuthStatus = AuthenticationService();
   final fixtureSpaces = fixtureMap('get_spaces.json');
   final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
       .getOrElse(() => <dynamic>[]);
@@ -28,12 +27,8 @@ void main() {
       .toList();
 
   setUpAll(() {
-    sl.registerSingleton<AuthService>(
-      mockAuthStatus,
-      dispose: (i) => i.dispose(),
-    );
     mockClient = MockClient();
-    dataSource = SpaceRemoteDataSourceImpl(client: mockClient);
+    dataSource = SpaceRemoteDataSource.create(mockClient);
   });
 
   tearDown(() async {
@@ -72,7 +67,7 @@ void main() {
 
         verify(
           mockClient.get(
-            getSpacesUri,
+            apibaseUrl,
             headers: {
               'Content-Type': 'application/json;charset=UTF-8',
               'Accept': 'application/json',

@@ -1,9 +1,8 @@
-const baseUrl = 'faqpqzhd74.execute-api.us-east-1.amazonaws.com';
+const host = 'faqpqzhd74.execute-api.us-east-1.amazonaws.com';
 const env = 'prod';
 const scheme = 'https';
 
-final getSpacesUri = Uri(
+final apibaseUrl = Uri(
   scheme: scheme,
-  host: baseUrl,
-  path: '$env/spaces',
+  host: host,
 );

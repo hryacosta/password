@@ -18,29 +18,11 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
   final Type definitionType = SpaceRemoteDataSource;
 
   @override
-  Future<Response<List<SpaceModel>>> getSpaces() {
-    final Uri $url = Uri.parse(
-        'https/faqpqzhd74.execute-api.us-east-1.amazonaws.com/prod/spaces');
-    final Map<String, String> $headers = {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Accept': 'application/json',
-    };
-    final Request $request = Request(
-      'GET',
-      $url,
-      client.baseUrl,
-      headers: $headers,
-    );
-    return client.send<List<SpaceModel>, SpaceModel>($request);
-  }
-
-  @override
   Future<Response<void>> addSpace(SpaceModel space) {
-    final Uri $url = Uri.parse(
-        'https/faqpqzhd74.execute-api.us-east-1.amazonaws.com/prod/spaces');
+    final Uri $url = Uri.parse('prod/spaces');
     final Map<String, String> $headers = {
-      'Content-Type': 'application/json;charset=UTF-8',
-      'Accept': 'application/json',
+      'content-type': 'application/json; charset=UTF-8',
+      'accept': 'application/json',
     };
     final $body = space;
     final Request $request = Request(
@@ -51,5 +33,21 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
       headers: $headers,
     );
     return client.send<void, void>($request);
+  }
+
+  @override
+  Future<Response<List<SpaceModel>>> getSpaces() {
+    final Uri $url = Uri.parse('prod/spaces');
+    final Map<String, String> $headers = {
+      'content-type': 'application/json; charset=UTF-8',
+      'accept': 'application/json',
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      headers: $headers,
+    );
+    return client.send<List<SpaceModel>, SpaceModel>($request);
   }
 }

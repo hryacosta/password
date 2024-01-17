@@ -18,6 +18,8 @@ class SpaceRepositoryImpl implements SpaceRepository {
     try {
       final result = await remoteDateSource.getSpaces();
 
+      logger.d(result);
+
       final spaces = result.bodyOrThrow;
 
       return Right(spaces);
