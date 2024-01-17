@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:injectable/injectable.dart';
+import 'package:password/data/converters/JsonConverter.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/models/space_model.dart';
 
@@ -22,6 +23,9 @@ abstract class SpaceRemoteDataSource extends ChopperService {
   )
   Future<Response<void>> addSpace(@Body() SpaceModel space);
 
+  @FactoryConverter(
+    response: JsonCoverter.getSpacesConverter,
+  )
   @Get(
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',

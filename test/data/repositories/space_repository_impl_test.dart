@@ -1,54 +1,77 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:mockito/mockito.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/error/failure.dart';
+import 'package:password/data/datasources/space_constants.dart';
+import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space_entity.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../test_widget.mocks.dart';
 
 void main() {
-  late MockSpaceRemoteDataSource mockRemoteDateSource;
+  late SpaceRemoteDataSource remoteDataSource;
   late SpaceRepositoryImpl repository;
-  late List<SpaceModel> tSpaceModel;
-  final fixtureSpaces = fixtureMap('get_spaces.json');
-  final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
-      .getOrElse(() => <dynamic>[]);
 
-  setUp(() {
-    tSpaceModel = option
-        .map(
-          (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
-        )
-        .toList();
+  ChopperClient buildClient({
+    http.Client? httpClient,
+    ErrorConverter? errorConverter,
+    Converter? converter,
+  }) =>
+      ChopperClient(
+        baseUrl: apiBaseUrl,
+        client: httpClient,
+        errorConverter: errorConverter,
+        converter: converter,
+      );
 
-    mockRemoteDateSource = MockSpaceRemoteDataSource();
-    repository = SpaceRepositoryImpl(
-      remoteDateSource: mockRemoteDateSource,
+  void onMockRemoteData({
+    http.Client? httpClient,
+    ErrorConverter? errorConverter,
+    Converter? converter,
+  }) {
+    final client = buildClient(
+      httpClient: httpClient,
+      converter: converter,
+      errorConverter: errorConverter,
     );
-  });
+    remoteDataSource = SpaceRemoteDataSource.create(client);
+    repository = SpaceRepositoryImpl(
+      remoteDateSource: remoteDataSource,
+    );
+  }
 
   group('getSpaces', () {
     test(
       'should return SpaceModel when the call is successful',
       () async {
-        when(mockRemoteDateSource.getSpaces()).thenAnswer(
-          (_) async => tSpaceModel,
+        final httpClient = MockClient(
+          (_) async => http.Response(fixture('get_spaces.json'), 200),
         );
+
+        onMockRemoteData(httpClient: httpClient);
+
+        final tSpaceModel =
+            Option<List<dynamic>>.of(fixtureMap('get_spaces.json')['spaces'])
+                .getOrElse(() => <dynamic>[])
+                .map(
+                  (element) =>
+                      SpaceModel.fromJson(element as Map<String, dynamic>),
+                )
+                .toList();
 
         final result = await repository.getSpaces();
 
         expect(
-          result,
-          equals(
-            Right<Failure, List<SpaceEntity>>(
-              tSpaceModel,
-            ),
-          ),
+          result.isRight(),
+          true,
         );
+
+        expect(result.getRight().getOrElse(() => []), equals(tSpaceModel));
       },
     );
 
@@ -56,8 +79,6 @@ void main() {
       'should throw ServerException when the call is unsuccessful',
       () async {
         final error = ServerException(code: 1010, message: 'error');
-
-        when(mockRemoteDateSource.getSpaces()).thenThrow(error);
 
         final result = await repository.getSpaces();
 
@@ -76,8 +97,6 @@ void main() {
       'should throw AuthenticationException when the call is unsuccessful',
       () async {
         final error = AuthenticationException('error');
-
-        when(mockRemoteDateSource.getSpaces()).thenThrow(error);
 
         final result = await repository.getSpaces();
 

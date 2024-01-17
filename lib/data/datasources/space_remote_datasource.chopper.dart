@@ -48,6 +48,9 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
       client.baseUrl,
       headers: $headers,
     );
-    return client.send<List<SpaceModel>, SpaceModel>($request);
+    return client.send<List<SpaceModel>, SpaceModel>(
+      $request,
+      responseConverter: JsonCoverter.getSpacesConverter,
+    );
   }
 }

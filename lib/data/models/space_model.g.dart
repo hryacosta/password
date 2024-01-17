@@ -11,7 +11,7 @@ SpaceModel _$SpaceModelFromJson(Map<String, dynamic> json) => SpaceModel(
       location: json['location'] as String,
       name: json['name'] as String,
       timestamp: json['timestamp'] as int,
-      photoUrl: json['photoUrl'] as String?,
+      photoUrl: json['photoUrl'] as String? ?? '',
     );
 
 Map<String, dynamic> _$SpaceModelToJson(SpaceModel instance) {

@@ -12,7 +12,7 @@ class SpaceModel extends SpaceEntity {
     required super.location,
     required super.name,
     required super.timestamp,
-    super.photoUrl,
+    super.photoUrl = '',
   });
 
   factory SpaceModel.fromJson(Map<String, dynamic> json) =>
