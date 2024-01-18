@@ -21,10 +21,9 @@ void main() {
   });
 
   test('should handle authentication exception', () async {
-    final error =
-        AuthenticationException('error message', extra: 'extra message');
+    final error = UnauthorizedException();
 
-    expect(error, isA<AuthenticationException>());
-    expect(error.message, 'error message');
+    expect(error, isA<UnauthorizedException>());
+    expect(error.message, 'Not authenticated');
   });
 }

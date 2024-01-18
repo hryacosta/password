@@ -48,3 +48,8 @@ final class AuthenticationException extends IException {
 final class CastDataException extends IException {
   CastDataException(super.message, {super.extra});
 }
+
+/// Exception is throw when user is not authorized to access
+final class UnauthorizedException extends IException {
+  UnauthorizedException() : super('unauthorized');
+}

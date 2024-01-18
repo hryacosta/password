@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password/data/services/auth_service.dart';
+import 'package:password/core/services/authentication_service.dart';
 import 'package:password/presentation/controllers/home_controller.dart';
 import 'package:provider/provider.dart';
 

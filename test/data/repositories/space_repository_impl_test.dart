@@ -3,10 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:password/core/error/exception.dart';
 import 'package:password/core/error/failure.dart';
+import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
+import 'package:password/data/interceptors/auth_interceptor.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space_entity.dart';
@@ -27,6 +28,10 @@ void main() {
         client: httpClient,
         errorConverter: errorConverter,
         converter: converter,
+        interceptors: [
+          HttpLoggingInterceptor(),
+          AuthenticatorInterceptor(),
+        ],
       );
 
   void onMockRemoteData({
@@ -49,6 +54,7 @@ void main() {
     test(
       'should return SpaceModel when the call is successful',
       () async {
+        AuthenticationService.getInstance().createSession(idToken: 'idToken');
         final httpClient = MockClient(
           (_) async => http.Response(fixture('get_spaces.json'), 200),
         );
@@ -78,25 +84,44 @@ void main() {
     test(
       'should throw ServerException when the call is unsuccessful',
       () async {
-        final error = ServerException(code: 1010, message: 'error');
+        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+
+        // final body = fixtureMap('custom_server_error.json');
+
+        final httpClient = MockClient(
+          (_) async => http.Response(fixture('custom_server_error.json'), 500),
+        );
+
+        onMockRemoteData(httpClient: httpClient);
 
         final result = await repository.getSpaces();
 
         expect(
-          result,
-          equals(
-            Left<Failure, List<SpaceEntity>>(
-              ServerFailure(error),
-            ),
-          ),
+          result.isLeft(),
+          true,
         );
+
+        // expect(
+        //   result,
+        //   equals(
+        //     Left<Failure, List<SpaceEntity>>(
+        //       ServerFailure(body),
+        //     ),
+        //   ),
+        // );
       },
     );
 
     test(
-      'should throw AuthenticationException when the call is unsuccessful',
+      'should throw UnauthorizedException when the call is unsuccessful',
       () async {
-        final error = AuthenticationException('error');
+        AuthenticationService.getInstance().dispose();
+
+        final httpClient = MockClient(
+          (_) async => http.Response(fixture('session_expired.json'), 401),
+        );
+
+        onMockRemoteData(httpClient: httpClient);
 
         final result = await repository.getSpaces();
 

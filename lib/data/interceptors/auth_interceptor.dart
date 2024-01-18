@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:meta/meta.dart';
-import 'package:password/data/services/auth_service.dart';
+import 'package:password/core/error/exception.dart';
+import 'package:password/core/services/authentication_service.dart';
 
 @immutable
 class AuthenticatorInterceptor implements RequestInterceptor {
@@ -22,16 +23,16 @@ class AuthenticatorInterceptor implements RequestInterceptor {
 
   @override
   FutureOr<Request> onRequest(Request request) {
-    if (AuthenticationService.getInstance().isSignedIn) {
+    final authService = AuthenticationService.getInstance();
+    if (authService.isSignedIn) {
       return request.copyWith(
         headers: {
           ...request.headers,
-          HttpHeaders.authorizationHeader:
-              AuthenticationService.getInstance().authorizationToken,
+          HttpHeaders.authorizationHeader: authService.authorizationToken,
         },
       );
     }
-    // throw AuthenticationException('Not authenticated');
-    return request;
+
+    throw UnauthorizedException();
   }
 }

@@ -6,7 +6,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/data/models/space_model.dart';
 
-class JsonCoverter {
+class SpaceConverter {
   static FutureOr<Response<dynamic>> getSpacesConverter(
     Response<dynamic> response,
   ) async {
@@ -24,6 +24,6 @@ class JsonCoverter {
       return response.copyWith(body: bodyParser);
     }
 
-    throw ServerException(code: 1, message: 'serverError');
+    throw ServerException.fromJson(body);
   }
 }

@@ -21,13 +21,7 @@ class SpaceRepositoryImpl implements SpaceRepository {
       final spaces = result.bodyOrThrow;
 
       return Right(spaces);
-    } on AuthenticationException catch (error, stackTrace) {
-      logger.e(
-        'AuthenticationException',
-        error: error,
-        stackTrace: stackTrace,
-      );
-
+    } on UnauthorizedException catch (_) {
       return left(AuthenticationFailure());
     } catch (error, stackTrace) {
       logger.e(
@@ -46,12 +40,7 @@ class SpaceRepositoryImpl implements SpaceRepository {
       // await remoteDateSource.addSpace(space);
 
       return const Right('');
-    } on AuthenticationException catch (error, stackTrace) {
-      logger.e(
-        'AuthenticationException',
-        error: error,
-        stackTrace: stackTrace,
-      );
+    } on UnauthorizedException catch (_) {
       return Left(AuthenticationFailure());
     } catch (error, stackTrace) {
       logger.e('Exception', error: error, stackTrace: stackTrace);

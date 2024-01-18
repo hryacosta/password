@@ -50,7 +50,7 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
     );
     return client.send<List<SpaceModel>, SpaceModel>(
       $request,
-      responseConverter: JsonCoverter.getSpacesConverter,
+      responseConverter: SpaceConverter.getSpacesConverter,
     );
   }
 }
