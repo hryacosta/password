@@ -12,7 +12,7 @@ abstract class SpaceRepository {
     required SpaceRemoteDataSource remoteDateSource,
   }) =>
       SpaceRepositoryImpl(
-        remoteDateSource: remoteDateSource,
+        remoteDataSource: remoteDateSource,
       );
 
   Future<Either<Failure, List<SpaceEntity>>> getSpaces();
