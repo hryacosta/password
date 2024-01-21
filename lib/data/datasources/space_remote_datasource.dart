@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:password/data/converters/space_converter.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/models/space_model.dart';
+import 'package:password/domain/entities/space_entity.dart';
 
 part 'space_remote_datasource.chopper.dart';
 
@@ -21,7 +22,7 @@ abstract class SpaceRemoteDataSource extends ChopperService {
       HttpHeaders.acceptHeader: 'application/json',
     },
   )
-  Future<Response<void>> addSpace(@Body() SpaceModel space);
+  Future<Response<void>> addSpace(@Body() SpaceEntity space);
 
   @FactoryConverter(
     response: SpaceConverter.getSpacesConverter,
@@ -33,4 +34,12 @@ abstract class SpaceRemoteDataSource extends ChopperService {
     },
   )
   Future<Response<List<SpaceModel>>> getSpaces();
+
+  @Delete(
+    headers: {
+      HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+      HttpHeaders.acceptHeader: 'application/json',
+    },
+  )
+  Future<Response<void>> deleteSpace(@Path() String id);
 }

@@ -46,7 +46,7 @@ void main() {
     );
     remoteDataSource = SpaceRemoteDataSource.create(client);
     repository = SpaceRepositoryImpl(
-      remoteDateSource: remoteDataSource,
+      remoteDataSource: remoteDataSource,
     );
   }
 

@@ -166,7 +166,7 @@ class MockSpaceRemoteDataSource extends _i1.Mock
       ) as Type);
 
   @override
-  _i4.Future<_i8.Response<void>> addSpace(_i10.SpaceModel? space) =>
+  _i4.Future<_i8.Response<void>> addSpace(_i6.SpaceEntity? space) =>
       (super.noSuchMethod(
         Invocation.method(
           #addSpace,
@@ -198,6 +198,22 @@ class MockSpaceRemoteDataSource extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i8.Response<List<_i10.SpaceModel>>>);
+
+  @override
+  _i4.Future<_i8.Response<void>> deleteSpace(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteSpace,
+          [id],
+        ),
+        returnValue: _i4.Future<_i8.Response<void>>.value(
+            _i9.dummyValue<_i8.Response<void>>(
+          this,
+          Invocation.method(
+            #deleteSpace,
+            [id],
+          ),
+        )),
+      ) as _i4.Future<_i8.Response<void>>);
 }
 
 /// A class which mocks [SharedPreferences].

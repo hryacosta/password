@@ -18,7 +18,7 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
   final Type definitionType = SpaceRemoteDataSource;
 
   @override
-  Future<Response<void>> addSpace(SpaceModel space) {
+  Future<Response<void>> addSpace(SpaceEntity space) {
     final Uri $url = Uri.parse('prod/spaces');
     final Map<String, String> $headers = {
       'content-type': 'application/json; charset=UTF-8',
@@ -52,5 +52,21 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
       $request,
       responseConverter: SpaceConverter.getSpacesConverter,
     );
+  }
+
+  @override
+  Future<Response<void>> deleteSpace(String id) {
+    final Uri $url = Uri.parse('prod/spaces');
+    final Map<String, String> $headers = {
+      'content-type': 'application/json; charset=UTF-8',
+      'accept': 'application/json',
+    };
+    final Request $request = Request(
+      'DELETE',
+      $url,
+      client.baseUrl,
+      headers: $headers,
+    );
+    return client.send<void, void>($request);
   }
 }

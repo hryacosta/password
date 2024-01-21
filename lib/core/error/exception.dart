@@ -53,3 +53,8 @@ final class CastDataException extends IException {
 final class UnauthorizedException extends IException {
   UnauthorizedException() : super('unauthorized');
 }
+
+/// Exception is throw when user is not authorized to access
+final class ExpiredSessionException extends IException {
+  ExpiredSessionException() : super('session has expired');
+}
