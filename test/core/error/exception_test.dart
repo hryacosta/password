@@ -24,6 +24,6 @@ void main() {
     final error = UnauthorizedException();
 
     expect(error, isA<UnauthorizedException>());
-    expect(error.message, 'Not authenticated');
+    expect(error.message, 'Unauthorized');
   });
 }

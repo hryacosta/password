@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password/core/utils/app_localization.dart';
-import 'package:password/presentation/features/app/dialog_new_element.dart';
+import 'package:password/presentation/features/home/dialog_new_element.dart';
 import 'package:password/presentation/features/home/home_page.dart';
 import 'package:password/presentation/features/settings/settings_page.dart';
 

@@ -34,7 +34,7 @@ Future<_i1.GetIt> $initGetIt(
     environmentFilter,
   );
   final registerModule = _$RegisterModule();
-  gh.lazySingleton<_i3.ChopperClient>(() => registerModule.chooperClient);
+  gh.lazySingleton<_i3.ChopperClient>(() => registerModule.chopperClient);
   gh.factory<_i4.Client>(() => registerModule.client);
   gh.factory<_i5.Connectivity>(() => registerModule.connectivity);
   await gh.factoryAsync<_i6.SharedPreferences>(

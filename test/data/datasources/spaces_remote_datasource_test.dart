@@ -1,13 +1,14 @@
 import 'package:chopper/chopper.dart';
+import 'package:chopper/src/chopper_http_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:password/config/client.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
-import 'package:password/data/interceptors/auth_interceptor.dart';
 import 'package:password/data/models/space_model.dart';
 
 import '../../fixtures/fixture_reader.dart';
@@ -15,25 +16,14 @@ import '../../fixtures/fixture_reader.dart';
 void main() {
   late SpaceRemoteDataSource dataSource;
   late List<SpaceModel> tSpacesModel;
+
   final mockAuthStatus = AuthenticationService();
-  ChopperClient buildClient({
-    http.Client? httpClient,
-    ErrorConverter? errorConverter,
-    Converter? converter,
-  }) =>
-      ChopperClient(
-        baseUrl: apiBaseUrl,
-        client: httpClient,
-        errorConverter: errorConverter,
-        converter: converter,
-        interceptors: [
-          HttpLoggingInterceptor(),
-          AuthenticatorInterceptor(),
-        ],
-      );
+
   final fixtureSpaces = fixtureMap('get_spaces.json');
+
   final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
       .getOrElse(() => <dynamic>[]);
+
   tSpacesModel = option
       .map(
         (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
@@ -41,14 +31,10 @@ void main() {
       .toList();
 
   void onMockRemoteData({
-    http.Client? httpClient,
-    ErrorConverter? errorConverter,
-    Converter? converter,
+    required http.Client httpClient,
   }) {
-    final client = buildClient(
-      httpClient: httpClient,
-      converter: converter,
-      errorConverter: errorConverter,
+    final client = createClient(
+      httpClient,
     );
     dataSource = SpaceRemoteDataSource.create(client);
   }
@@ -57,90 +43,107 @@ void main() {
     mockAuthStatus.dispose();
   });
 
-  void setUpMockHttpClientSuccess(String fixture) {
-    // when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
-    //   (_) async => http.Response(
-    //     fixture,
-    //     200,
-    //     headers: {'content-type': 'text/html; charset=utf-8'},
-    //   ),
-    // );
-  }
-
-  void setUpMockHttpClientFailure(String fixture) {
-    // when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
-    //   (_) async => http.Response(
-    //     fixture,
-    //     500,
-    //     headers: {'content-type': 'text/html; charset=utf-8'},
-    //   ),
-    // );
-  }
-
   group('getSpaces', () {
     test(
       'should perform a GET request on URL with number being the endpoint and with application/json header',
       () async {
         AuthenticationService.getInstance().createSession(idToken: 'idToken');
-        final httpClient = MockClient(
-          (_) async => http.Response(fixture('get_spaces.json'), 200),
-        );
+        final httpClient = MockClient((request) async {
+          expect(request.method, equals('GET'));
+          expect(
+            request.headers['Content-Type'],
+            equals('application/json; charset=UTF-8'),
+          );
+          expect(request.headers['Authorization'], equals('idToken'));
+          expect(
+            request.url.toString(),
+            equals('$scheme://$host/$stage/spaces'),
+          );
+
+          return http.Response(fixture('get_spaces.json'), 200);
+        });
+
         onMockRemoteData(httpClient: httpClient);
+
         mockAuthStatus.createSession(idToken: 'idToken');
 
-        setUpMockHttpClientSuccess(fixture('get_spaces.json'));
+        final response = await dataSource.getSpaces();
 
-        await dataSource.getSpaces();
+        expect(response, isA<Response<List<SpaceModel>>>());
 
-        // verify(
-        //   mockClient.get(
-        //     apibaseUrl,
-        //     headers: {
-        //       'Content-Type': 'application/json;charset=UTF-8',
-        //       'Accept': 'application/json',
-        //       'authorization': 'idToken',
-        //     },
-        //   ),
-        // );
+        httpClient.close();
       },
     );
 
     test(
       'should return SpaceModel when the response code is 200 (success)',
       () async {
+        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+        final httpClient = MockClient((request) async {
+          expect(request.method, equals('GET'));
+          expect(
+            request.headers['Content-Type'],
+            equals('application/json; charset=UTF-8'),
+          );
+          expect(request.headers['Authorization'], equals('idToken'));
+          expect(
+            request.url.toString(),
+            equals('$scheme://$host/$stage/spaces'),
+          );
+
+          return http.Response(fixture('get_spaces.json'), 200);
+        });
+
+        onMockRemoteData(httpClient: httpClient);
+
         mockAuthStatus.createSession(idToken: 'idToken');
 
-        setUpMockHttpClientSuccess(fixture('get_spaces.json'));
+        final response = await dataSource.getSpaces();
 
-        final result = await dataSource.getSpaces();
+        expect(response, isA<Response<List<SpaceModel>>>());
 
-        expect(result, isA<List<SpaceModel>>());
+        expect(response.body, equals(tSpacesModel));
 
-        expect(result, equals(tSpacesModel));
+        expect(response.statusCode, equals(200));
+
+        httpClient.close();
       },
     );
 
     test(
       'should throw a ServerException when the response code is 404 or other',
       () {
-        mockAuthStatus.createSession(idToken: 'idToken');
+        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+        final httpClient = MockClient((request) async {
+          return http.Response(fixture('custom_server_error.json'), 404);
+        });
 
-        setUpMockHttpClientFailure(fixture('custom_server_error.json'));
+        onMockRemoteData(httpClient: httpClient);
+
+        mockAuthStatus.createSession(idToken: 'idToken');
 
         final call = dataSource.getSpaces;
 
-        expect(call, throwsA(isA<ServerException>()));
+        expect(call, throwsA(isA<ChopperHttpException>()));
+
+        httpClient.close();
       },
     );
 
     test(
       'should throw a UnauthorizedException when has not authorization',
       () {
-        setUpMockHttpClientFailure(fixture('custom_server_error.json'));
+        final httpClient = MockClient((request) async {
+          return http.Response(fixture('get_spaces.json'), 200);
+        });
+
+        onMockRemoteData(httpClient: httpClient);
 
         final call = dataSource.getSpaces;
 
         expect(call, throwsA(isA<UnauthorizedException>()));
+
+        httpClient.close();
       },
     );
   });

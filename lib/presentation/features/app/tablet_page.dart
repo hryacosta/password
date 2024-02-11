@@ -38,7 +38,6 @@ class _TabletPageState extends State<TabletPage> {
           leading: const Profile(),
           elevation: 4,
         ),
-        // const VerticalDivider(thickness: 1, width: 1),
         Expanded(
           child: Scaffold(
             appBar: AppBar(

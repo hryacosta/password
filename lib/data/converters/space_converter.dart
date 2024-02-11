@@ -3,27 +3,22 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:password/core/error/exception.dart';
 import 'package:password/data/models/space_model.dart';
 
 class SpaceConverter {
-  static FutureOr<Response<dynamic>> getSpacesConverter(
+  static FutureOr<Response<dynamic>> response(
     Response<dynamic> response,
   ) async {
     final body = json.decode(response.body) as Map<String, dynamic>;
-    if (response.isSuccessful) {
-      final spacesList = Option.of(body['spaces'] as List<dynamic>).getOrElse(
-        () => [],
-      );
-      final bodyParser = spacesList
-          .map(
-            (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
-          )
-          .toList();
+    final spacesList = Option.of(body['spaces'] as List<dynamic>).getOrElse(
+      () => [],
+    );
+    final bodyParser = spacesList
+        .map(
+          (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
+        )
+        .toList();
 
-      return response.copyWith(body: bodyParser);
-    }
-
-    throw ServerException.fromJson(body);
+    return response.copyWith(body: bodyParser);
   }
 }

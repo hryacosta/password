@@ -20,17 +20,12 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
   @override
   Future<Response<void>> addSpace(SpaceEntity space) {
     final Uri $url = Uri.parse('prod/spaces');
-    final Map<String, String> $headers = {
-      'content-type': 'application/json; charset=UTF-8',
-      'accept': 'application/json',
-    };
     final $body = space;
     final Request $request = Request(
       'POST',
       $url,
       client.baseUrl,
       body: $body,
-      headers: $headers,
     );
     return client.send<void, void>($request);
   }
@@ -38,34 +33,24 @@ final class _$SpaceRemoteDataSource extends SpaceRemoteDataSource {
   @override
   Future<Response<List<SpaceModel>>> getSpaces() {
     final Uri $url = Uri.parse('prod/spaces');
-    final Map<String, String> $headers = {
-      'content-type': 'application/json; charset=UTF-8',
-      'accept': 'application/json',
-    };
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
-      headers: $headers,
     );
     return client.send<List<SpaceModel>, SpaceModel>(
       $request,
-      responseConverter: SpaceConverter.getSpacesConverter,
+      responseConverter: SpaceConverter.response,
     );
   }
 
   @override
   Future<Response<void>> deleteSpace(String id) {
     final Uri $url = Uri.parse('prod/spaces');
-    final Map<String, String> $headers = {
-      'content-type': 'application/json; charset=UTF-8',
-      'accept': 'application/json',
-    };
     final Request $request = Request(
       'DELETE',
       $url,
       client.baseUrl,
-      headers: $headers,
     );
     return client.send<void, void>($request);
   }

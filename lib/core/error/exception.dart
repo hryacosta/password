@@ -51,7 +51,7 @@ final class CastDataException extends IException {
 
 /// Exception is throw when user is not authorized to access
 final class UnauthorizedException extends IException {
-  UnauthorizedException() : super('unauthorized');
+  UnauthorizedException() : super('Unauthorized');
 }
 
 /// Exception is throw when user is not authorized to access

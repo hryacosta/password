@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:chopper/chopper.dart';
 import 'package:injectable/injectable.dart';
 import 'package:password/data/converters/space_converter.dart';
@@ -9,37 +7,22 @@ import 'package:password/domain/entities/space_entity.dart';
 
 part 'space_remote_datasource.chopper.dart';
 
-@ChopperApi(baseUrl: '$env/spaces')
+@ChopperApi(baseUrl: '$stage/spaces')
 @injectable
 abstract class SpaceRemoteDataSource extends ChopperService {
   @factoryMethod
   static SpaceRemoteDataSource create(ChopperClient client) =>
       _$SpaceRemoteDataSource(client);
 
-  @Post(
-    headers: {
-      HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-      HttpHeaders.acceptHeader: 'application/json',
-    },
-  )
+  @Post()
   Future<Response<void>> addSpace(@Body() SpaceEntity space);
 
   @FactoryConverter(
-    response: SpaceConverter.getSpacesConverter,
+    response: SpaceConverter.response,
   )
-  @Get(
-    headers: {
-      HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-      HttpHeaders.acceptHeader: 'application/json',
-    },
-  )
+  @Get()
   Future<Response<List<SpaceModel>>> getSpaces();
 
-  @Delete(
-    headers: {
-      HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-      HttpHeaders.acceptHeader: 'application/json',
-    },
-  )
+  @Delete()
   Future<Response<void>> deleteSpace(@Path() String id);
 }

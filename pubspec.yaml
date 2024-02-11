@@ -30,8 +30,8 @@ environment:
 dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  chopper: ^7.1.0+1
-  connectivity_plus: ^4.0.0
+  chopper: ^7.1.1
+  connectivity_plus: ^5.0.2
   cronet_http: ^1.1.0
   cupertino_http: ^1.3.0
   cupertino_icons: ^1.0.6
@@ -41,8 +41,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   fpdart: ^0.6.0
-  get_it: ^7.6.6
-  go_router: ^13.0.1
+  get_it: ^7.6.7
+  go_router: ^13.2.0
   google_fonts: ^6.1.0
   http: ^1.1.2
   injectable: ^2.3.2
@@ -52,7 +52,7 @@ dependencies:
   meta: ^1.10.0
   provider: ^6.1.1
   shared_preferences: ^2.2.2
-  sqflite: ^2.3.0
+  sqflite: ^2.3.2
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -61,7 +61,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   build_runner: ^2.4.8
-  chopper_generator: ^7.1.0
+  chopper_generator: ^7.1.1
   flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter

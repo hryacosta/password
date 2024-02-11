@@ -1,13 +1,11 @@
-import 'package:chopper/chopper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:password/config/client.dart';
 import 'package:password/core/error/failure.dart';
 import 'package:password/core/services/authentication_service.dart';
-import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
-import 'package:password/data/interceptors/auth_interceptor.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space_entity.dart';
@@ -18,32 +16,11 @@ void main() {
   late SpaceRemoteDataSource remoteDataSource;
   late SpaceRepositoryImpl repository;
 
-  ChopperClient buildClient({
-    http.Client? httpClient,
-    ErrorConverter? errorConverter,
-    Converter? converter,
-  }) =>
-      ChopperClient(
-        baseUrl: apiBaseUrl,
-        client: httpClient,
-        errorConverter: errorConverter,
-        converter: converter,
-        interceptors: [
-          HttpLoggingInterceptor(),
-          AuthenticatorInterceptor(),
-        ],
-      );
-
   void onMockRemoteData({
-    http.Client? httpClient,
-    ErrorConverter? errorConverter,
-    Converter? converter,
+    required http.Client httpClient,
   }) {
-    final client = buildClient(
-      httpClient: httpClient,
-      converter: converter,
-      errorConverter: errorConverter,
-    );
+    final client = createClient(httpClient);
+
     remoteDataSource = SpaceRemoteDataSource.create(client);
     repository = SpaceRepositoryImpl(
       remoteDataSource: remoteDataSource,
@@ -86,8 +63,6 @@ void main() {
       () async {
         AuthenticationService.getInstance().createSession(idToken: 'idToken');
 
-        // final body = fixtureMap('custom_server_error.json');
-
         final httpClient = MockClient(
           (_) async => http.Response(fixture('custom_server_error.json'), 500),
         );
@@ -103,10 +78,8 @@ void main() {
 
         // expect(
         //   result,
-        //   equals(
-        //     Left<Failure, List<SpaceEntity>>(
-        //       ServerFailure(body),
-        //     ),
+        //   const Left<Failure, List<SpaceEntity>>(
+        //     ServerFailure({'code': 1010, 'message': 'error'}),
         //   ),
         // );
       },
