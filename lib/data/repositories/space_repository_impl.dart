@@ -1,4 +1,3 @@
-import 'package:chopper/src/chopper_http_exception.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:password/core/error/exception.dart';
 import 'package:password/core/error/failure.dart';
@@ -21,6 +20,8 @@ class SpaceRepositoryImpl implements SpaceRepository {
       return Right(spaces);
     } on UnauthorizedException catch (_) {
       return left(AuthenticationFailure());
+    } on ChopperHttpException catch (error) {
+      return left(ServerFailure(error.response.error));
     } catch (error) {
       return left(ServerFailure(error));
     }

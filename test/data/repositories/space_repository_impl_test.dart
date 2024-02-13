@@ -76,12 +76,15 @@ void main() {
           true,
         );
 
-        // expect(
-        //   result,
-        //   const Left<Failure, List<SpaceEntity>>(
-        //     ServerFailure({'code': 1010, 'message': 'error'}),
-        //   ),
-        // );
+        expect(
+          result,
+          const Left<Failure, List<SpaceEntity>>(
+            ServerFailure({
+              'code': 1010,
+              'message': 'error message',
+            }),
+          ),
+        );
       },
     );
 

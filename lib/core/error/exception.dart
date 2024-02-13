@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+export 'package:chopper/src/chopper_http_exception.dart';
 
 part 'exception.g.dart';
 
