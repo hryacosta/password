@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password/core/services/authentication_service.dart';
+import 'package:password/config/route/app_route.dart';
 import 'package:password/presentation/controllers/home_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onPressed() {
-    AuthenticationService.getInstance().createSession(idToken: idToken);
+    const LoginRoute().go(context);
   }
 
   Future<void> onPressedSpaces() async {

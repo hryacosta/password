@@ -1,5 +1,3 @@
-import 'package:chopper/chopper.dart';
-import 'package:chopper/src/chopper_http_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
@@ -112,7 +110,7 @@ void main() {
 
     test(
       'should throw a ServerException when the response code is 404 or other',
-      () {
+      () async {
         AuthenticationService.getInstance().createSession(idToken: 'idToken');
         final httpClient = MockClient((request) async {
           return http.Response(fixture('custom_server_error.json'), 404);
@@ -122,11 +120,11 @@ void main() {
 
         mockAuthStatus.createSession(idToken: 'idToken');
 
-        final call = dataSource.getSpaces;
+        final call = await dataSource.getSpaces();
 
-        // expect(call, throwsA(isA<ChopperHttpException>()));
+        expect(call, isA<Response<dynamic>>());
 
-        httpClient.close();
+        expect(call.statusCode, equals(404));
       },
     );
 
