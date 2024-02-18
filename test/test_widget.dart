@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mockito/annotations.dart';
-import 'package:password/config/theme/custom.dart';
+import 'package:password/config/theme/light.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,17 +16,15 @@ class TestWidget extends StatelessWidget {
     required this.child,
     super.key,
   });
+
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    final theme = $appTheme;
+    final theme = $lightTheme;
 
     return MaterialApp(
       theme: theme,
-      // theme: baseTheme.copyWith(
-      //   textTheme: GoogleFonts.aBeeZeeTextTheme(baseTheme.textTheme),
-      // ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: const [
         Locale('es'),

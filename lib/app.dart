@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:password/config/route/app_route.dart';
-import 'package:password/config/theme/custom.dart';
 import 'package:password/config/theme/dark.dart';
+import 'package:password/config/theme/light.dart';
 
 class App extends StatelessWidget {
   App({super.key});
 
   final _routerConfig = $routerConfig;
-  final _theme = $appTheme;
+  final _theme = $lightTheme;
   final _darkTheme = $darkTheme;
 
   @override
