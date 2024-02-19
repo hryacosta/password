@@ -7,7 +7,7 @@ import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
 @lazySingleton
-class AddSpace implements UseCase<String, Param> {
+class AddSpace extends UseCase<String, Param> {
   AddSpace(this.repository);
 
   final SpaceRepository repository;

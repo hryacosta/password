@@ -52,14 +52,16 @@ class ColumnScrollView extends StatelessWidget {
             constraints: BoxConstraints(
               minHeight: viewportConstraints.maxHeight,
             ),
-            child: Column(
-              crossAxisAlignment: crossAxisAlignment,
-              verticalDirection: verticalDirection,
-              textDirection: textDirection,
-              textBaseline: textBaseline,
-              mainAxisSize: mainAxisSize,
-              mainAxisAlignment: mainAxisAlignment,
-              children: children,
+            child: IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: crossAxisAlignment,
+                verticalDirection: verticalDirection,
+                textDirection: textDirection,
+                textBaseline: textBaseline,
+                mainAxisSize: mainAxisSize,
+                mainAxisAlignment: mainAxisAlignment,
+                children: children,
+              ),
             ),
           ),
         ),

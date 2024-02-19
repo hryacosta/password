@@ -9,7 +9,6 @@ import 'package:password/domain/repositories/spaces_repository.dart';
 @lazySingleton
 class GetSpaces extends UseCase<List<SpaceEntity>, Param> {
   GetSpaces(this.repository);
-
   final SpaceRepository repository;
 
   @override

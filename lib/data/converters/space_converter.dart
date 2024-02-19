@@ -9,10 +9,20 @@ class SpaceConverter {
   static FutureOr<Response<dynamic>> response(
     Response<dynamic> response,
   ) async {
-    final body = json.decode(response.body) as Map<String, dynamic>;
-    final spacesList = Option.of(body['spaces'] as List<dynamic>).getOrElse(
+    final body = response.body;
+    if (body == null) {
+      return response.copyWith(
+        body: <SpaceModel>[],
+      );
+    }
+
+    final bodyDecode = json.decode(body as String) as Map<String, dynamic>;
+
+    final spacesList =
+        Option.of(bodyDecode['spaces'] as List<dynamic>).getOrElse(
       () => [],
     );
+
     final bodyParser = spacesList
         .map(
           (element) => SpaceModel.fromJson(element as Map<String, dynamic>),

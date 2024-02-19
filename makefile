@@ -6,6 +6,10 @@ release_android: build_release_android upload_symbols_android
 
 release_ios: build_release_ios upload_symbols_ios
 
+run:
+	@echo "╠ Running Flutter debug"
+	@flutter run
+
 build_runner:
 	@echo "╠ generating files using Dart code"
 	@flutter pub run build_runner build --delete-conflicting-outputs
