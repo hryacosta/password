@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:password/core/error/exception.dart';
-import 'package:password/core/error/failure.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/domain/entities/space_entity.dart';
+import 'package:password/domain/exceptions/exception.dart';
+import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
 class SpaceRepositoryImpl implements SpaceRepository {

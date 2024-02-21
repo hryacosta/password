@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:password/config/theme/app_colors.dart';
 
-class Buttom extends StatelessWidget {
-  const Buttom({
+class Button extends StatelessWidget {
+  const Button({
     required this.label,
+    required this.onPress,
     this.disabled = false,
     this.isLoading = false,
     this.textStyle,
-    this.buttomStyle,
+    this.buttonStyle,
     this.elevation = 4.0,
     this.delayed = Duration.zero,
     this.onWithDelayPress,
-    this.onPress,
     super.key,
   });
 
   final String label;
   final bool disabled;
   final bool isLoading;
-  final void Function()? onPress;
+  final VoidCallback onPress;
   final void Function()? onWithDelayPress;
   final TextStyle? textStyle;
-  final ElevatedButton? buttomStyle;
+  final ElevatedButton? buttonStyle;
   final Duration delayed;
   final double? elevation;
 

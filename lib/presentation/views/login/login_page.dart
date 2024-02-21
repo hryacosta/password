@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:password/config/injectable.dart';
+import 'package:password/core/services/authentication_service.dart';
 import 'package:password/core/utils/logger.dart';
 import 'package:password/presentation/components/button.dart';
 import 'package:password/presentation/components/column_scroll_view.dart';
@@ -45,7 +47,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const Spacer(),
-              const Buttom(label: 'login'),
+              Button(
+                label: 'login',
+                onPress: onLogin,
+              ),
             ],
           ),
         ),
@@ -59,5 +64,9 @@ class _LoginPageState extends State<LoginPage> {
 
   void onChangePassword(String password) {
     logger.d(password);
+  }
+
+  Future<void> onLogin() async {
+    sl<AuthenticationService>().createSession(idToken: 'idToken');
   }
 }

@@ -3,11 +3,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:password/config/client.dart';
-import 'package:password/core/error/exception.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
+import 'package:password/domain/exceptions/exception.dart';
 
 import '../../fixtures/fixture_reader.dart';
 

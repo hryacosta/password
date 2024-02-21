@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:password/config/route/app_route.dart';
-import 'package:password/presentation/controllers/home_controller.dart';
+import 'package:password/presentation/providers/home_provider.dart';
+import 'package:password/presentation/route/app_route.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,11 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late HomeController _controller;
+  late HomeProvider _controller;
 
   @override
   void initState() {
-    _controller = HomeController();
+    _controller = HomeProvider();
 
     super.initState();
   }
@@ -38,10 +38,10 @@ class _HomePageState extends State<HomePage> {
               onPressed: onPressedSpaces,
               child: const Text('get spaces'),
             ),
-            Consumer<HomeController>(
+            Consumer<HomeProvider>(
               builder: (
                 BuildContext context,
-                HomeController value,
+                HomeProvider value,
                 Widget? child,
               ) =>
                   Text(value.spaces.length.toString()),

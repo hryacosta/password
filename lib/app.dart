@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:password/config/route/app_route.dart';
 import 'package:password/config/theme/light.dart';
+import 'package:password/presentation/route/app_route.dart';
 
 class App extends StatelessWidget {
   App({super.key});

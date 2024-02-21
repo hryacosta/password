@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:password/core/services/authentication_service.dart';
-import 'package:password/presentation/features/app/app_page.dart';
-import 'package:password/presentation/features/home/home_page.dart';
-import 'package:password/presentation/features/settings/settings_page.dart';
-import 'package:password/presentation/features/signin/login_page.dart';
+import 'package:password/presentation/views/app/app_page.dart';
+import 'package:password/presentation/views/home/home_page.dart';
+import 'package:password/presentation/views/login/login_page.dart';
+import 'package:password/presentation/views/settings/settings_page.dart';
 
 part 'app_route.g.dart';
 

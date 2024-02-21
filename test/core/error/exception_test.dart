@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:password/core/error/exception.dart';
+import 'package:password/domain/exceptions/exception.dart';
 
 import '../../fixtures/fixture_reader.dart';
 

@@ -1,9 +1,9 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:password/core/error/failure.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space_entity.dart';
+import 'package:password/domain/failures/failure.dart';
 
 @injectable
 abstract class SpaceRepository {

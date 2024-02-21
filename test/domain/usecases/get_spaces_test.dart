@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mockito/mockito.dart';
-import 'package:password/core/error/failure.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/domain/entities/space_entity.dart';
+import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
 import '../../fixtures/fixture_reader.dart';

@@ -3,12 +3,12 @@ import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:password/config/client.dart';
-import 'package:password/core/error/failure.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/data/repositories/space_repository_impl.dart';
 import 'package:password/domain/entities/space_entity.dart';
+import 'package:password/domain/failures/failure.dart';
 
 import '../../fixtures/fixture_reader.dart';
 

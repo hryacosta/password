@@ -9,10 +9,10 @@ import 'package:chopper/chopper.dart' as _i8;
 import 'package:fpdart/fpdart.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i9;
-import 'package:password/core/error/failure.dart' as _i5;
 import 'package:password/data/datasources/space_remote_datasource.dart' as _i7;
 import 'package:password/data/models/space_model.dart' as _i10;
 import 'package:password/domain/entities/space_entity.dart' as _i6;
+import 'package:password/domain/failures/failure.dart' as _i5;
 import 'package:password/domain/repositories/spaces_repository.dart' as _i3;
 import 'package:shared_preferences/shared_preferences.dart' as _i11;
 

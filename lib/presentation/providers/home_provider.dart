@@ -5,8 +5,8 @@ import 'package:password/core/utils/logger.dart';
 import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
-class HomeController with ChangeNotifier {
-  HomeController();
+class HomeProvider with ChangeNotifier {
+  HomeProvider();
 
   List<SpaceEntity> spaces = [];
 

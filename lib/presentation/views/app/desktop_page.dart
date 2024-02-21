@@ -1,17 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:password/presentation/features/home/home_page.dart';
-import 'package:password/presentation/features/settings/settings_page.dart';
+import 'package:password/core/utils/app_localization.dart';
+import 'package:password/presentation/views/home/dialog_new_element.dart';
+import 'package:password/presentation/views/home/home_page.dart';
+import 'package:password/presentation/views/settings/settings_page.dart';
 
-class TabletPage extends StatefulWidget {
-  const TabletPage({super.key});
+class DesktopPage extends StatefulWidget {
+  const DesktopPage({super.key});
 
   @override
-  State<TabletPage> createState() => _TabletPageState();
+  State<DesktopPage> createState() => _DesktopPageState();
 }
 
-class _TabletPageState extends State<TabletPage> {
+class _DesktopPageState extends State<DesktopPage> {
   int _selectedIndex = 0;
 
   @override
@@ -38,6 +39,7 @@ class _TabletPageState extends State<TabletPage> {
           leading: const Profile(),
           elevation: 4,
         ),
+        // const VerticalDivider(thickness: 1, width: 1),
         Expanded(
           child: Scaffold(
             appBar: AppBar(
@@ -62,7 +64,7 @@ class _TabletPageState extends State<TabletPage> {
                         const Icon(Icons.add, size: 16, color: Colors.white),
                         const SizedBox(width: 2),
                         Text(
-                          'Nuevo elemento',
+                          AppLocalization.of(context).newElement,
                           style: GoogleFonts.roboto(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -102,58 +104,9 @@ class _TabletPageState extends State<TabletPage> {
   void addElement() {
     showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          title: SearchAnchor(
-            builder: (context, controller) {
-              return SearchBar(
-                controller: controller,
-                hintText: 'Search',
-                padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 16),
-                ),
-                onTap: () {
-                  controller.openView();
-                },
-                onChanged: (_) {
-                  controller.openView();
-                },
-                leading: const Icon(Icons.search),
-                // trailing: <Widget>[
-                //   Tooltip(
-                //     message: 'Change brightness mode',
-                //     child: IconButton(
-                //       isSelected: isDark,
-                //       onPressed: () {
-                //         setState(() {
-                //           isDark = !isDark;
-                //         });
-                //       },
-                //       icon: const Icon(Icons.wb_sunny_outlined),
-                //       selectedIcon: const Icon(Icons.brightness_2_outlined),
-                //     ),
-                //   ),
-                // ],
-              );
-            },
-            suggestionsBuilder:
-                (BuildContext context, SearchController controller) {
-              return List<ListTile>.generate(5, (int index) {
-                final item = 'item $index';
-                return ListTile(
-                  title: Text(item),
-                  onTap: () {
-                    setState(() {
-                      controller.closeView(item);
-                    });
-                  },
-                );
-              });
-            },
-          ),
-          content: const Text('You are in the football universe!'),
-        );
+        return const DialogNewElement();
       },
     );
   }
