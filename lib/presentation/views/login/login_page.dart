@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:password/config/injectable.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/core/utils/logger.dart';
 import 'package:password/presentation/components/button.dart';
 import 'package:password/presentation/components/column_scroll_view.dart';
 import 'package:password/presentation/components/input/input_field.dart';
+import 'package:password/presentation/route/app_route.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +16,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    Future<void> onLogin() async {
+      AuthenticationService.getInstance().createSession(idToken: 'idToken');
+      const AppRoute().go(context);
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -64,9 +69,5 @@ class _LoginPageState extends State<LoginPage> {
 
   void onChangePassword(String password) {
     logger.d(password);
-  }
-
-  Future<void> onLogin() async {
-    sl<AuthenticationService>().createSession(idToken: 'idToken');
   }
 }
