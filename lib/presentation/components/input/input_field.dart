@@ -31,6 +31,9 @@ class InputField extends StatelessWidget {
     this.buildCounter,
     this.selectionControls,
     this.onTapOutside,
+    this.maxLength,
+    this.maxLengthEnforcement,
+    this.maxLines = 1,
     super.key,
   });
 
@@ -61,6 +64,9 @@ class InputField extends StatelessWidget {
   final InputCounterWidgetBuilder? buildCounter;
   final TextSelectionControls? selectionControls;
   final bool enableSuggestions;
+  final int? maxLength;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +79,7 @@ class InputField extends StatelessWidget {
       focusNode: focusNode,
       decoration: decoration ??
           InputDecoration(
+            counterText: '',
             labelText: labelText,
             labelStyle: textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w400,
@@ -117,6 +124,9 @@ class InputField extends StatelessWidget {
       buildCounter: buildCounter,
       autovalidateMode: autoValidateMode,
       enableSuggestions: enableSuggestions,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      maxLengthEnforcement: maxLengthEnforcement,
     );
   }
 }

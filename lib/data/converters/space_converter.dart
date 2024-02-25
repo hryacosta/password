@@ -10,11 +10,6 @@ class SpaceConverter {
     Response<dynamic> response,
   ) async {
     final body = response.body;
-    if (body == null) {
-      return response.copyWith(
-        body: <SpaceModel>[],
-      );
-    }
 
     final bodyDecode = json.decode(body as String) as Map<String, dynamic>;
 

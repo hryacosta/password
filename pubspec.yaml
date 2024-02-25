@@ -39,6 +39,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   fpdart: ^0.6.0
+  fzregex: ^2.0.0
   get_it: ^7.6.7
   go_router: ^13.2.0
   google_fonts: ^6.1.0

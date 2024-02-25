@@ -9,12 +9,18 @@ import 'package:chopper/chopper.dart' as _i8;
 import 'package:fpdart/fpdart.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i9;
+import 'package:password/data/datasources/auth_remote_datasource.dart' as _i11;
 import 'package:password/data/datasources/space_remote_datasource.dart' as _i7;
+import 'package:password/data/models/session_model.dart' as _i12;
 import 'package:password/data/models/space_model.dart' as _i10;
+import 'package:password/domain/entities/session_entity.dart' as _i14;
 import 'package:password/domain/entities/space_entity.dart' as _i6;
 import 'package:password/domain/failures/failure.dart' as _i5;
+import 'package:password/domain/repositories/authetication_repository.dart'
+    as _i13;
 import 'package:password/domain/repositories/spaces_repository.dart' as _i3;
-import 'package:shared_preferences/shared_preferences.dart' as _i11;
+import 'package:password/domain/usecases/sign_in.dart' as _i15;
+import 'package:shared_preferences/shared_preferences.dart' as _i16;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -216,10 +222,129 @@ class MockSpaceRemoteDataSource extends _i1.Mock
       ) as _i4.Future<_i8.Response<void>>);
 }
 
+/// A class which mocks [AuthRemoteDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthRemoteDataSource extends _i1.Mock
+    implements _i11.AuthRemoteDataSource {
+  MockAuthRemoteDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i8.ChopperClient get client => (super.noSuchMethod(
+        Invocation.getter(#client),
+        returnValue: _i9.dummyValue<_i8.ChopperClient>(
+          this,
+          Invocation.getter(#client),
+        ),
+      ) as _i8.ChopperClient);
+
+  @override
+  set client(_i8.ChopperClient? _client) => super.noSuchMethod(
+        Invocation.setter(
+          #client,
+          _client,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Type get definitionType => (super.noSuchMethod(
+        Invocation.getter(#definitionType),
+        returnValue: _FakeType_1(
+          this,
+          Invocation.getter(#definitionType),
+        ),
+      ) as Type);
+
+  @override
+  _i4.Future<_i8.Response<_i12.SessionModel>> signIn(
+          Map<String, String>? body) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signIn,
+          [body],
+        ),
+        returnValue: _i4.Future<_i8.Response<_i12.SessionModel>>.value(
+            _i9.dummyValue<_i8.Response<_i12.SessionModel>>(
+          this,
+          Invocation.method(
+            #signIn,
+            [body],
+          ),
+        )),
+      ) as _i4.Future<_i8.Response<_i12.SessionModel>>);
+}
+
+/// A class which mocks [AuthRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
+  MockAuthRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signin(
+          _i15.Param? arg) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signin,
+          [arg],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>.value(
+                _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
+          this,
+          Invocation.method(
+            #signin,
+            [arg],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signup() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signup,
+          [],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>.value(
+                _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
+          this,
+          Invocation.method(
+            #signup,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signout() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signout,
+          [],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>.value(
+                _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
+          this,
+          Invocation.method(
+            #signout,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
+}
+
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i11.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }

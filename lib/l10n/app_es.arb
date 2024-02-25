@@ -1,11 +1,12 @@
 {
   "addNewElement": "¿Qué te gustaría añadir?",
   "newElement": "Nuevo element",
-  "login": "Login",
+  "login": "iniciar sesión",
   "secureNote": "Secure Note",
   "creditCard": "Credit Card",
   "identity": "Identity",
-  "password": "Password",
+  "username": "Correo Electrónico",
+  "password": "Contraseña",
   "document": "Document",
   "sshKey": "SSH Key",
   "apiCredential": "API Credential",
@@ -22,5 +23,10 @@
   "server": "server",
   "socialSecurityNumber": "Social Security Number",
   "softwareLicense": "Software License",
-  "wirelessRouter": "Wireless Router"
+  "wirelessRouter": "Wireless Router",
+  "email_required": "El correo electrónico es requerido",
+  "email_format": "Formato del correo electrónico es inválido",
+  "password_required": "Contraseña es requerida",
+  "password_length_must_be_longer": "La contraseña debe tener al menos 8 dígitos",
+  "password_format": "Formato de contraseña es inválido"
 }

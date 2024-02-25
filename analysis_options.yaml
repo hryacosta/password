@@ -25,6 +25,8 @@ analyzer:
     close_sinks: ignore
     public_member_api_docs: ignore
     file_names: error
+    missing_required_param: error
+    missing_return: error
 
   exclude:
     - "**/*.mock.dart"
@@ -55,4 +57,3 @@ linter:
   rules:
     - one_member_abstracts: false
     - no_default_cases: false
-    - public_member_api_docs: false

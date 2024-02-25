@@ -31,10 +31,6 @@ class _HomePageState extends State<HomePage> {
               child: Text('Home Page'),
             ),
             TextButton(
-              onPressed: onPressed,
-              child: const Text('Login'),
-            ),
-            TextButton(
               onPressed: onPressedSpaces,
               child: const Text('get spaces'),
             ),

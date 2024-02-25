@@ -1,10 +1,11 @@
 {
   "addNewElement": "What would you like to add?",
   "newElement": "New element",
-  "login": "Login",
+  "login": "sign in",
   "secureNote": "Secure Note",
   "creditCard": "Credit Card",
   "identity": "Identity",
+  "username": "Email",
   "password": "Password",
   "document": "Document",
   "sshKey": "SSH Key",
@@ -22,5 +23,10 @@
   "server": "server",
   "socialSecurityNumber": "Social Security Number",
   "softwareLicense": "Software License",
-  "wirelessRouter": "Wireless Router"
+  "wirelessRouter": "Wireless Router",
+  "email_required": "Email is required",
+  "email_format": "Email format is invalid",
+  "password_required": "Password is required",
+  "password_length_must_be_longer": "Password must be at least 8 digits",
+  "password_format": "Password format is invalid"
 }

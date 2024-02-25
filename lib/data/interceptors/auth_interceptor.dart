@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:chopper/chopper.dart';
 import 'package:meta/meta.dart';
 import 'package:password/core/services/authentication_service.dart';
-import 'package:password/domain/exceptions/exception.dart';
 
 @immutable
 class AuthenticatorInterceptor implements RequestInterceptor {
@@ -33,6 +32,6 @@ class AuthenticatorInterceptor implements RequestInterceptor {
       );
     }
 
-    throw UnauthorizedException();
+    return request;
   }
 }

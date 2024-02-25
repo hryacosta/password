@@ -13,25 +13,40 @@ final class AuthenticationService {
       AuthenticationService._internal();
 
   String _authorizationToken = '';
-  int _expiresIn = 60;
+  String _refreshToken = '';
+  String _accessToken = '';
+  double _expiresIn = 60;
   DateTime? _createdTime;
 
   String get authorizationToken => _authorizationToken;
 
-  int get expiresIn => _expiresIn;
+  String get refreshToken => _refreshToken;
+
+  String get accessToken => _accessToken;
+
+  double get expiresIn => _expiresIn;
 
   void dispose() {
     _destroySession();
   }
 
-  void createSession({required String idToken, int expires = 60}) {
+  void createSession({
+    required String idToken,
+    required String refreshToken,
+    required String accessToken,
+    double expiresIn = 60,
+  }) {
     _authorizationToken = idToken;
-    _expiresIn = expires;
+    _refreshToken = refreshToken;
+    _accessToken = accessToken;
+    _expiresIn = expiresIn;
     _createdTime = DateTime.now();
   }
 
   void _destroySession() {
     _authorizationToken = '';
+    _refreshToken = '';
+    _accessToken = '';
     _expiresIn = 60;
     _createdTime = null;
   }
