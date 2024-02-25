@@ -33,17 +33,18 @@ class _DesktopPageState extends State<DesktopPage> {
               selectedIcon: const Icon(Icons.settings),
               label: Text(localization.settings),
             ),
-            NavigationRailDestination(
-              icon: const Icon(Icons.logout_outlined),
-              selectedIcon: const Icon(Icons.logout),
-              label: Text(localization.logout),
-            ),
           ],
           selectedIndex: _selectedIndex,
           onDestinationSelected: _onDestinationSelected,
           labelType: NavigationRailLabelType.selected,
           useIndicator: true,
           leading: const Profile(),
+          trailing: IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              const LoginRoute().go(context);
+            },
+          ),
           elevation: 4,
         ),
         Expanded(
@@ -115,10 +116,6 @@ class _DesktopPageState extends State<DesktopPage> {
   }
 
   void _onDestinationSelected(int index) {
-    if (_selectedIndex == 2) {
-      const LoginRoute().go(context);
-    }
-
     setState(() {
       _selectedIndex = index;
     });
