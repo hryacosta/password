@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password/core/utils/app_localization.dart';
+import 'package:password/presentation/route/app_route.dart';
 import 'package:password/presentation/views/home/dialog_new_element.dart';
 import 'package:password/presentation/views/home/home_page.dart';
 import 'package:password/presentation/views/settings/settings_page.dart';
@@ -17,19 +18,25 @@ class _DesktopPageState extends State<DesktopPage> {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalization.of(context);
     return Row(
       children: [
         NavigationRail(
-          destinations: const [
+          destinations: [
             NavigationRailDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home),
-              label: Text('Home'),
+              icon: const Icon(Icons.home_outlined),
+              selectedIcon: const Icon(Icons.home),
+              label: Text(localization.home),
             ),
             NavigationRailDestination(
-              icon: Icon(Icons.settings_outlined),
-              selectedIcon: Icon(Icons.settings),
-              label: Text('Settings'),
+              icon: const Icon(Icons.settings_outlined),
+              selectedIcon: const Icon(Icons.settings),
+              label: Text(localization.settings),
+            ),
+            NavigationRailDestination(
+              icon: const Icon(Icons.logout_outlined),
+              selectedIcon: const Icon(Icons.logout),
+              label: Text(localization.logout),
             ),
           ],
           selectedIndex: _selectedIndex,
@@ -39,11 +46,10 @@ class _DesktopPageState extends State<DesktopPage> {
           leading: const Profile(),
           elevation: 4,
         ),
-        // const VerticalDivider(thickness: 1, width: 1),
         Expanded(
           child: Scaffold(
             appBar: AppBar(
-              title: const Text('Home Page'),
+              title: getTitle(),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.info_sharp),
@@ -95,7 +101,24 @@ class _DesktopPageState extends State<DesktopPage> {
     );
   }
 
+  Widget getTitle() {
+    final localization = AppLocalization.of(context);
+
+    switch (_selectedIndex) {
+      case 0:
+        return Text(localization.home);
+      case 1:
+        return Text(localization.settings);
+      default:
+        return Text(localization.home);
+    }
+  }
+
   void _onDestinationSelected(int index) {
+    if (_selectedIndex == 2) {
+      const LoginRoute().go(context);
+    }
+
     setState(() {
       _selectedIndex = index;
     });

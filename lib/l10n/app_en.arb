@@ -1,6 +1,6 @@
 {
   "addNewElement": "What would you like to add?",
-  "newElement": "New element",
+  "newElement": "New Element",
   "login": "sign in",
   "secureNote": "Secure Note",
   "creditCard": "Credit Card",
@@ -28,5 +28,9 @@
   "email_format": "Email format is invalid",
   "password_required": "Password is required",
   "password_length_must_be_longer": "Password must be at least 8 digits",
-  "password_format": "Password format is invalid"
+  "password_format": "Password format is invalid",
+  "home": "Home",
+  "settings": "Settings",
+  "noDataAvailable": "No data available at the moment. Please check back later",
+  "logout": "sign out"
 }
