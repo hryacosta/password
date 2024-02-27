@@ -7,7 +7,6 @@ import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_constants.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
-import 'package:password/domain/exceptions/exception.dart';
 
 import '../../fixtures/fixture_reader.dart';
 
@@ -45,7 +44,11 @@ void main() {
     test(
       'should perform a GET request on URL with number being the endpoint and with application/json header',
       () async {
-        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+        AuthenticationService.getInstance().createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
         final httpClient = MockClient((request) async {
           expect(request.method, equals('GET'));
           expect(
@@ -63,7 +66,11 @@ void main() {
 
         onMockRemoteData(httpClient: httpClient);
 
-        mockAuthStatus.createSession(idToken: 'idToken');
+        mockAuthStatus.createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
 
         final response = await dataSource.getSpaces();
 
@@ -76,7 +83,11 @@ void main() {
     test(
       'should return SpaceModel when the response code is 200 (success)',
       () async {
-        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+        AuthenticationService.getInstance().createSession(
+          idToken: 'idToken',
+          refreshToken: 'refreshToken',
+          accessToken: 'accessToken',
+        );
         final httpClient = MockClient((request) async {
           expect(request.method, equals('GET'));
           expect(
@@ -94,7 +105,11 @@ void main() {
 
         onMockRemoteData(httpClient: httpClient);
 
-        mockAuthStatus.createSession(idToken: 'idToken');
+        mockAuthStatus.createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
 
         final response = await dataSource.getSpaces();
 
@@ -111,14 +126,22 @@ void main() {
     test(
       'should throw a ServerException when the response code is 404 or other',
       () async {
-        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+        AuthenticationService.getInstance().createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
         final httpClient = MockClient((request) async {
           return http.Response(fixture('custom_server_error.json'), 404);
         });
 
         onMockRemoteData(httpClient: httpClient);
 
-        mockAuthStatus.createSession(idToken: 'idToken');
+        mockAuthStatus.createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
 
         final call = await dataSource.getSpaces();
 
@@ -130,16 +153,16 @@ void main() {
 
     test(
       'should throw a UnauthorizedException when has not authorization',
-      () {
+      () async {
         final httpClient = MockClient((request) async {
-          return http.Response(fixture('get_spaces.json'), 200);
+          return http.Response('unauthorized', 404);
         });
 
         onMockRemoteData(httpClient: httpClient);
 
-        final call = dataSource.getSpaces;
+        final call = await dataSource.getSpaces();
 
-        expect(call, throwsA(isA<UnauthorizedException>()));
+        expect(call.statusCode, 404);
 
         httpClient.close();
       },

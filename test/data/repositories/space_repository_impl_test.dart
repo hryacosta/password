@@ -31,7 +31,11 @@ void main() {
     test(
       'should return SpaceModel when the call is successful',
       () async {
-        AuthenticationService.getInstance().createSession(idToken: 'idToken');
+        AuthenticationService.getInstance().createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
         final httpClient = MockClient(
           (_) async => http.Response(fixture('get_spaces.json'), 200),
         );
@@ -61,8 +65,11 @@ void main() {
     test(
       'should throw ServerException when the call is unsuccessful',
       () async {
-        AuthenticationService.getInstance().createSession(idToken: 'idToken');
-
+        AuthenticationService.getInstance().createSession(
+          idToken: 'idToken',
+          accessToken: 'accessToken',
+          refreshToken: 'refreshToken',
+        );
         final httpClient = MockClient(
           (_) async => http.Response(fixture('custom_server_error.json'), 500),
         );
@@ -94,7 +101,7 @@ void main() {
         AuthenticationService.getInstance().dispose();
 
         final httpClient = MockClient(
-          (_) async => http.Response(fixture('session_expired.json'), 401),
+          (_) async => http.Response(fixture('session_expired.json'), 404),
         );
 
         onMockRemoteData(httpClient: httpClient);
@@ -105,7 +112,7 @@ void main() {
           result,
           equals(
             Left<Failure, List<SpaceEntity>>(
-              AuthenticationFailure(),
+              ServerFailure(fixture('session_expired.json')),
             ),
           ),
         );

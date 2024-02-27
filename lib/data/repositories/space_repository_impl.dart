@@ -18,8 +18,6 @@ class SpaceRepositoryImpl implements SpaceRepository {
       final result = await remoteDataSource.getSpaces();
       final spaces = result.bodyOrThrow;
       return Right(spaces);
-    } on UnauthorizedException catch (_) {
-      return left(AuthenticationFailure());
     } on ChopperHttpException catch (error) {
       return left(ServerFailure(error.response.error));
     } catch (error) {
@@ -32,8 +30,8 @@ class SpaceRepositoryImpl implements SpaceRepository {
     try {
       await remoteDataSource.addSpace(space);
       return const Right('');
-    } on UnauthorizedException catch (_) {
-      return Left(AuthenticationFailure());
+    } on ChopperHttpException catch (error) {
+      return left(ServerFailure(error.response.error));
     } catch (error) {
       return Left(ServerFailure(error));
     }
@@ -44,8 +42,8 @@ class SpaceRepositoryImpl implements SpaceRepository {
     try {
       await remoteDataSource.deleteSpace(id);
       return const Right('');
-    } on UnauthorizedException catch (_) {
-      return Left(AuthenticationFailure());
+    } on ChopperHttpException catch (error) {
+      return left(ServerFailure(error.response.error));
     } catch (error) {
       return Left(ServerFailure(error));
     }
