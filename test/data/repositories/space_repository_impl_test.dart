@@ -112,7 +112,7 @@ void main() {
           result,
           equals(
             Left<Failure, List<SpaceEntity>>(
-              ServerFailure(fixture('session_expired.json')),
+              ServerFailure(fixtureMap('session_expired.json')),
             ),
           ),
         );
