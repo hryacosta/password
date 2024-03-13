@@ -24,7 +24,7 @@ void main() {
       expiresIn: 3600,
     );
 
-    when(mockAuthRepository.signin(any)).thenAnswer(
+    when(mockAuthRepository.signIn(any)).thenAnswer(
       (_) async => Either<Failure, SessionEntity>.right(session),
     );
 
@@ -46,7 +46,7 @@ void main() {
 
     expect(res, session);
 
-    verify(mockAuthRepository.signin(any));
+    verify(mockAuthRepository.signIn(any));
 
     verifyNoMoreInteractions(mockAuthRepository);
   });
