@@ -16,11 +16,8 @@ class App extends StatelessWidget {
       theme: _theme,
       routerConfig: _routerConfig,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       localeResolutionCallback: localeResolutionCallback,
-      supportedLocales: const [
-        Locale('es'),
-        Locale('en'),
-      ],
     );
   }
 
