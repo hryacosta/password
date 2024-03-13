@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:password/core/usecase/use_case.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
-import 'package:password/domain/repositories/authetication_repository.dart';
+import 'package:password/domain/repositories/authentication_repository.dart';
 
 @lazySingleton
 class SignIn extends UseCase<SessionEntity, Param> {
@@ -14,7 +14,7 @@ class SignIn extends UseCase<SessionEntity, Param> {
 
   @override
   Future<Either<Failure, SessionEntity>> call(Param arg) async =>
-      repository.signin(arg);
+      repository.signIn(arg);
 }
 
 class Param extends Equatable {

@@ -16,7 +16,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:password/config/register_module.dart' as _i16;
 import 'package:password/data/datasources/auth_remote_datasource.dart' as _i11;
 import 'package:password/data/datasources/space_remote_datasource.dart' as _i7;
-import 'package:password/domain/repositories/authetication_repository.dart'
+import 'package:password/domain/repositories/authentication_repository.dart'
     as _i12;
 import 'package:password/domain/repositories/spaces_repository.dart' as _i8;
 import 'package:password/domain/usecases/add_space.dart' as _i10;

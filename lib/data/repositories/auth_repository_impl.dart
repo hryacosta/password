@@ -3,7 +3,7 @@ import 'package:password/data/datasources/auth_remote_datasource.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/exceptions/exception.dart';
 import 'package:password/domain/failures/failure.dart';
-import 'package:password/domain/repositories/authetication_repository.dart';
+import 'package:password/domain/repositories/authentication_repository.dart';
 import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -14,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  Future<Either<Failure, SessionEntity>> signin(sign_in.Param args) async {
+  Future<Either<Failure, SessionEntity>> signIn(sign_in.Param args) async {
     try {
       final body = {
         'username': args.username,
@@ -32,12 +32,12 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, SessionEntity>> signout() {
+  Future<Either<Failure, SessionEntity>> signOut() {
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, SessionEntity>> signup() {
+  Future<Either<Failure, SessionEntity>> signUp() {
     throw UnimplementedError();
   }
 }

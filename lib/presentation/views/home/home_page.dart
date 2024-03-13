@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:password/core/utils/app_localization.dart';
-import 'package:password/core/utils/logger.dart';
 import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/presentation/providers/home_provider.dart';
 import 'package:password/presentation/route/app_route.dart';

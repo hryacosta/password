@@ -16,7 +16,7 @@ import 'package:password/data/models/space_model.dart' as _i10;
 import 'package:password/domain/entities/session_entity.dart' as _i14;
 import 'package:password/domain/entities/space_entity.dart' as _i6;
 import 'package:password/domain/failures/failure.dart' as _i5;
-import 'package:password/domain/repositories/authetication_repository.dart'
+import 'package:password/domain/repositories/authentication_repository.dart'
     as _i13;
 import 'package:password/domain/repositories/spaces_repository.dart' as _i3;
 import 'package:password/domain/usecases/sign_in.dart' as _i15;
@@ -286,11 +286,11 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signin(
+  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signIn(
           _i15.Param? arg) =>
       (super.noSuchMethod(
         Invocation.method(
-          #signin,
+          #signIn,
           [arg],
         ),
         returnValue:
@@ -298,17 +298,17 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
                 _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
           this,
           Invocation.method(
-            #signin,
+            #signIn,
             [arg],
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signup() =>
+  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signUp() =>
       (super.noSuchMethod(
         Invocation.method(
-          #signup,
+          #signUp,
           [],
         ),
         returnValue:
@@ -316,17 +316,17 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
                 _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
           this,
           Invocation.method(
-            #signup,
+            #signUp,
             [],
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signout() =>
+  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signOut() =>
       (super.noSuchMethod(
         Invocation.method(
-          #signout,
+          #signOut,
           [],
         ),
         returnValue:
@@ -334,7 +334,7 @@ class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
                 _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
           this,
           Invocation.method(
-            #signout,
+            #signOut,
             [],
           ),
         )),

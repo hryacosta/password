@@ -16,7 +16,9 @@ abstract class AuthRepository {
         remoteDataSource: remoteDateSource,
       );
 
-  Future<Either<Failure, SessionEntity>> signin(sign_in.Param arg);
-  Future<Either<Failure, SessionEntity>> signup();
-  Future<Either<Failure, SessionEntity>> signout();
+  Future<Either<Failure, SessionEntity>> signIn(sign_in.Param arg);
+
+  Future<Either<Failure, SessionEntity>> signUp();
+
+  Future<Either<Failure, SessionEntity>> signOut();
 }
