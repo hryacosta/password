@@ -92,7 +92,7 @@ class InputField extends StatelessWidget {
             errorStyle: textTheme.bodySmall
                 ?.copyWith(fontWeight: FontWeight.w400, color: AppColors.error),
             floatingLabelBehavior: floatingLabelBehavior,
-            contentPadding: const EdgeInsets.symmetric(vertical: 10),
+            contentPadding: const EdgeInsets.symmetric(vertical: 2),
             suffixIcon: suffixIcon,
             suffixIconConstraints: suffixIconConstraints,
             focusedBorder: UnderlineInputBorder(

@@ -97,7 +97,14 @@ class Button extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Visibility(
                 visible: isLoading,
-                child: const CircularProgressIndicator(),
+                child: Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  child: const SizedBox(
+                    height: 16,
+                    width: 16,
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
               ),
             ),
           ),
