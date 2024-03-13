@@ -8,3 +8,4 @@ INFO [process_setup] [2024-03-12:19:36:53 WD-TabNine INFO]
 INFO [watchdog_server::monitor_loop] [2024-03-12:19:36:53 WD-TabNine INFO] watching new process 30634-TabNine
 INFO [watchdog_server::monitor_loop] [2024-03-12:19:36:53 WD-TabNine INFO] watching new process 30638-TabNine
 INFO [WD_TabNine] [2024-03-12:19:36:53 WD-TabNine INFO] terminating because another watchdog is already running.
+INFO [watchdog_server::monitor_loop] [2024-03-12:19:37:01 WD-TabNine INFO] stop watching process 19415-TabNine-server-runner
