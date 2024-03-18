@@ -4,4 +4,3 @@ output-localization-file: app_localizations.dart
 preferred-supported-locales: [es, en]
 use-escaping: true
 header: "// GENERATED CODE - DO NOT MODIFY BY HAND"
-

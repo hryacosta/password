@@ -1,33 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:password/presentation/components/button.dart';
-import 'package:password/presentation/components/column_scroll_view.dart';
-import 'package:password/presentation/route/app_route.dart';
+import 'package:password/presentation/providers/login_provider.dart';
+import 'package:password/presentation/views/home/home_mobile.dart';
+import 'package:provider/provider.dart';
 
-class MobilePage extends StatefulWidget {
+class MobilePage extends StatelessWidget {
   const MobilePage({super.key});
 
   @override
-  State<MobilePage> createState() => _MobilePageState();
-}
-
-class _MobilePageState extends State<MobilePage> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ColumnScrollView(
-        children: [
-          const Spacer(),
-          Button(
-            label: 'logout',
-            onPress: loginOut,
-          ),
-          const Spacer()
-        ],
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => LoginProvider(),
+      child: const HomeMobile(),
     );
-  }
-
-  void loginOut() {
-    const LoginRoute().go(context);
   }
 }

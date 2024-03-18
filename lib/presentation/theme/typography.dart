@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:password/config/theme/app_colors.dart';
+import 'package:password/presentation/theme/app_colors.dart';
 
 final typography = TextTheme(
-  displayLarge: GoogleFonts.notoSans(
+  displayLarge: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 57,
     fontWeight: FontWeight.w400,
@@ -11,7 +11,7 @@ final typography = TextTheme(
     letterSpacing: -0.25,
     height: 1.12,
   ),
-  displayMedium: GoogleFonts.notoSans(
+  displayMedium: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 45,
     fontWeight: FontWeight.w400,
@@ -19,7 +19,7 @@ final typography = TextTheme(
     letterSpacing: 0,
     height: 1.16,
   ),
-  displaySmall: GoogleFonts.notoSans(
+  displaySmall: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 36,
     fontWeight: FontWeight.w400,
@@ -27,7 +27,7 @@ final typography = TextTheme(
     letterSpacing: 0,
     height: 1.12,
   ),
-  headlineLarge: GoogleFonts.notoSans(
+  headlineLarge: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 32,
     fontWeight: FontWeight.w400,
@@ -35,7 +35,7 @@ final typography = TextTheme(
     letterSpacing: 0,
     height: 1.25,
   ),
-  headlineMedium: GoogleFonts.notoSans(
+  headlineMedium: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 28,
     fontWeight: FontWeight.w400,
@@ -43,7 +43,7 @@ final typography = TextTheme(
     letterSpacing: 0,
     height: 1.29,
   ),
-  headlineSmall: GoogleFonts.notoSans(
+  headlineSmall: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 24,
     fontWeight: FontWeight.w400,
@@ -51,7 +51,7 @@ final typography = TextTheme(
     letterSpacing: 0,
     height: 1.33,
   ),
-  titleLarge: GoogleFonts.notoSans(
+  titleLarge: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 22,
     fontWeight: FontWeight.w400,
@@ -59,7 +59,7 @@ final typography = TextTheme(
     letterSpacing: 0,
     height: 1.27,
   ),
-  titleMedium: GoogleFonts.notoSans(
+  titleMedium: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -67,7 +67,7 @@ final typography = TextTheme(
     letterSpacing: 0.15,
     height: 1.50,
   ),
-  titleSmall: GoogleFonts.notoSans(
+  titleSmall: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 14,
     fontWeight: FontWeight.w500,
@@ -75,7 +75,7 @@ final typography = TextTheme(
     letterSpacing: 0.10,
     height: 1.43,
   ),
-  bodyLarge: GoogleFonts.notoSans(
+  bodyLarge: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 16,
     fontWeight: FontWeight.w400,
@@ -83,7 +83,7 @@ final typography = TextTheme(
     letterSpacing: 0.50,
     height: 1.50,
   ),
-  bodyMedium: GoogleFonts.notoSans(
+  bodyMedium: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 14,
     fontWeight: FontWeight.w400,
@@ -91,7 +91,7 @@ final typography = TextTheme(
     letterSpacing: 0.25,
     height: 1.43,
   ),
-  bodySmall: GoogleFonts.notoSans(
+  bodySmall: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 12,
     fontWeight: FontWeight.w400,
@@ -99,7 +99,7 @@ final typography = TextTheme(
     letterSpacing: 0.40,
     height: 1.33,
   ),
-  labelLarge: GoogleFonts.notoSans(
+  labelLarge: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 14,
     fontWeight: FontWeight.w500,
@@ -107,7 +107,7 @@ final typography = TextTheme(
     letterSpacing: 0.10,
     height: 1.43,
   ),
-  labelMedium: GoogleFonts.notoSans(
+  labelMedium: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 12,
     fontWeight: FontWeight.w500,
@@ -115,7 +115,7 @@ final typography = TextTheme(
     letterSpacing: 0.50,
     height: 1.33,
   ),
-  labelSmall: GoogleFonts.notoSans(
+  labelSmall: GoogleFonts.magra(
     fontStyle: FontStyle.normal,
     fontSize: 11,
     fontWeight: FontWeight.w500,

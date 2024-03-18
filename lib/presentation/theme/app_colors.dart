@@ -41,4 +41,8 @@ class AppColors {
   static Color surfaceTint = const Color(0XFF006684);
 
   static Color textColor = const Color(0xFF191C1E);
+
+  static Color darkGrey = const Color(0xFF2B2B2B);
+  static Color lightGrey = const Color(0xFF3B3B3B);
+  static Color indigo = Colors.indigo;
 }

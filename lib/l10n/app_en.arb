@@ -1,7 +1,7 @@
 {
   "addNewElement": "What would you like to add?",
   "newElement": "New Element",
-  "login": "sign in",
+  "login": "Sign in",
   "secureNote": "Secure Note",
   "creditCard": "Credit Card",
   "identity": "Identity",
@@ -32,5 +32,5 @@
   "home": "Home",
   "settings": "Settings",
   "noDataAvailable": "No data available at the moment. Please check back later",
-  "logout": "sign out"
+  "logout": ""
 }

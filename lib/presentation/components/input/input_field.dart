@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:password/config/theme/app_colors.dart';
+import 'package:password/presentation/theme/app_colors.dart';
 
 class InputField extends StatelessWidget {
   const InputField({
@@ -34,6 +34,7 @@ class InputField extends StatelessWidget {
     this.maxLength,
     this.maxLengthEnforcement,
     this.maxLines = 1,
+    this.style,
     super.key,
   });
 
@@ -67,6 +68,7 @@ class InputField extends StatelessWidget {
   final int? maxLength;
   final MaxLengthEnforcement? maxLengthEnforcement;
   final int? maxLines;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +111,8 @@ class InputField extends StatelessWidget {
           ),
       keyboardType: keyboardType,
       textInputAction: textInputAction,
-      style: textTheme.bodyMedium?.copyWith(color: AppColors.textColor),
+      style:
+          style ?? textTheme.bodyMedium?.copyWith(color: AppColors.textColor),
       autofocus: autofocus,
       obscureText: obscureText,
       autocorrect: autocorrect,

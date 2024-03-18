@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:password/config/theme/app_colors.dart';
-import 'package:password/config/theme/typography.dart';
+import 'package:password/presentation/theme/app_colors.dart';
+import 'package:password/presentation/theme/typography.dart';
 
 final $lightTheme = ThemeData(
   colorScheme: colorScheme,

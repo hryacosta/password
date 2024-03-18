@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> googleFonts() async {
-  GoogleFonts.config.allowRuntimeFetching = false;
+  GoogleFonts.config.allowRuntimeFetching = true;
 
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');

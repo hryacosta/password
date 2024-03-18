@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password/config/theme/app_colors.dart';
+import 'package:password/presentation/theme/app_colors.dart';
 
 class Button extends StatelessWidget {
   const Button({

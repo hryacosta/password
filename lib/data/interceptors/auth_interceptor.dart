@@ -2,10 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:chopper/chopper.dart';
-import 'package:meta/meta.dart';
 import 'package:password/core/services/authentication_service.dart';
 
-@immutable
 class AuthenticatorInterceptor implements RequestInterceptor {
   factory AuthenticatorInterceptor() {
     return _instance;
