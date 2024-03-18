@@ -30,6 +30,6 @@ class App extends StatelessWidget {
     }
 
     return supportedLocales
-        .firstWhere((element) => element.languageCode == 'en');
+        .firstWhere((element) => element.languageCode == 'es');
   }
 }

@@ -49,12 +49,6 @@ flutter:
     - family: NotoSans
       fonts:
         - asset: assets/google_fonts/Magra-Regular.ttf
-          weight: 300
-        - asset: assets/google_fonts/Magra-Regular.ttf
           weight: 400
         - asset: assets/google_fonts/Magra-Bold.ttf
           weight: 500
-        - asset: assets/google_fonts/Mangra-Bold.ttf
-          weight: 600
-        - asset: assets/google_fonts/Mangra-Bold.ttf
-          weight: 700
