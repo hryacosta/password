@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:password/presentation/theme/app_colors.dart';
 import 'package:password/presentation/theme/typography.dart';
 
-final $lightTheme = ThemeData(
+final $lightTheme = ThemeData.light().copyWith(
   colorScheme: colorScheme,
   textTheme: typography,
   visualDensity: VisualDensity.comfortable,
@@ -21,7 +21,6 @@ final $lightTheme = ThemeData(
   indicatorColor: colorScheme.onPrimary,
   dividerColor: colorScheme.onSurface.withOpacity(0.12),
   applyElevationOverlayColor: false,
-  useMaterial3: true,
   bottomAppBarTheme: BottomAppBarTheme(
     color: colorScheme.surface,
   ),

@@ -35,7 +35,6 @@ class LoginProvider with ChangeNotifier, DiagnosticableTreeMixin {
     VoidCallback? onError,
   }) async {
     isLoading = true;
-    notifyListeners();
     final res = await sl<SignIn>().call(
       Param(
         password: _password,

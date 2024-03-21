@@ -111,8 +111,7 @@ class InputField extends StatelessWidget {
           ),
       keyboardType: keyboardType,
       textInputAction: textInputAction,
-      style:
-          style ?? textTheme.bodyMedium?.copyWith(color: AppColors.textColor),
+      style: style,
       autofocus: autofocus,
       obscureText: obscureText,
       autocorrect: autocorrect,

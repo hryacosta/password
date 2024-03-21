@@ -1,6 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:password/presentation/theme/app_colors.dart';
+import 'package:password/presentation/theme/typography.dart';
 
-final $darkTheme = ThemeData.dark();
+final $darkTheme = ThemeData.dark().copyWith(
+  colorScheme: schemeDark,
+  inputDecorationTheme: InputDecorationTheme(
+    labelStyle: typography.bodyMedium?.copyWith(
+      // fontWeight: FontWeight.w400,
+      color: AppColors.onPrimary,
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(
+        color: AppColors.indigo,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(
+        color: AppColors.lightGrey,
+      ),
+    ),
+    hintStyle: typography.bodyMedium?.copyWith(
+      color: AppColors.onPrimary.withOpacity(0.5),
+    ),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(
+        color: AppColors.lightGrey,
+      ),
+    ),
+  ),
+);
 
 const ColorScheme schemeDark = ColorScheme(
   brightness: Brightness.dark,
