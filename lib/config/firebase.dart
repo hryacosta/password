@@ -9,9 +9,6 @@ Future<void> firebaseCofig() async {
   if (kIsWeb) {
     return;
   }
-  if (defaultTargetPlatform case TargetPlatform.macOS) {
-    return;
-  }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
