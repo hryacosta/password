@@ -32,5 +32,6 @@
   "home": "Home",
   "settings": "Settings",
   "noDataAvailable": "No data available at the moment. Please check back later",
-  "logout": ""
+  "logout": "Sign out",
+  "newElement": "New Element"
 }

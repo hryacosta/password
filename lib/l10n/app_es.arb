@@ -32,6 +32,7 @@
   "home": "Inicio",
   "settings": "Ajustes",
   "noDataAvailable": "No hay datos disponibles por el momento. Por favor, vuelva más tarde",
-  "logout": "Cerrar Sesión"
+  "logout": "Cerrar Sesión",
+  "newElement": "Nuevo Elemento"
 
 }

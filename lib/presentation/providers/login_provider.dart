@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:password/config/injectable.dart';
 import 'package:password/core/services/authentication_service.dart';
+import 'package:password/core/utils/analytics.dart';
 import 'package:password/core/utils/logger.dart';
 import 'package:password/domain/usecases/sign_in.dart';
 import 'package:password/domain/usecases/sign_out.dart';
@@ -55,6 +56,7 @@ class LoginProvider with ChangeNotifier, DiagnosticableTreeMixin {
         expiresIn: session.expiresIn / 60,
       );
       onSuccess.call();
+      Analytics().logLogin(loginMethod: 'signIn');
     });
 
     isLoading = false;
