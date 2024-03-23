@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "462283551772",
+    "project_id": "password-app-3b9ea",
+    "storage_bucket": "password-app-3b9ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462283551772:android:3a1f43492e1f7c4f5c1bd9",
+        "android_client_info": {
+          "package_name": "password.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmyzlr1aCmkaca7I7EqLDtC2nEF37XGpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
