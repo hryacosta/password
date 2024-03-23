@@ -1,7 +1,7 @@
 name: password
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.0.0+1
+version: 1.0.0+100
 environment:
   sdk: ">=3.2.3 <4.0.0"
 
@@ -10,6 +10,9 @@ dependencies:
   connectivity_plus: ^5.0.2
   cupertino_icons: ^1.0.6
   equatable: ^2.0.5
+  firebase_analytics: ^10.8.10
+  firebase_core: ^2.27.1
+  firebase_crashlytics: ^3.4.19
   flutter:
     sdk: flutter
   flutter_localizations:

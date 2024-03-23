@@ -36,6 +36,8 @@ class _DialogNewElementState extends State<DialogNewElement> {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalization.of(context);
+
     return Dialog(
       alignment: Alignment.topCenter,
       child: SizedBox(
@@ -50,7 +52,7 @@ class _DialogNewElementState extends State<DialogNewElement> {
                     padding: const EdgeInsets.all(16),
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: AppLocalization.of(context).addNewElement,
+                        hintText: localization.addNewElement,
                       ),
                     ),
                   ),
@@ -60,9 +62,7 @@ class _DialogNewElementState extends State<DialogNewElement> {
                   padding: const EdgeInsets.only(right: 16),
                   child: IconButton(
                     icon: const Icon(Icons.close),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: pop,
                   ),
                 ),
               ],
@@ -84,9 +84,13 @@ class _DialogNewElementState extends State<DialogNewElement> {
     );
   }
 
-  void onTap() {
+  void pop() {
     Navigator.of(context).pop();
+  }
 
+  void onTap() {
+    final localization = AppLocalization.of(context);
+    pop();
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -100,32 +104,32 @@ class _DialogNewElementState extends State<DialogNewElement> {
                 title: const Text('New Element'),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    showDialog<void>(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (BuildContext context) {
-                        return const DialogNewElement();
-                      },
-                    );
-                  },
+                  onPressed: addNewElement,
                 ),
                 actions: [
                   IconButton(
                     icon: const Icon(Icons.close),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: pop,
                   ),
                 ],
               ),
-              body: const Center(
-                child: Text('New Element'),
+              body: Center(
+                child: Text(localization.newElement),
               ),
             ),
           ),
         );
+      },
+    );
+  }
+
+  void addNewElement() {
+    pop();
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const DialogNewElement();
       },
     );
   }

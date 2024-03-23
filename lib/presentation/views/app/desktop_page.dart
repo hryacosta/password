@@ -41,9 +41,7 @@ class _DesktopPageState extends State<DesktopPage> {
           leading: const Profile(),
           trailing: IconButton(
             icon: const Icon(Icons.logout),
-            onPressed: () {
-              const LoginRoute().go(context);
-            },
+            onPressed: logout,
           ),
           elevation: 4,
         ),
@@ -129,6 +127,10 @@ class _DesktopPageState extends State<DesktopPage> {
         return const DialogNewElement();
       },
     );
+  }
+
+  void logout() {
+    const LoginRoute().go(context);
   }
 }
 

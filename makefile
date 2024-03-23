@@ -77,7 +77,7 @@ build_release_android:
 
 upload_symbols_android:
 	@echo "╠ Running Flutter upload symbols android"
-	@firebase crashlytics:symbols:upload --app=1:801823438569:android:5cdfa8b53be2a15d86a278 ./build/app/symbols/android
+	@firebase crashlytics:symbols:upload --app=1:462283551772:android:3a1f43492e1f7c4f5c1bd9 ./build/app/symbols/android
 
 build_release_ios:
 	@echo "╠ Running Flutter build release ios"
@@ -85,7 +85,7 @@ build_release_ios:
 
 upload_symbols_ios:
 	@echo "╠ Running Flutter upload symbols ios"
-	@firebase crashlytics:symbols:upload --app=1:801823438569:ios:653843fde64dd4d186a278 ./build/app/symbols/ios
+	@firebase crashlytics:symbols:upload --app=1:462283551772:ios:0ada5b4e30e40d415c1bd9 ./build/app/symbols/ios
 
 testWithCoverage:
 	@echo "╠ Running Flutter test with coverage"

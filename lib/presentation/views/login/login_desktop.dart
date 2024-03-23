@@ -4,11 +4,11 @@ import 'package:password/core/utils/app_localization.dart';
 import 'package:password/core/utils/app_pattern.dart';
 import 'package:password/presentation/components/button_text.dart';
 import 'package:password/presentation/components/column_scroll_view.dart';
-import 'package:password/presentation/components/input/input_field.dart';
 import 'package:password/presentation/components/input/validators/validator.dart';
 import 'package:password/presentation/providers/login_provider.dart';
 import 'package:password/presentation/route/app_route.dart';
 import 'package:password/presentation/theme/app_colors.dart';
+import 'package:password/presentation/views/login/components/input_desktop.dart';
 import 'package:provider/provider.dart';
 
 class LoginDesktop extends StatefulWidget {
@@ -52,7 +52,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
                       builder: (BuildContext context, LoginProvider value, _) {
                         return IgnorePointer(
                           ignoring: value.isLoading,
-                          child: CustomInput(
+                          child: InputDesktop(
                             onChange: value.onChangeEmail,
                             hintText: localization.username,
                             inputFormatters: [
@@ -76,7 +76,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
                       builder: (BuildContext context, LoginProvider value, _) {
                         return IgnorePointer(
                           ignoring: value.isLoading,
-                          child: CustomInput(
+                          child: InputDesktop(
                             onChange: value.onChangePassword,
                             hintText: localization.password,
                             obscureText: value.isObscure,
@@ -111,10 +111,12 @@ class _LoginDesktopState extends State<LoginDesktop> {
                     Consumer<LoginProvider>(
                       builder: (BuildContext context, LoginProvider value, _) {
                         return ButtonText(
-                          onPressed: () => value.signIn(
-                            onSuccess: onSuccess,
-                            onError: onError,
-                          ),
+                          onPressed: () {
+                            value.signIn(
+                              onSuccess: onSuccess,
+                              onError: onError,
+                            );
+                          },
                           label: localization.login,
                         );
                       },
@@ -140,52 +142,5 @@ class _LoginDesktopState extends State<LoginDesktop> {
 
   Future<void> onSuccess() async {
     const AppRoute().go(context);
-  }
-}
-
-class CustomInput extends StatelessWidget {
-  const CustomInput({
-    required this.hintText,
-    required this.onChange,
-    this.inputFormatters,
-    this.validator,
-    this.suffixIcon,
-    this.obscureText = false,
-    super.key,
-  });
-
-  final String? Function(String?)? validator;
-  final String hintText;
-  final Widget? suffixIcon;
-  final List<TextInputFormatter>? inputFormatters;
-  final void Function(String) onChange;
-  final bool obscureText;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 280,
-      child: InputField(
-        labelText: '',
-        maxLength: 64,
-        maxLengthEnforcement: MaxLengthEnforcement.enforced,
-        onChange: onChange,
-        inputFormatters: inputFormatters,
-        validator: validator,
-        keyboardType: TextInputType.emailAddress,
-        textInputAction: TextInputAction.next,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          filled: true,
-          hintText: hintText,
-          counterText: '',
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 10,
-          ),
-          suffixIcon: suffixIcon,
-        ),
-      ),
-    );
   }
 }
