@@ -19,7 +19,7 @@ Future<void> firebaseCofig() async {
           TargetPlatform.macOS) {
     final crashlytics = Crashlytics();
 
-    // await crashlytics.setCrashlyticsCollectionEnabled(enabled: !kDebugMode);
+    await crashlytics.setCrashlyticsCollectionEnabled(enabled: !kDebugMode);
 
     FlutterError.onError = crashlytics.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (error, stack) {
