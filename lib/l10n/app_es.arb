@@ -33,6 +33,6 @@
   "settings": "Ajustes",
   "noDataAvailable": "No hay datos disponibles por el momento. Por favor, vuelva más tarde",
   "logout": "Cerrar Sesión",
-  "newElement": "Nuevo Elemento"
-
+  "newElement": "Nuevo Elemento",
+  "error_login_incorrect": "Usuario o contraseña incorrectos. Por favor, verifica tus credenciales e inténtalo de nuevo."
 }

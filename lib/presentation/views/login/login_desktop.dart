@@ -138,7 +138,14 @@ class _LoginDesktopState extends State<LoginDesktop> {
     super.initState();
   }
 
-  Future<void> onError() async {}
+  Future<void> onError() async {
+    final locale = AppLocalization.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(locale.error_login_incorrect),
+      ),
+    );
+  }
 
   Future<void> onSuccess() async {
     const AppRoute().go(context);

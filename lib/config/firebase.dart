@@ -6,13 +6,13 @@ import 'package:password/core/utils/crashlytics.dart';
 import 'package:password/firebase_options.dart';
 
 Future<void> firebaseCofig() async {
-  if (kIsWeb) {
-    return;
-  }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  if (kIsWeb) {
+    return;
+  }
   if (defaultTargetPlatform
       case TargetPlatform.android ||
           TargetPlatform.iOS ||
