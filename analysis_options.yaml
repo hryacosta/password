@@ -27,6 +27,7 @@ analyzer:
     file_names: error
     missing_required_param: error
     missing_return: error
+    invalid_annotation_target: ignore
 
   exclude:
     - "**/*.mock.dart"

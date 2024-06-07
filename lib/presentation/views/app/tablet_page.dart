@@ -110,7 +110,7 @@ class _TabletPageState extends State<TabletPage> {
               return SearchBar(
                 controller: controller,
                 hintText: 'Search',
-                padding: const MaterialStatePropertyAll<EdgeInsets>(
+                padding: const WidgetStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
                 onTap: () {

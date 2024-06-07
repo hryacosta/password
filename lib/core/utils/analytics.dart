@@ -28,7 +28,7 @@ class Analytics {
     String? currency,
     List<AnalyticsEventItem>? items,
     String? coupon,
-    Map<String, Object?>? parameters,
+    Map<String, Object>? parameters,
     AnalyticsCallOptions? callOptions,
   }) async {
     await _delegate.logBeginCheckout(
@@ -43,7 +43,7 @@ class Analytics {
 
   Future<void> logLogin({
     String? loginMethod,
-    Map<String, Object?>? parameters,
+    Map<String, Object>? parameters,
     AnalyticsCallOptions? callOptions,
   }) async {
     await _delegate.logLogin(
@@ -56,7 +56,7 @@ class Analytics {
   Future<void> logScreenView({
     String? screenClass,
     String? screenName,
-    Map<String, Object?>? parameters,
+    Map<String, Object>? parameters,
     AnalyticsCallOptions? callOptions,
   }) async {
     await _delegate.logScreenView(
