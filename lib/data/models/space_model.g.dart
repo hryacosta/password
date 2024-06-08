@@ -10,7 +10,7 @@ SpaceModel _$SpaceModelFromJson(Map<String, dynamic> json) => SpaceModel(
       id: json['id'] as String,
       location: json['location'] as String,
       name: json['name'] as String,
-      timestamp: json['timestamp'] as int,
+      timestamp: (json['timestamp'] as num).toInt(),
       photoUrl: json['photoUrl'] as String? ?? '',
     );
 

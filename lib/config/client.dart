@@ -23,7 +23,6 @@ ChopperClient createClient(
         const HeadersInterceptor(
           {
             HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-            HttpHeaders.acceptHeader: 'application/json',
           },
         ),
       ],

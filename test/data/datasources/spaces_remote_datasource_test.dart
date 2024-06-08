@@ -75,8 +75,6 @@ void main() {
         final response = await dataSource.getSpaces();
 
         expect(response, isA<Response<List<SpaceModel>>>());
-
-        httpClient.close();
       },
     );
 

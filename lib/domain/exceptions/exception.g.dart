@@ -12,7 +12,7 @@ ServerException _$ServerExceptionFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = ServerException(
-          code: $checkedConvert('code', (v) => v as int),
+          code: $checkedConvert('code', (v) => (v as num).toInt()),
           message: $checkedConvert('message', (v) => v as String?),
           extra: $checkedConvert('extra', (v) => v),
         );

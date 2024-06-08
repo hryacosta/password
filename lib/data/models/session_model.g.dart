@@ -10,7 +10,7 @@ SessionModel _$SessionModelFromJson(Map<String, dynamic> json) => SessionModel(
       idToken: json['idToken'] as String,
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
-      expiresIn: json['expiresIn'] as int,
+      expiresIn: (json['expiresIn'] as num).toInt(),
     );
 
 Map<String, dynamic> _$SessionModelToJson(SessionModel instance) =>
