@@ -3,20 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:password/data/models/session_model.dart';
-import 'package:password/data/repositories/auth_repository_impl.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
+import 'package:password/domain/repositories/authentication_repository.dart';
 import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
 import '../../mocks.dart';
 
 void main() {
-  late AuthRepositoryImpl repository;
   late MockAuthRemoteDataSource mockRemoteDataSource;
+  late AuthRepository repository;
 
   setUp(() {
     mockRemoteDataSource = MockAuthRemoteDataSource();
-    repository = AuthRepositoryImpl(remoteDataSource: mockRemoteDataSource);
+    repository = AuthRepository.from(remoteDateSource: mockRemoteDataSource);
   });
 
   group('signIn', () {

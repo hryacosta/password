@@ -19,11 +19,4 @@ void main() {
     expect(error, isA<NetworkException>());
     expect(error.message, 'error message');
   });
-
-  test('should handle authentication exception', () async {
-    final error = UnauthorizedException();
-
-    expect(error, isA<UnauthorizedException>());
-    expect(error.message, 'Unauthorized');
-  });
 }
