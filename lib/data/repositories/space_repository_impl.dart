@@ -1,7 +1,9 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/domain/entities/space_entity.dart';
-import 'package:password/domain/exceptions/exception.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
@@ -16,10 +18,10 @@ class SpaceRepositoryImpl implements SpaceRepository {
   Future<Either<Failure, List<SpaceEntity>>> getSpaces() async {
     try {
       final result = await remoteDataSource.getSpaces();
-      final spaces = result.bodyOrThrow;
-      return Right(spaces);
-    } on ChopperHttpException catch (error) {
-      return left(ServerFailure(error.response.error));
+
+      return Right(result);
+    } on DioException catch (error) {
+      return left(ServerFailure(jsonDecode(error.response?.data)));
     } catch (error) {
       return left(ServerFailure(error));
     }
@@ -29,11 +31,11 @@ class SpaceRepositoryImpl implements SpaceRepository {
   Future<Either<Failure, String>> addSpace(SpaceEntity space) async {
     try {
       await remoteDataSource.addSpace(space);
-      return const Right('');
-    } on ChopperHttpException catch (error) {
-      return left(ServerFailure(error.response.error));
+      return right('');
+    } on DioException catch (error) {
+      return left(ServerFailure(error.response?.data));
     } catch (error) {
-      return Left(ServerFailure(error));
+      return left(ServerFailure(error));
     }
   }
 
@@ -41,11 +43,11 @@ class SpaceRepositoryImpl implements SpaceRepository {
   Future<Either<Failure, String>> deleteSpace(String id) async {
     try {
       await remoteDataSource.deleteSpace(id);
-      return const Right('');
-    } on ChopperHttpException catch (error) {
-      return left(ServerFailure(error.response.error));
+      return right('');
+    } on DioException catch (error) {
+      return left(ServerFailure(error.response?.data));
     } catch (error) {
-      return Left(ServerFailure(error));
+      return left(ServerFailure(error));
     }
   }
 

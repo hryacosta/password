@@ -4,6 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:password/data/models/session_model.dart';
 import 'package:password/data/repositories/auth_repository_impl.dart';
+import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
@@ -66,8 +67,9 @@ void main() {
       final result = await repository.signIn(signInParams);
 
       expect(result.isLeft(), isTrue);
+      expect(result.isRight(), isFalse);
 
-      expect(result.getRight(), isA<Option<ServerFailure>>());
+      expect(result, isA<Left<Failure, SessionEntity>>());
 
       final captured = verify(
         () => remoteDataSource.signIn(captureAny()),
@@ -93,7 +95,7 @@ void main() {
 
       expect(result.isLeft(), isTrue);
 
-      expect(result.getRight(), isA<Option<ServerFailure>>());
+      expect(result, isA<Left<Failure, SessionEntity>>());
 
       final captured = verify(
         () => remoteDataSource.signIn(captureAny()),

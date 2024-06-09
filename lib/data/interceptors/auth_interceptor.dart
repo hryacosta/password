@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:chopper/chopper.dart';
+import 'package:dio/dio.dart';
 import 'package:password/core/services/authentication_service.dart';
 
-class AuthenticatorInterceptor implements RequestInterceptor {
+class AuthenticatorInterceptor implements InterceptorsWrapper {
   factory AuthenticatorInterceptor() {
     return _instance;
   }
@@ -19,17 +19,30 @@ class AuthenticatorInterceptor implements RequestInterceptor {
       AuthenticatorInterceptor._internal();
 
   @override
-  FutureOr<Request> onRequest(Request request) {
+  Future<void> onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final authService = AuthenticationService.getInstance();
     if (authService.isSignedIn) {
-      return request.copyWith(
-        headers: {
-          ...request.headers,
-          HttpHeaders.authorizationHeader: authService.authorizationToken,
-        },
-      );
+      final headers = <String, String>{
+        HttpHeaders.authorizationHeader: authService.authorizationToken,
+      };
+
+      options.headers.addEntries(headers.entries);
     }
 
-    return request;
+    return handler.next(options);
+  }
+
+  @override
+  void onError(DioException error, ErrorInterceptorHandler handler) {
+    return handler.next(error);
+  }
+
+  @override
+  // ignore: strict_raw_type
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    return handler.next(response);
   }
 }

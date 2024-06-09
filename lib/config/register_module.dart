@@ -1,19 +1,12 @@
-import 'package:chopper/chopper.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
-import 'package:password/config/client.dart';
 import 'package:password/data/datasources/space_constants.dart';
+import 'package:password/data/interceptors/auth_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @module
 abstract class RegisterModule {
-  http.Client get client => http.Client();
-
-  @lazySingleton
-  ChopperClient get chopperClient => createClient(client);
-
   Connectivity get connectivity => Connectivity();
 
   @preResolve
@@ -31,5 +24,5 @@ abstract class RegisterModule {
           receiveTimeout: const Duration(seconds: 5),
           sendTimeout: const Duration(seconds: 5),
         ),
-      );
+      )..interceptors.add(AuthenticatorInterceptor());
 }

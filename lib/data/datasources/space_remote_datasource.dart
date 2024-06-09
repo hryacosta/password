@@ -1,28 +1,20 @@
-import 'package:chopper/chopper.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:password/data/converters/space_converter.dart';
-import 'package:password/data/datasources/space_constants.dart';
+import 'package:password/data/datasources/space_remote_datasource_impl.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/domain/entities/space_entity.dart';
 
-part 'space_remote_datasource.chopper.dart';
-
-@ChopperApi(baseUrl: '$stage/spaces')
 @injectable
-abstract class SpaceRemoteDataSource extends ChopperService {
+abstract class SpaceRemoteDataSource {
   @factoryMethod
-  static SpaceRemoteDataSource create(ChopperClient client) =>
-      _$SpaceRemoteDataSource(client);
+  factory SpaceRemoteDataSource.from({
+    required Dio client,
+  }) =>
+      SpaceRemoteDataSourceImpl(client: client);
 
-  @Post()
-  Future<Response<void>> addSpace(@Body() SpaceEntity space);
+  Future<void> addSpace(SpaceEntity space);
 
-  @FactoryConverter(
-    response: SpaceConverter.response,
-  )
-  @Get()
-  Future<Response<List<SpaceModel>>> getSpaces();
+  Future<List<SpaceModel>> getSpaces();
 
-  @Delete()
-  Future<Response<void>> deleteSpace(@Path() String id);
+  Future<void> deleteSpace(String id);
 }

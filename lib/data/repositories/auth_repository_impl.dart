@@ -22,7 +22,8 @@ class AuthRepositoryImpl implements AuthRepository {
       };
 
       final result = await remoteDataSource.signIn(body);
-      return Right(result);
+
+      return right(result);
     } on DioException catch (error) {
       return left(ServerFailure(error));
     } catch (error) {

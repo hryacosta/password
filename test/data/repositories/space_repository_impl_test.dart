@@ -1,8 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/testing.dart';
-import 'package:password/config/client.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
@@ -11,21 +10,16 @@ import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 
 import '../../fixtures/fixture_reader.dart';
+import '../../mocks.dart';
 
 void main() {
   late SpaceRemoteDataSource remoteDataSource;
   late SpaceRepositoryImpl repository;
 
-  void onMockRemoteData({
-    required http.Client httpClient,
-  }) {
-    final client = createClient(httpClient);
-
-    remoteDataSource = SpaceRemoteDataSource.create(client);
-    repository = SpaceRepositoryImpl(
-      remoteDataSource: remoteDataSource,
-    );
-  }
+  setUp(() {
+    remoteDataSource = MockSpaceRemoteDataSource();
+    repository = SpaceRepositoryImpl(remoteDataSource: remoteDataSource);
+  });
 
   group('getSpaces', () {
     test(
@@ -36,11 +30,6 @@ void main() {
           accessToken: 'accessToken',
           refreshToken: 'refreshToken',
         );
-        final httpClient = MockClient(
-          (_) async => http.Response(fixture('get_spaces.json'), 200),
-        );
-
-        onMockRemoteData(httpClient: httpClient);
 
         final tSpaceModel =
             Option<List<dynamic>>.of(fixtureMap('get_spaces.json')['spaces'])
@@ -50,6 +39,11 @@ void main() {
                       SpaceModel.fromJson(element as Map<String, dynamic>),
                 )
                 .toList();
+        when(
+          () => remoteDataSource.getSpaces(),
+        ).thenAnswer(
+          (_) async => tSpaceModel,
+        );
 
         final result = await repository.getSpaces();
 
@@ -63,58 +57,61 @@ void main() {
     );
 
     test(
-      'should throw ServerException when the call is unsuccessful',
+      'should throw DioException when the call is unsuccessful',
       () async {
         AuthenticationService.getInstance().createSession(
           idToken: 'idToken',
           accessToken: 'accessToken',
           refreshToken: 'refreshToken',
         );
-        final httpClient = MockClient(
-          (_) async => http.Response(fixture('custom_server_error.json'), 500),
-        );
 
-        onMockRemoteData(httpClient: httpClient);
+        when(
+          () => remoteDataSource.getSpaces(),
+        ).thenThrow(
+          DioException(
+            response: Response(
+              data: fixture('custom_server_error.json'),
+              requestOptions: RequestOptions(),
+              statusCode: 500,
+            ),
+            requestOptions: RequestOptions(),
+          ),
+        );
 
         final result = await repository.getSpaces();
 
-        expect(
-          result.isLeft(),
-          true,
-        );
+        expect(result.isLeft(), isTrue);
 
-        expect(
-          result,
-          const Left<Failure, List<SpaceEntity>>(
-            ServerFailure({
-              'code': 1010,
-              'message': 'error message',
-            }),
-          ),
+        expect(result, isA<Left<Failure, List<SpaceEntity>>>());
+
+        result.fold(
+          (left) {
+            expect(
+              left,
+              ServerFailure(fixtureMap('custom_server_error.json')),
+            );
+          },
+          (right) {},
         );
       },
     );
 
     test(
-      'should throw UnauthorizedException when the call is unsuccessful',
+      'should throw unhandler Exception when the call is unsuccessful',
       () async {
         AuthenticationService.getInstance().dispose();
 
-        final httpClient = MockClient(
-          (_) async => http.Response(fixture('session_expired.json'), 404),
-        );
-
-        onMockRemoteData(httpClient: httpClient);
+        when(
+          () => remoteDataSource.getSpaces(),
+        ).thenThrow(Exception('unhandled exception'));
 
         final result = await repository.getSpaces();
 
-        expect(
-          result,
-          equals(
-            Left<Failure, List<SpaceEntity>>(
-              ServerFailure(fixtureMap('session_expired.json')),
-            ),
-          ),
+        result.fold(
+          (left) {
+            expect(left, isA<ServerFailure>());
+          },
+          (right) {},
         );
       },
     );
