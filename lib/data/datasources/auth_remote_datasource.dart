@@ -14,4 +14,6 @@ abstract class AuthRemoteDataSource {
       );
 
   Future<SessionModel> signIn(Map<String, String> body);
+
+  Future<void> signOut();
 }

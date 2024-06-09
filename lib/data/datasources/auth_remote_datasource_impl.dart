@@ -24,4 +24,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       type: DioExceptionType.badResponse,
     );
   }
+
+  @override
+  Future<void> signOut() async {
+    final response = await client.post<Map<String, dynamic>>('/$stage/logout');
+
+    if (!response.isOk) {
+      throw DioException(
+        response: response,
+        requestOptions: response.requestOptions,
+        type: DioExceptionType.badResponse,
+      );
+    }
+  }
 }

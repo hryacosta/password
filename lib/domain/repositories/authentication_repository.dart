@@ -20,5 +20,5 @@ abstract class AuthRepository {
 
   Future<Either<Failure, SessionEntity>> signUp();
 
-  Future<Either<Failure, SessionEntity>> signOut();
+  Future<Either<Failure, bool>> signOut();
 }

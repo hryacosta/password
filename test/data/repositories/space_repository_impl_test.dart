@@ -116,4 +116,88 @@ void main() {
       },
     );
   });
+
+  group('addSpace', () {
+    const tSpace = SpaceEntity(
+      id: '1',
+      name: 'Space 1',
+      location: 'Location 1',
+      timestamp: 1,
+    );
+
+    test('should return empty string when the call is successful', () async {
+      when(() => remoteDataSource.addSpace(tSpace)).thenAnswer((_) async => {});
+
+      // act
+      final result = await repository.addSpace(tSpace);
+
+      // assert
+      expect(result.isRight(), true);
+      expect(result.getRight().getOrElse(() => 'Error'), '');
+    });
+
+    test('should return ServerFailure when the call is unsuccessful', () async {
+      // arrange
+      when(() => remoteDataSource.addSpace(tSpace)).thenThrow(
+        DioException(
+          response: Response(
+            data: '{"message": "Server error"}',
+            requestOptions: RequestOptions(),
+            statusCode: 500,
+          ),
+          requestOptions: RequestOptions(),
+        ),
+      );
+
+      // act
+      final result = await repository.addSpace(tSpace);
+
+      // assert
+      expect(result.isLeft(), true);
+      result.fold(
+        (failure) => expect(failure, isA<ServerFailure>()),
+        (_) => fail('Expected a failure'),
+      );
+    });
+  });
+  group('deleteSpace', () {
+    const tSpaceId = '1';
+
+    test('should return empty string when the call is successful', () async {
+      // arrange
+      when(() => remoteDataSource.deleteSpace(tSpaceId))
+          .thenAnswer((_) async => {});
+
+      // act
+      final result = await repository.deleteSpace(tSpaceId);
+
+      // assert
+      expect(result.isRight(), true);
+      expect(result.getRight().getOrElse(() => 'Error'), '');
+    });
+
+    test('should return ServerFailure when the call is unsuccessful', () async {
+      // arrange
+      when(() => remoteDataSource.deleteSpace(tSpaceId)).thenThrow(
+        DioException(
+          response: Response(
+            data: '{"message": "Server error"}',
+            requestOptions: RequestOptions(),
+            statusCode: 500,
+          ),
+          requestOptions: RequestOptions(),
+        ),
+      );
+
+      // act
+      final result = await repository.deleteSpace(tSpaceId);
+
+      // assert
+      expect(result.isLeft(), true);
+      result.fold(
+        (failure) => expect(failure, isA<ServerFailure>()),
+        (_) => fail('Expected a failure'),
+      );
+    });
+  });
 }

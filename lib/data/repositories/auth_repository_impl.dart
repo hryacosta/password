@@ -25,15 +25,22 @@ class AuthRepositoryImpl implements AuthRepository {
 
       return right(result);
     } on DioException catch (error) {
-      return left(ServerFailure(error));
+      return left(ServerFailure(error.response?.data));
     } catch (error) {
       return left(ServerFailure(error));
     }
   }
 
   @override
-  Future<Either<Failure, SessionEntity>> signOut() {
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> signOut() async {
+    try {
+      await remoteDataSource.signOut();
+      return right(true);
+    } on DioException catch (error) {
+      return left(ServerFailure(error.response?.data));
+    } catch (error) {
+      return left(ServerFailure(error));
+    }
   }
 
   @override
