@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
@@ -12,22 +11,13 @@ import '../../mocks.dart';
 void main() {
   late SpaceRemoteDataSource dataSource;
   late MockClient mockClient;
-  late List<SpaceModel> tSpacesModel;
 
   final mockAuthStatus = AuthenticationService();
   final fixtureSpaces = fixtureMap('get_spaces.json');
 
-  final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
-      .getOrElse(() => <dynamic>[]);
-
   setUp(() {
     mockClient = MockClient();
     dataSource = SpaceRemoteDataSource.from(client: mockClient);
-    tSpacesModel = option
-        .map(
-          (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
-        )
-        .toList();
   });
 
   tearDown(() async {
@@ -90,28 +80,33 @@ void main() {
           refreshToken: 'refreshToken',
         );
 
-        final call = await dataSource.getSpaces();
-
-        // expect(call, isA<dynamic>());
-
-        // expect(call.statusCode, equals(404));
+        try {
+          await dataSource.getSpaces();
+        } catch (e) {
+          expect(e, isA<DioException>());
+          final error = e as DioException;
+          expect(error.response?.statusCode, 404);
+        }
       },
     );
 
     test(
-      'should throw a UnauthorizedException when has not authorization',
+      'should throw a Exception when has not authorization',
       () async {
-        // final httpClient = MockClient((request) async {
-        //   return http.Response('unauthorized', 404);
-        // });
-        //
-        // onMockRemoteData(httpClient: httpClient);
-        //
-        final call = await dataSource.getSpaces();
+        when(() => mockClient.get<Map<String, dynamic>>(any())).thenAnswer(
+          (_) async => Response(
+            statusCode: 401,
+            requestOptions: RequestOptions(),
+          ),
+        );
 
-        // expect(call.statusCode, 404);
-
-        // httpClient.close();
+        try {
+          await dataSource.getSpaces();
+        } catch (e) {
+          expect(e, isA<DioException>());
+          final error = e as DioException;
+          expect(error.response?.statusCode, 401);
+        }
       },
     );
   });

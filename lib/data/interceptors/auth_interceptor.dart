@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:password/core/services/authentication_service.dart';
+import 'package:password/core/utils/logger.dart';
 
 class AuthenticatorInterceptor implements InterceptorsWrapper {
   factory AuthenticatorInterceptor() {
@@ -24,6 +25,7 @@ class AuthenticatorInterceptor implements InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     final authService = AuthenticationService.getInstance();
+    logger.d('AuthenticatorInterceptor onRequest: ${authService.isSignedIn}');
     if (authService.isSignedIn) {
       final headers = <String, String>{
         HttpHeaders.authorizationHeader: authService.authorizationToken,
