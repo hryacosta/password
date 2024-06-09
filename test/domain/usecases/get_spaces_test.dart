@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../test_widget.mocks.dart';
+import '../../mocks.dart';
 
 void main() {
   late GetSpaces useCase;
@@ -24,8 +24,10 @@ void main() {
     'should get spaces from repository',
     () async {
       final fixtureSpaces = fixtureMap('get_spaces.json');
+
       final option = Option<List<dynamic>>.of(fixtureSpaces['spaces'])
           .getOrElse(() => <dynamic>[]);
+
       final spaces = option
           .map(
             (element) => SpaceModel.fromJson(element as Map<String, dynamic>),
@@ -33,16 +35,16 @@ void main() {
           .toList();
 
       when(
-        mockSpaceRepository.getSpaces(),
+        () => mockSpaceRepository.getSpaces(),
       ).thenAnswer(
-        (_) async => Either<Failure, List<SpaceEntity>>.right(spaces),
+        (_) async => Either<Failure, List<SpaceEntity>>.of(spaces),
       );
 
       final result = await useCase.call();
 
       expect(result.getRight().getOrElse(() => []), spaces);
 
-      verify(mockSpaceRepository.getSpaces());
+      verify(() => mockSpaceRepository.getSpaces());
 
       verifyNoMoreInteractions(mockSpaceRepository);
     },

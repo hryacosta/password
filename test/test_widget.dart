@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mockito/annotations.dart';
-import 'package:password/data/datasources/auth_remote_datasource.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/domain/repositories/authentication_repository.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
@@ -11,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 @GenerateMocks([
   SpaceRepository,
   SpaceRemoteDataSource,
-  AuthRemoteDataSource,
   AuthRepository,
   SharedPreferences,
 ])

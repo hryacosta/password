@@ -1,7 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:password/data/datasources/auth_remote_datasource.dart';
 import 'package:password/domain/entities/session_entity.dart';
-import 'package:password/domain/exceptions/exception.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/authentication_repository.dart';
 import 'package:password/domain/usecases/sign_in.dart' as sign_in;
@@ -22,10 +22,9 @@ class AuthRepositoryImpl implements AuthRepository {
       };
 
       final result = await remoteDataSource.signIn(body);
-      final session = result.bodyOrThrow;
-      return Right(session);
-    } on ChopperHttpException catch (error) {
-      return left(ServerFailure(error.response.error));
+      return Right(result);
+    } on DioException catch (error) {
+      return left(ServerFailure(error));
     } catch (error) {
       return left(ServerFailure(error));
     }

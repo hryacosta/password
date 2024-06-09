@@ -1,23 +1,17 @@
-import 'package:chopper/chopper.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:password/data/converters/session_coverter.dart';
-import 'package:password/data/datasources/space_constants.dart';
+import 'package:password/data/datasources/auth_remote_datasource_impl.dart';
 import 'package:password/data/models/session_model.dart';
 
-part 'auth_remote_datasource.chopper.dart';
-
-@ChopperApi()
 @injectable
-abstract class AuthRemoteDataSource extends ChopperService {
+abstract class AuthRemoteDataSource {
   @factoryMethod
-  static AuthRemoteDataSource create(ChopperClient client) =>
-      _$AuthRemoteDataSource(client);
+  factory AuthRemoteDataSource.from({
+    required Dio client,
+  }) =>
+      AuthRemoteDataSourceImpl(
+        client: client,
+      );
 
-  @FactoryConverter(
-    response: SessionConverter.response,
-  )
-  @Post(path: '$stage/login')
-  Future<Response<SessionModel>> signIn(
-    @Body() Map<String, String> body,
-  );
+  Future<SessionModel> signIn(Map<String, String> body);
 }

@@ -1,15 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/sign_in.dart';
 
-import '../../test_widget.mocks.dart';
+import '../../mocks.dart';
 
 void main() {
   late SignIn useCase;
   late MockAuthRepository mockAuthRepository;
+
+  const params = Param(
+    username: 'EMAIL',
+    password: 'PASSWORD',
+  );
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
@@ -24,39 +29,22 @@ void main() {
       expiresIn: 3600,
     );
 
-    when(mockAuthRepository.signIn(any)).thenAnswer(
-      (_) async => Either<Failure, SessionEntity>.right(session),
+    when(
+      () => mockAuthRepository.signIn(params),
+    ).thenAnswer(
+      (_) async => Either<Failure, SessionEntity>.of(session),
     );
 
-    final result = await useCase(
-      const Param(
-        username: 'EMAIL',
-        password: 'PASSWORD',
-      ),
-    );
+    final result = await useCase(params);
 
-    final res = result.getRight().getOrElse(
-          () => const SessionEntity(
-            idToken: '',
-            refreshToken: '',
-            accessToken: '',
-            expiresIn: 0,
-          ),
-        );
+    expect(result.getRight(), const Option.of(session));
 
-    expect(res, session);
-
-    verify(mockAuthRepository.signIn(any));
+    verify(() => mockAuthRepository.signIn(params));
 
     verifyNoMoreInteractions(mockAuthRepository);
   });
 
   test('should params instance equatable', () {
-    const params = Param(
-      username: 'EMAIL',
-      password: 'PASSWORD',
-    );
-
     const params2 = Param(username: 'EMAIL', password: 'PASSWORD');
 
     expect(params, params2);

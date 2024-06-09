@@ -3,24 +3,22 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
-import 'package:chopper/chopper.dart' as _i8;
-import 'package:fpdart/fpdart.dart' as _i2;
+import 'package:chopper/chopper.dart' as _i9;
+import 'package:fpdart/fpdart.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i9;
-import 'package:password/data/datasources/auth_remote_datasource.dart' as _i11;
-import 'package:password/data/datasources/space_remote_datasource.dart' as _i7;
-import 'package:password/data/models/session_model.dart' as _i12;
+import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:password/data/datasources/space_remote_datasource.dart' as _i8;
 import 'package:password/data/models/space_model.dart' as _i10;
-import 'package:password/domain/entities/session_entity.dart' as _i14;
+import 'package:password/domain/entities/session_entity.dart' as _i12;
 import 'package:password/domain/entities/space_entity.dart' as _i6;
 import 'package:password/domain/failures/failure.dart' as _i5;
 import 'package:password/domain/repositories/authentication_repository.dart'
-    as _i13;
-import 'package:password/domain/repositories/spaces_repository.dart' as _i3;
-import 'package:password/domain/usecases/sign_in.dart' as _i15;
-import 'package:shared_preferences/shared_preferences.dart' as _i16;
+    as _i11;
+import 'package:password/domain/repositories/spaces_repository.dart' as _i2;
+import 'package:password/domain/usecases/sign_in.dart' as _i13;
+import 'package:shared_preferences/shared_preferences.dart' as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -35,18 +33,8 @@ import 'package:shared_preferences/shared_preferences.dart' as _i16;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeType_1 extends _i1.SmartFake implements Type {
-  _FakeType_1(
+class _FakeType_0 extends _i1.SmartFake implements Type {
+  _FakeType_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -58,103 +46,103 @@ class _FakeType_1 extends _i1.SmartFake implements Type {
 /// A class which mocks [SpaceRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSpaceRepository extends _i1.Mock implements _i3.SpaceRepository {
+class MockSpaceRepository extends _i1.Mock implements _i2.SpaceRepository {
   MockSpaceRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.SpaceEntity>>> getSpaces() =>
+  _i3.Future<_i4.Either<_i5.Failure, List<_i6.SpaceEntity>>> getSpaces() =>
       (super.noSuchMethod(
         Invocation.method(
           #getSpaces,
           [],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, List<_i6.SpaceEntity>>>.value(
-                _FakeEither_0<_i5.Failure, List<_i6.SpaceEntity>>(
+            _i3.Future<_i4.Either<_i5.Failure, List<_i6.SpaceEntity>>>.value(
+                _i7.dummyValue<_i4.Either<_i5.Failure, List<_i6.SpaceEntity>>>(
           this,
           Invocation.method(
             #getSpaces,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.SpaceEntity>>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, List<_i6.SpaceEntity>>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, String>> addSpace(
+  _i3.Future<_i4.Either<_i5.Failure, String>> addSpace(
           _i6.SpaceEntity? space) =>
       (super.noSuchMethod(
         Invocation.method(
           #addSpace,
           [space],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
-            _FakeEither_0<_i5.Failure, String>(
+        returnValue: _i3.Future<_i4.Either<_i5.Failure, String>>.value(
+            _i7.dummyValue<_i4.Either<_i5.Failure, String>>(
           this,
           Invocation.method(
             #addSpace,
             [space],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, String>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, String>> updateSpace(
+  _i3.Future<_i4.Either<_i5.Failure, String>> updateSpace(
           _i6.SpaceEntity? space) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateSpace,
           [space],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
-            _FakeEither_0<_i5.Failure, String>(
+        returnValue: _i3.Future<_i4.Either<_i5.Failure, String>>.value(
+            _i7.dummyValue<_i4.Either<_i5.Failure, String>>(
           this,
           Invocation.method(
             #updateSpace,
             [space],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, String>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, String>> deleteSpace(String? id) =>
+  _i3.Future<_i4.Either<_i5.Failure, String>> deleteSpace(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteSpace,
           [id],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
-            _FakeEither_0<_i5.Failure, String>(
+        returnValue: _i3.Future<_i4.Either<_i5.Failure, String>>.value(
+            _i7.dummyValue<_i4.Either<_i5.Failure, String>>(
           this,
           Invocation.method(
             #deleteSpace,
             [id],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, String>>);
 }
 
 /// A class which mocks [SpaceRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSpaceRemoteDataSource extends _i1.Mock
-    implements _i7.SpaceRemoteDataSource {
+    implements _i8.SpaceRemoteDataSource {
   MockSpaceRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i8.ChopperClient get client => (super.noSuchMethod(
+  _i9.ChopperClient get client => (super.noSuchMethod(
         Invocation.getter(#client),
-        returnValue: _i9.dummyValue<_i8.ChopperClient>(
+        returnValue: _i7.dummyValue<_i9.ChopperClient>(
           this,
           Invocation.getter(#client),
         ),
-      ) as _i8.ChopperClient);
+      ) as _i9.ChopperClient);
 
   @override
-  set client(_i8.ChopperClient? _client) => super.noSuchMethod(
+  set client(_i9.ChopperClient? _client) => super.noSuchMethod(
         Invocation.setter(
           #client,
           _client,
@@ -165,186 +153,131 @@ class MockSpaceRemoteDataSource extends _i1.Mock
   @override
   Type get definitionType => (super.noSuchMethod(
         Invocation.getter(#definitionType),
-        returnValue: _FakeType_1(
+        returnValue: _FakeType_0(
           this,
           Invocation.getter(#definitionType),
         ),
       ) as Type);
 
   @override
-  _i4.Future<_i8.Response<void>> addSpace(_i6.SpaceEntity? space) =>
+  _i3.Future<_i9.Response<void>> addSpace(_i6.SpaceEntity? space) =>
       (super.noSuchMethod(
         Invocation.method(
           #addSpace,
           [space],
         ),
-        returnValue: _i4.Future<_i8.Response<void>>.value(
-            _i9.dummyValue<_i8.Response<void>>(
+        returnValue: _i3.Future<_i9.Response<void>>.value(
+            _i7.dummyValue<_i9.Response<void>>(
           this,
           Invocation.method(
             #addSpace,
             [space],
           ),
         )),
-      ) as _i4.Future<_i8.Response<void>>);
+      ) as _i3.Future<_i9.Response<void>>);
 
   @override
-  _i4.Future<_i8.Response<List<_i10.SpaceModel>>> getSpaces() =>
+  _i3.Future<_i9.Response<List<_i10.SpaceModel>>> getSpaces() =>
       (super.noSuchMethod(
         Invocation.method(
           #getSpaces,
           [],
         ),
-        returnValue: _i4.Future<_i8.Response<List<_i10.SpaceModel>>>.value(
-            _i9.dummyValue<_i8.Response<List<_i10.SpaceModel>>>(
+        returnValue: _i3.Future<_i9.Response<List<_i10.SpaceModel>>>.value(
+            _i7.dummyValue<_i9.Response<List<_i10.SpaceModel>>>(
           this,
           Invocation.method(
             #getSpaces,
             [],
           ),
         )),
-      ) as _i4.Future<_i8.Response<List<_i10.SpaceModel>>>);
+      ) as _i3.Future<_i9.Response<List<_i10.SpaceModel>>>);
 
   @override
-  _i4.Future<_i8.Response<void>> deleteSpace(String? id) => (super.noSuchMethod(
+  _i3.Future<_i9.Response<void>> deleteSpace(String? id) => (super.noSuchMethod(
         Invocation.method(
           #deleteSpace,
           [id],
         ),
-        returnValue: _i4.Future<_i8.Response<void>>.value(
-            _i9.dummyValue<_i8.Response<void>>(
+        returnValue: _i3.Future<_i9.Response<void>>.value(
+            _i7.dummyValue<_i9.Response<void>>(
           this,
           Invocation.method(
             #deleteSpace,
             [id],
           ),
         )),
-      ) as _i4.Future<_i8.Response<void>>);
-}
-
-/// A class which mocks [AuthRemoteDataSource].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockAuthRemoteDataSource extends _i1.Mock
-    implements _i11.AuthRemoteDataSource {
-  MockAuthRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i8.ChopperClient get client => (super.noSuchMethod(
-        Invocation.getter(#client),
-        returnValue: _i9.dummyValue<_i8.ChopperClient>(
-          this,
-          Invocation.getter(#client),
-        ),
-      ) as _i8.ChopperClient);
-
-  @override
-  set client(_i8.ChopperClient? _client) => super.noSuchMethod(
-        Invocation.setter(
-          #client,
-          _client,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  Type get definitionType => (super.noSuchMethod(
-        Invocation.getter(#definitionType),
-        returnValue: _FakeType_1(
-          this,
-          Invocation.getter(#definitionType),
-        ),
-      ) as Type);
-
-  @override
-  _i4.Future<_i8.Response<_i12.SessionModel>> signIn(
-          Map<String, String>? body) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #signIn,
-          [body],
-        ),
-        returnValue: _i4.Future<_i8.Response<_i12.SessionModel>>.value(
-            _i9.dummyValue<_i8.Response<_i12.SessionModel>>(
-          this,
-          Invocation.method(
-            #signIn,
-            [body],
-          ),
-        )),
-      ) as _i4.Future<_i8.Response<_i12.SessionModel>>);
+      ) as _i3.Future<_i9.Response<void>>);
 }
 
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i13.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i11.AuthRepository {
   MockAuthRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signIn(
-          _i15.Param? arg) =>
+  _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>> signIn(
+          _i13.Param? arg) =>
       (super.noSuchMethod(
         Invocation.method(
           #signIn,
           [arg],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>.value(
-                _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
+            _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>>.value(
+                _i7.dummyValue<_i4.Either<_i5.Failure, _i12.SessionEntity>>(
           this,
           Invocation.method(
             #signIn,
             [arg],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signUp() =>
+  _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>> signUp() =>
       (super.noSuchMethod(
         Invocation.method(
           #signUp,
           [],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>.value(
-                _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
+            _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>>.value(
+                _i7.dummyValue<_i4.Either<_i5.Failure, _i12.SessionEntity>>(
           this,
           Invocation.method(
             #signUp,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>> signOut() =>
+  _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>> signOut() =>
       (super.noSuchMethod(
         Invocation.method(
           #signOut,
           [],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>.value(
-                _FakeEither_0<_i5.Failure, _i14.SessionEntity>(
+            _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>>.value(
+                _i7.dummyValue<_i4.Either<_i5.Failure, _i12.SessionEntity>>(
           this,
           Invocation.method(
             #signOut,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i14.SessionEntity>>);
+      ) as _i3.Future<_i4.Either<_i5.Failure, _i12.SessionEntity>>);
 }
 
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i14.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -405,7 +338,7 @@ class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
       )) as List<String>?);
 
   @override
-  _i4.Future<bool> setBool(
+  _i3.Future<bool> setBool(
     String? key,
     bool? value,
   ) =>
@@ -417,11 +350,11 @@ class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> setInt(
+  _i3.Future<bool> setInt(
     String? key,
     int? value,
   ) =>
@@ -433,11 +366,11 @@ class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> setDouble(
+  _i3.Future<bool> setDouble(
     String? key,
     double? value,
   ) =>
@@ -449,11 +382,11 @@ class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> setString(
+  _i3.Future<bool> setString(
     String? key,
     String? value,
   ) =>
@@ -465,11 +398,11 @@ class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> setStringList(
+  _i3.Future<bool> setStringList(
     String? key,
     List<String>? value,
   ) =>
@@ -481,43 +414,43 @@ class MockSharedPreferences extends _i1.Mock implements _i16.SharedPreferences {
             value,
           ],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> remove(String? key) => (super.noSuchMethod(
+  _i3.Future<bool> remove(String? key) => (super.noSuchMethod(
         Invocation.method(
           #remove,
           [key],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> commit() => (super.noSuchMethod(
+  _i3.Future<bool> commit() => (super.noSuchMethod(
         Invocation.method(
           #commit,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<bool> clear() => (super.noSuchMethod(
+  _i3.Future<bool> clear() => (super.noSuchMethod(
         Invocation.method(
           #clear,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i4.Future<void> reload() => (super.noSuchMethod(
+  _i3.Future<void> reload() => (super.noSuchMethod(
         Invocation.method(
           #reload,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
