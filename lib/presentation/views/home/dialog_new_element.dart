@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:password/core/utils/app_localization.dart';
+import 'package:password/presentation/views/home/option_icon.dart';
 
 class DialogNewElement extends StatefulWidget {
   const DialogNewElement({super.key});
@@ -68,14 +69,23 @@ class _DialogNewElementState extends State<DialogNewElement> {
               ],
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: _elements.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(_elements[index]),
-                    onTap: onTap,
-                  );
-                },
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 24,
+                  bottom: 24,
+                  right: 24,
+                  top: 8,
+                ),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  padding: const EdgeInsets.all(2),
+                  childAspectRatio: 4,
+                  children: _elements
+                      .map<Widget>(
+                        (String element) => OptionIcon(title: element),
+                      )
+                      .toList(),
+                ),
               ),
             ),
           ],
@@ -89,38 +99,38 @@ class _DialogNewElementState extends State<DialogNewElement> {
   }
 
   void onTap() {
-    final localization = AppLocalization.of(context);
+    // final localization = AppLocalization.of(context);
     pop();
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: SizedBox(
-            width: 600,
-            height: 600,
-            child: Scaffold(
-              appBar: AppBar(
-                title: const Text('New Element'),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: addNewElement,
-                ),
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: pop,
-                  ),
-                ],
-              ),
-              body: Center(
-                child: Text(localization.newElement),
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    // showDialog<void>(
+    //   context: context,
+    //   barrierDismissible: false,
+    //   builder: (BuildContext context) {
+    //     return Dialog(
+    //       child: SizedBox(
+    //         width: 600,
+    //         height: 600,
+    //         child: Scaffold(
+    //           appBar: AppBar(
+    //             title: const Text('New Element'),
+    //             leading: IconButton(
+    //               icon: const Icon(Icons.arrow_back),
+    //               onPressed: addNewElement,
+    //             ),
+    //             actions: [
+    //               IconButton(
+    //                 icon: const Icon(Icons.close),
+    //                 onPressed: pop,
+    //               ),
+    //             ],
+    //           ),
+    //           body: Center(
+    //             child: Text(localization.newElement),
+    //           ),
+    //         ),
+    //       ),
+    //     );
+    //   },
+    // );
   }
 
   void addNewElement() {

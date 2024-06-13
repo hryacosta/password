@@ -12,14 +12,10 @@ class HomeProvider with ChangeNotifier {
   Future<List<SpaceEntity>> getSpaces() async {
     final result = await sl<GetSpaces>()();
 
-    if (result.isRight()) {
-      final spacesList = result.getRight().getOrElse(() => []);
+    final spacesList = result.getRight().getOrElse(() => []);
 
-      spaces.addAll(spacesList);
+    spaces.addAll(spacesList);
 
-      return spacesList;
-    }
-
-    return [];
+    return spacesList;
   }
 }
