@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:password/core/extension/http_response.dart';
 import 'package:password/data/datasources/auth_remote_datasource.dart';
-import 'package:password/data/datasources/space_constants.dart';
+import 'package:password/data/datasources/space_api.dart';
 import 'package:password/data/models/session_model.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -12,7 +12,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<SessionModel> signIn(Map<String, String> body) async {
     final response =
-        await client.post<Map<String, dynamic>>('/$stage/login', data: body);
+        await client.post<Map<String, dynamic>>(SpaceApi.login, data: body);
 
     if (response.isOk) {
       return SessionModel.fromJson(response.data!);
@@ -27,7 +27,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> signOut() async {
-    final response = await client.post<Map<String, dynamic>>('/$stage/logout');
+    final response = await client.post<Map<String, dynamic>>(SpaceApi.logout);
 
     if (!response.isOk) {
       throw DioException(

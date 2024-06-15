@@ -44,13 +44,13 @@ void main() {
       const refreshToken = 'refreshToken';
       const accessToken = 'accessToken';
 
-      authService.createSession(
-        idToken: idToken,
-        refreshToken: refreshToken,
-        accessToken: accessToken,
-      );
-
-      authService.dispose();
+      authService
+        ..createSession(
+          idToken: idToken,
+          refreshToken: refreshToken,
+          accessToken: accessToken,
+        )
+        ..dispose();
 
       expect(authService.authorizationToken, '');
       expect(authService.refreshToken, '');

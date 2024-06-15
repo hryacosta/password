@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:password/core/utils/crashlytics.dart';
 import 'package:password/firebase_options.dart';
 
-Future<void> firebaseCofig() async {
+Future<void> firebaseConfig() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

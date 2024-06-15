@@ -12,7 +12,7 @@ import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
 import 'package:dio/dio.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:password/config/register_module.dart' as _i15;
+import 'package:password/core/config/register_module.dart' as _i15;
 import 'package:password/data/datasources/auth_remote_datasource.dart' as _i7;
 import 'package:password/data/datasources/space_remote_datasource.dart' as _i6;
 import 'package:password/domain/repositories/authentication_repository.dart'

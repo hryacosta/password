@@ -46,7 +46,27 @@ void main() {
 
   test('should params instance equatable', () {
     const params2 = Param(username: 'EMAIL', password: 'PASSWORD');
+    const params3 = Param(username: 'EMAIL_1', password: 'PASSWORD');
 
-    expect(params, params2);
+    expect(params, equals(params2));
+    expect(params, isNot(equals(params3)));
+  });
+
+  test('should return ServerFailure when sign in fails', () async {
+    when(() => mockAuthRepository.signIn(params))
+        .thenAnswer((_) async => const Left(ServerFailure('Server error')));
+
+    final result = await useCase(params);
+
+    expect(
+      result,
+      equals(const Left<Failure, SessionEntity>(ServerFailure('Server error'))),
+    );
+
+    verify(
+      () => mockAuthRepository.signIn(params),
+    );
+
+    verifyNoMoreInteractions(mockAuthRepository);
   });
 }

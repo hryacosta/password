@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:password/config/injectable.dart';
+import 'package:password/core/config/injectable.dart';
 import 'package:password/core/services/authentication_service.dart';
 import 'package:password/core/utils/analytics.dart';
 import 'package:password/domain/usecases/sign_in.dart';

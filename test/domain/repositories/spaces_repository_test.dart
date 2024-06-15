@@ -164,7 +164,8 @@ void main() {
   //     expect(result.getRight().getOrElse(() => 'Error'), '');
   //   });
   //
-  //   test('should return ServerFailure when the call is unsuccessful', () async {
+  //   test('should return ServerFailure when the call is
+  //   unsuccessful', () async {
   //     // arrange
   //     when(mockRemoteDataSource.updateSpace(tSpace)).thenThrow(
   //       DioException(
