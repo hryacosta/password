@@ -8,7 +8,7 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/authentication_repository.dart';
 import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
-import '../../mocks.dart';
+import '../../mocks/mock_auth_remote_data_source.dart';
 
 void main() {
   late MockAuthRemoteDataSource mockRemoteDataSource;

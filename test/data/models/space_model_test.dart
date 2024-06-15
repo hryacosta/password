@@ -19,12 +19,10 @@ void main() {
     );
 
     test('should be a subclass of SpaceEntity', () {
-      // Assert
       expect(spaceModel, isA<SpaceEntity>());
     });
 
     test('fromJson should return a valid model', () {
-      // Arrange
       final jsonMap = <String, dynamic>{
         'id': id,
         'location': location,
@@ -33,15 +31,12 @@ void main() {
         'photoUrl': photoUrl,
       };
 
-      // Act
       final result = SpaceModel.fromJson(jsonMap);
 
-      // Assert
       expect(result, spaceModel);
     });
 
     test('toJson should return a valid JSON map', () {
-      // Arrange
       final expectedJsonMap = {
         'id': id,
         'location': location,
@@ -50,15 +45,12 @@ void main() {
         'photoUrl': photoUrl,
       };
 
-      // Act
       final result = spaceModel.toJson();
 
-      // Assert
       expect(result, expectedJsonMap);
     });
 
     test('should support null photoUrl', () {
-      // Arrange
       const spaceModelWithNullPhotoUrl = SpaceModel(
         id: id,
         location: location,
@@ -73,10 +65,8 @@ void main() {
         'timestamp': timestamp,
       };
 
-      // Act
       final result = SpaceModel.fromJson(jsonMap);
 
-      // Assert
       expect(result, spaceModelWithNullPhotoUrl);
     });
   });

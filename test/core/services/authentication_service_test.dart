@@ -21,20 +21,17 @@ void main() {
     });
 
     test('should create a session with given tokens and expiration time', () {
-      // arrange
       const idToken = 'idToken';
       const refreshToken = 'refreshToken';
       const accessToken = 'accessToken';
       const expiresIn = 60.0;
 
-      // act
       authService.createSession(
         idToken: idToken,
         refreshToken: refreshToken,
         accessToken: accessToken,
       );
 
-      // assert
       expect(authService.authorizationToken, idToken);
       expect(authService.refreshToken, refreshToken);
       expect(authService.accessToken, accessToken);
@@ -43,11 +40,9 @@ void main() {
     });
 
     test('should destroy the session', () {
-      // arrange
       const idToken = 'idToken';
       const refreshToken = 'refreshToken';
       const accessToken = 'accessToken';
-      const expiresIn = 60.0;
 
       authService.createSession(
         idToken: idToken,
@@ -55,10 +50,8 @@ void main() {
         accessToken: accessToken,
       );
 
-      // act
       authService.dispose();
 
-      // assert
       expect(authService.authorizationToken, '');
       expect(authService.refreshToken, '');
       expect(authService.accessToken, '');
@@ -67,7 +60,6 @@ void main() {
     });
 
     test('should return false for isSignedIn if session is expired', () {
-      // arrange
       const idToken = 'idToken';
       const refreshToken = 'refreshToken';
       const accessToken = 'accessToken';
@@ -80,15 +72,12 @@ void main() {
         expiresIn: expiresIn,
       );
 
-      // act
       final isSignedIn = authService.isSignedIn;
 
-      // assert
       expect(isSignedIn, false);
     });
 
     test('should return true for isSignedIn if session is not expired', () {
-      // arrange
       const idToken = 'idToken';
       const refreshToken = 'refreshToken';
       const accessToken = 'accessToken';
@@ -99,10 +88,8 @@ void main() {
         accessToken: accessToken,
       );
 
-      // act
       final isSignedIn = authService.isSignedIn;
 
-      // assert
       expect(isSignedIn, true);
     });
   });

@@ -6,7 +6,7 @@ import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../mocks.dart';
+import '../../mocks/mock_client.dart';
 
 void main() {
   late SpaceRemoteDataSource dataSource;

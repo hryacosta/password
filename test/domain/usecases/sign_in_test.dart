@@ -5,7 +5,7 @@ import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/sign_in.dart';
 
-import '../../mocks.dart';
+import '../../mocks/mock_auth_repository.dart';
 
 void main() {
   late SignIn useCase;

@@ -9,7 +9,7 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
 import '../../fixtures/fixture_reader.dart';
-import '../../mocks.dart';
+import '../../mocks/mock_auth_remote_data_source.dart';
 
 void main() {
   late MockAuthRemoteDataSource remoteDataSource;

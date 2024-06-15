@@ -5,7 +5,7 @@ import 'package:password/data/datasources/auth_remote_datasource.dart';
 import 'package:password/data/models/session_model.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../mocks.dart';
+import '../../mocks/mock_client.dart';
 
 void main() {
   late AuthRemoteDataSource dataSource;

@@ -7,7 +7,7 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../mocks.dart';
+import '../../mocks/mock_space_repository.dart';
 
 void main() {
   late GetSpaces useCase;

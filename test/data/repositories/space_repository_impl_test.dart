@@ -10,7 +10,7 @@ import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../mocks.dart';
+import '../../mocks/mock_space_remote_data_source.dart';
 
 void main() {
   late SpaceRemoteDataSource remoteDataSource;
