@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password/presentation/components/button.dart';
 import 'package:password/presentation/components/input/input_field.dart';
 import 'package:password/presentation/providers/home_provider.dart';
 import 'package:password/presentation/route/app_route.dart';
@@ -33,10 +34,16 @@ class _HomePageState extends State<HomePage> {
             onChange: (String value) {},
             labelText: 'password',
           ),
+          const SizedBox(
+            height: 24,
+          ),
+          SizedBox(width: 400, child: Button(label: 'add', onPress: onPress)),
         ],
       ),
     );
   }
+
+  void onPress() {}
 
   void onPressed() {
     const LoginRoute().go(context);

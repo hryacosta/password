@@ -16,6 +16,10 @@ final class ServerFailure extends Failure {
   const ServerFailure(super.error, [super.stackTrace]);
 }
 
+final class LocalFailure extends Failure {
+  const LocalFailure(super.error, [super.stackTrace]);
+}
+
 final class AuthenticationFailure extends Failure {}
 
 final class NetworkFailure extends Failure {}

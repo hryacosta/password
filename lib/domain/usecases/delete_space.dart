@@ -6,7 +6,7 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/spaces_repository.dart';
 
 @lazySingleton
-class DeleteSpaces extends UseCase<String, Param> {
+class DeleteSpaces implements UseCase<String, Param> {
   DeleteSpaces(this.repository);
 
   final SpaceRepository repository;

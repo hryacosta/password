@@ -7,7 +7,7 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/authentication_repository.dart';
 
 @lazySingleton
-class SignIn extends UseCase<SessionEntity, Param> {
+class SignIn implements UseCase<SessionEntity, Param> {
   SignIn(this.repository);
 
   final AuthRepository repository;
