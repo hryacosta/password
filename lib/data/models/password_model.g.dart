@@ -8,6 +8,7 @@ part of 'password_model.dart';
 
 PasswordModel _$PasswordModelFromJson(Map<String, dynamic> json) =>
     PasswordModel(
+      uuid: json['uuid'] as String,
       username: json['username'] as String,
       password: json['password'] as String,
       updatedAt: json['updatedAt'] as String? ?? '',
@@ -16,6 +17,7 @@ PasswordModel _$PasswordModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) =>
     <String, dynamic>{
+      'uuid': instance.uuid,
       'username': instance.username,
       'password': instance.password,
       'title': instance.title,

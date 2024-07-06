@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/theme/app_colors.dart';
 
 class Button extends StatelessWidget {
@@ -83,7 +84,7 @@ class Button extends StatelessWidget {
               child: Center(
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
-                  child: Text(
+                  child: Message(
                     label.toUpperCase(),
                     style: textStyle,
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password/presentation/components/message.dart';
 
 class ButtonText extends StatelessWidget {
   const ButtonText({
@@ -15,7 +16,7 @@ class ButtonText extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: Text(
+      child: Message(
         label,
         style: labelStyle,
       ),

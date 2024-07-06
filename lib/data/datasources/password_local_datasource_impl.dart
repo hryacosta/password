@@ -1,7 +1,8 @@
+import 'package:password/core/db/db_schema.dart';
 import 'package:password/core/services/db_service.dart';
-import 'package:password/core/utils/logger.dart';
 import 'package:password/data/datasources/password_local_datasource.dart';
 import 'package:password/data/models/password_model.dart';
+import 'package:uuid/uuid.dart';
 
 class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
   PasswordLocalDataSourceImpl({required this.db});
@@ -10,25 +11,28 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
 
   @override
   Future<void> addPassword(PasswordModel arg) async {
-    try {
-      final values = arg.copyWith(
-        updatedAt: DateTime.now().toIso8601String(),
-      );
+    final values = arg.copyWith(
+      updatedAt: DateTime.now().toIso8601String(),
+      uuid: const Uuid().v4(),
+      username: arg.username,
+      password: arg.password,
+      title: arg.title,
+    );
 
-      logger.d(values);
-      final database = await db.open();
+    final database = await db.open();
 
-      // await database.insert(tablePassword, values.toJson());
+    await database.insert(tablePassword, values.toJson());
 
-      await database.close();
-    } catch (error) {
-      logger.e('', error: error);
-    }
+    await database.close();
   }
 
   @override
-  Future<void> deletePassword(PasswordModel id) {
-    throw UnimplementedError();
+  Future<void> deletePassword(PasswordModel arg) async {
+    final database = await db.open();
+
+    await database.delete(tablePassword, where: 'id =?', whereArgs: [arg.uuid]);
+
+    await database.close();
   }
 
   @override
@@ -42,7 +46,13 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
   }
 
   @override
-  Future<PasswordModel> updatePassword(PasswordModel id) {
-    throw UnimplementedError();
+  Future<PasswordModel> updatePassword(PasswordModel id) async {
+    final database = await db.open();
+
+    await database.update(tablePassword, id.toJson());
+
+    await database.close();
+
+    return id;
   }
 }

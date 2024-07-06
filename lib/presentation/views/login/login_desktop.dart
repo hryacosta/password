@@ -5,6 +5,7 @@ import 'package:password/core/utils/app_pattern.dart';
 import 'package:password/presentation/components/button_text.dart';
 import 'package:password/presentation/components/column_scroll_view.dart';
 import 'package:password/presentation/components/input/validators/validator.dart';
+import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/providers/login_provider.dart';
 import 'package:password/presentation/route/app_route.dart';
 import 'package:password/presentation/theme/app_colors.dart';
@@ -142,7 +143,7 @@ class _LoginDesktopState extends State<LoginDesktop> {
     final locale = AppLocalization.of(context);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(locale.error_login_incorrect),
+        content: Message(locale.error_login_incorrect),
       ),
     );
   }

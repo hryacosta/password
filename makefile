@@ -96,3 +96,11 @@ testWithCoverage:
 	@open coverage/html/index.html
 
 test: testWithCoverage
+
+i: 
+	@echo "╠ Running Flutter pub add" $(lib)
+	@flutter pub add $(lib)
+d: 
+	@echo "╠ Running Flutter pub remove" $(lib)
+	@flutter pub remove $(lib)
+

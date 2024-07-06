@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/providers/app_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onPressed: () {
               value.toggleTheme();
             },
-            child: const Text('Toggle Theme'),
+            child: const Message('Toggle Theme'),
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/views/home/home_page.dart';
 import 'package:password/presentation/views/settings/settings_page.dart';
 
@@ -23,12 +24,12 @@ class _TabletPageState extends State<TabletPage> {
             NavigationRailDestination(
               icon: Icon(Icons.home_outlined),
               selectedIcon: Icon(Icons.home),
-              label: Text('Home'),
+              label: Message('Home'),
             ),
             NavigationRailDestination(
               icon: Icon(Icons.settings_outlined),
               selectedIcon: Icon(Icons.settings),
-              label: Text('Settings'),
+              label: Message('Settings'),
             ),
           ],
           selectedIndex: _selectedIndex,

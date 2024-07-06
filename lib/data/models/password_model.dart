@@ -8,6 +8,7 @@ part 'password_model.g.dart';
 )
 base class PasswordModel extends PasswordEntity {
   const PasswordModel({
+    required super.uuid,
     required super.username,
     required super.password,
     required super.updatedAt,
@@ -20,12 +21,14 @@ base class PasswordModel extends PasswordEntity {
   Map<String, dynamic> toJson() => _$PasswordModelToJson(this);
 
   PasswordModel copyWith({
+    String? uuid,
     String? username,
     String? password,
     String? updatedAt,
     String? title,
   }) {
     return PasswordModel(
+      uuid: uuid ?? this.uuid,
       username: username ?? this.username,
       password: password ?? this.password,
       updatedAt: updatedAt ?? this.updatedAt,

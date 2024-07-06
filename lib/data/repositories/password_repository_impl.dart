@@ -21,12 +21,22 @@ class PasswordRepositoryImpl implements PasswordRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> delete(PasswordEntity arg) {
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> delete(PasswordEntity arg) async {
+    try {
+      await localDataSource.deletePassword(arg as PasswordModel);
+      return right(true);
+    } catch (error) {
+      return left(LocalFailure(error));
+    }
   }
 
   @override
-  Future<Either<Failure, bool>> update(PasswordEntity arg) {
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> update(PasswordEntity arg) async {
+    try {
+      await localDataSource.updatePassword(arg as PasswordModel);
+      return right(true);
+    } catch (error) {
+      return left(LocalFailure(error));
+    }
   }
 }
