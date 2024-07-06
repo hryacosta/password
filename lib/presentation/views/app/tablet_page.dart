@@ -42,7 +42,7 @@ class _TabletPageState extends State<TabletPage> {
         Expanded(
           child: Scaffold(
             appBar: AppBar(
-              title: const Text('Home Page'),
+              title: const Message('Home Page'),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.info_sharp),

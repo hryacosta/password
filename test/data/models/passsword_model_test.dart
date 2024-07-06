@@ -35,6 +35,7 @@ void main() {
         password: 'testPassword123#',
         updatedAt: '2023-01-01T12:00:00Z',
         title: 'Test Password',
+        uuid: '12345',
       );
 
       final json = passwordModel.toJson();
@@ -52,6 +53,7 @@ void main() {
         password: 'testPassword123#',
         updatedAt: '2023-01-01T12:00:00Z',
         title: 'Test Password',
+        uuid: '12345',
       );
 
       final updatedPasswordModel = originalPasswordModel.copyWith(

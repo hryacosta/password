@@ -8,6 +8,7 @@ void main() {
         title: 'Test Title',
         username: 'testuser',
         password: 'testpassword',
+        uuid: '12345',
       );
       expect(passwordEntity, isA<PasswordEntity>());
     });
@@ -18,6 +19,7 @@ void main() {
         username: 'testuser',
         password: 'testpassword',
         updatedAt: '2022-01-01 12:00:00',
+        uuid: '12345',
       );
       expect(passwordEntity.title, 'Test Title');
       expect(passwordEntity.username, 'testuser');
@@ -31,8 +33,10 @@ void main() {
         username: 'testuser',
         password: 'testpassword',
         updatedAt: '2022-01-01 12:00:00',
+        uuid: '12345',
       );
       expect(passwordEntity.props, [
+        '12345',
         'testuser',
         'testpassword',
         'Test Title',

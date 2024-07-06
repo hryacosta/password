@@ -22,6 +22,7 @@ void main() {
         title: 'Test Title',
         username: 'testuser',
         password: 'testPassword123#',
+        uuid: '12345',
       ),
     );
   });
@@ -31,6 +32,7 @@ void main() {
       title: 'Test Title',
       username: 'testuser',
       password: 'testPassword123#',
+      uuid: '12345',
     );
     when(() => repository.add(any())).thenAnswer((_) async => right(true));
 
@@ -45,6 +47,7 @@ void main() {
       title: 'Test Title',
       username: 'testuser',
       password: 'testPassword123#',
+      uuid: '12345',
     );
     when(() => repository.add(any())).thenAnswer(
       (_) async => left(const LocalFailure('Error adding password')),

@@ -54,7 +54,6 @@ class _MessageState extends State<Message> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      // widget.id,
       localizations.translate(widget.id),
       style: widget.style,
       strutStyle: widget.strutStyle,
