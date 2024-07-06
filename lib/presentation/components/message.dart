@@ -1,3 +1,4 @@
+import 'dart:nativewrappers/_internal/vm/lib/mirrors_patch.dart';
 import 'dart:ui' as ui show TextHeightBehavior;
 
 import 'package:flutter/widgets.dart';
@@ -54,7 +55,7 @@ class _MessageState extends State<Message> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      localizations.translate(widget.id),
+      translate(widget.id),
       style: widget.style,
       strutStyle: widget.strutStyle,
       textAlign: widget.textAlign,
@@ -69,5 +70,20 @@ class _MessageState extends State<Message> {
       textHeightBehavior: widget.textHeightBehavior,
       textScaler: widget.textScaler ?? TextScaler.noScaling,
     );
+  }
+
+  String translate(String id) {
+    try {
+      final argument =
+          reflect(localizations).getField(Symbol(id)).reflectee.toString();
+
+      if (argument.isNotEmpty) {
+        return argument;
+      }
+
+      return id;
+    } catch (e) {
+      return id;
+    }
   }
 }
