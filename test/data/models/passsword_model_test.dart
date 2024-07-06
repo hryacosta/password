@@ -7,6 +7,7 @@ void main() {
   group('PasswordModel', () {
     test('should create an instance from JSON', () {
       const json = {
+        'uuid': '12345',
         'username': 'testuser',
         'password': 'testPassword123#',
         'updatedAt': '2023-01-01T12:00:00Z',
