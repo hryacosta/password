@@ -9,6 +9,10 @@ class HomeProvider with ChangeNotifier {
 
   List<SpaceEntity> spaces = [];
 
+  String password = '';
+  String username = '';
+  String title = '';
+
   Future<List<SpaceEntity>> getSpaces() async {
     final result = await sl<GetSpaces>()();
 
@@ -17,5 +21,20 @@ class HomeProvider with ChangeNotifier {
     spaces.addAll(spacesList);
 
     return spacesList;
+  }
+
+  void changePassword(String password) {
+    this.password = password;
+    notifyListeners();
+  }
+
+  void changeUsername(String username) {
+    this.username = username;
+    notifyListeners();
+  }
+
+  void changeTitle(String title) {
+    this.title = title;
+    notifyListeners();
   }
 }

@@ -29,11 +29,15 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           InputField(
-            onChange: (String value) {},
+            onChange: _controller.changeTitle,
+            labelText: localization.login,
+          ),
+          InputField(
+            onChange: _controller.changeUsername,
             labelText: localization.username,
           ),
           InputField(
-            onChange: (String value) {},
+            onChange: _controller.changePassword,
             labelText: localization.password,
           ),
           const SizedBox(
