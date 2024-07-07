@@ -13,7 +13,13 @@ class PasswordRepositoryImpl implements PasswordRepository {
   @override
   Future<Either<Failure, bool>> add(PasswordEntity arg) async {
     try {
-      await localDataSource.addPassword(arg as PasswordModel);
+      await localDataSource.addPassword(
+        PasswordModel.arg(
+          username: arg.username,
+          password: arg.password,
+          title: arg.title,
+        ),
+      );
       return right(true);
     } catch (error) {
       return left(LocalFailure(error));

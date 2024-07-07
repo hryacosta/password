@@ -18,6 +18,20 @@ base class PasswordModel extends PasswordEntity {
   factory PasswordModel.fromJson(Map<String, dynamic> json) =>
       _$PasswordModelFromJson(json);
 
+  const PasswordModel.arg({
+    required super.username,
+    required super.password,
+    required super.title,
+    super.updatedAt = '',
+    super.uuid = '',
+  });
+
+  @override
+  @JsonKey(name: 'updated_at')
+  String get updatedAt {
+    return super.updatedAt;
+  }
+
   Map<String, dynamic> toJson() => _$PasswordModelToJson(this);
 
   PasswordModel copyWith({

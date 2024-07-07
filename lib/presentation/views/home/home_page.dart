@@ -16,10 +16,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late HomeProvider _provider;
+  late Future<int> _countPasswords;
 
   @override
   void initState() {
     _provider = HomeProvider();
+    _countPasswords = _provider.getCountPasswords();
     super.initState();
   }
 
@@ -34,7 +36,17 @@ class _HomePageState extends State<HomePage> {
             margin: const EdgeInsets.all(24),
             child: Column(
               children: [
-                const Message('Total passwords: 0'),
+                FutureBuilder<int>(
+                  future: _countPasswords,
+                  builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                    if (snapshot.hasData) {
+                      return Message(
+                        'Total passwords: ${snapshot.data}',
+                      );
+                    }
+                    return const Message('Total passwords: 0');
+                  },
+                ),
                 const SizedBox(
                   height: 45,
                 ),

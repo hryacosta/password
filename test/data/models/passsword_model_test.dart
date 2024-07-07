@@ -10,7 +10,7 @@ void main() {
         'uuid': '12345',
         'username': 'testuser',
         'password': 'testPassword123#',
-        'updatedAt': '2023-01-01T12:00:00Z',
+        'updated_at': '2023-01-01T12:00:00Z',
         'title': 'Test Password',
       };
 
@@ -44,7 +44,7 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['username'], equals('testuser'));
       expect(json['password'], equals('testPassword123#'));
-      expect(json['updatedAt'], equals('2023-01-01T12:00:00Z'));
+      expect(json['updated_at'], equals('2023-01-01T12:00:00Z'));
       expect(json['title'], equals('Test Password'));
     });
 

@@ -51,7 +51,7 @@ class HomeProvider with ChangeNotifier {
   }
 
   Future<void> addPassword() async {
-    await sl<AddPassword>()(
+    await sl<AddPassword>().call(
       PasswordEntity.arg(
         username: username,
         password: password,
@@ -62,7 +62,7 @@ class HomeProvider with ChangeNotifier {
     _cleanAllState();
   }
 
-  Future<int> totalPasswords() async {
+  Future<int> getCountPasswords() async {
     final result = await sl<GetCountPasswords>().call();
 
     return result.fold(

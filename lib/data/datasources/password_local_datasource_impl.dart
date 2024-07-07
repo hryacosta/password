@@ -1,5 +1,6 @@
 import 'package:password/core/db/db_schema.dart';
 import 'package:password/core/services/db_service.dart';
+import 'package:password/core/utils/logger.dart';
 import 'package:password/data/datasources/password_local_datasource.dart';
 import 'package:password/data/models/password_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,9 +17,6 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
     final values = arg.copyWith(
       updatedAt: DateTime.now().toIso8601String(),
       uuid: uuid.v4(),
-      username: arg.username,
-      password: arg.password,
-      title: arg.title,
     );
 
     final database = await db.open();
@@ -65,6 +63,8 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
     final count = Sqflite.firstIntValue(
       await database.rawQuery('SELECT COUNT(*) FROM $tablePassword'),
     );
+
+    logger.d(count);
 
     await database.close();
 

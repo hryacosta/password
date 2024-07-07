@@ -11,7 +11,7 @@ PasswordModel _$PasswordModelFromJson(Map<String, dynamic> json) =>
       uuid: json['uuid'] as String,
       username: json['username'] as String,
       password: json['password'] as String,
-      updatedAt: json['updatedAt'] as String? ?? '',
+      updatedAt: json['updated_at'] as String? ?? '',
       title: json['title'] as String,
     );
 
@@ -21,5 +21,5 @@ Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) =>
       'username': instance.username,
       'password': instance.password,
       'title': instance.title,
-      'updatedAt': instance.updatedAt,
+      'updated_at': instance.updatedAt,
     };
