@@ -6,8 +6,8 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/password_repository.dart';
 
 @lazySingleton
-class AddNewPassword implements UseCase<bool, PasswordEntity> {
-  AddNewPassword(this.repository);
+class AddPassword implements UseCase<bool, PasswordEntity> {
+  AddPassword(this.repository);
 
   final PasswordRepository repository;
 

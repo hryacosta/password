@@ -4,10 +4,13 @@ import 'package:injectable/injectable.dart';
 import 'package:password/data/datasources/space_api.dart';
 import 'package:password/data/interceptors/auth_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 @module
 abstract class RegisterModule {
   Connectivity get connectivity => Connectivity();
+
+  Uuid get uuid => const Uuid();
 
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();

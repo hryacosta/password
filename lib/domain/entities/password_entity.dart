@@ -9,6 +9,14 @@ base class PasswordEntity extends Equatable {
     this.updatedAt = '',
   });
 
+  const PasswordEntity.create({
+    required this.password,
+    required this.username,
+    required this.title,
+    this.uuid = '',
+    this.updatedAt = '',
+  });
+
   final String uuid;
   final String username;
   final String password;

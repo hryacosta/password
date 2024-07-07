@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:password/core/config/injectable.dart';
+import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/entities/space_entity.dart';
+import 'package:password/domain/usecases/add_password.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
 class HomeProvider with ChangeNotifier {
@@ -36,5 +40,24 @@ class HomeProvider with ChangeNotifier {
   void changeTitle(String title) {
     this.title = title;
     notifyListeners();
+  }
+
+  void _cleanAllState() {
+    password = '';
+    username = '';
+    title = '';
+    notifyListeners();
+  }
+
+  Future<void> createNewPassword() async {
+    await sl<AddPassword>().call(
+      PasswordEntity.create(
+        username: username,
+        password: password,
+        title: title,
+      ),
+    );
+
+    _cleanAllState();
   }
 }

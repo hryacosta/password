@@ -5,15 +5,16 @@ import 'package:password/data/models/password_model.dart';
 import 'package:uuid/uuid.dart';
 
 class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
-  PasswordLocalDataSourceImpl({required this.db});
+  PasswordLocalDataSourceImpl({required this.db, required this.uuid});
 
   final DBService db;
+  final Uuid uuid;
 
   @override
   Future<void> addPassword(PasswordModel arg) async {
     final values = arg.copyWith(
       updatedAt: DateTime.now().toIso8601String(),
-      uuid: const Uuid().v4(),
+      uuid: uuid.v4(),
       username: arg.username,
       password: arg.password,
       title: arg.title,
