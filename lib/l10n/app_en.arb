@@ -8,6 +8,7 @@
   "username": "Email",
   "password": "Password",
   "document": "Document",
+  "add": "add",
   "sshKey": "SSH Key",
   "apiCredential": "API Credential",
   "bankAccount": "Bank Account",
@@ -34,5 +35,6 @@
   "noDataAvailable": "No data available at the moment. Please check back later",
   "logout": "Sign out",
   "newElement": "New Element",
-  "error_login_incorrect": "Incorrect username or password. Please verify your credentials and try again."
+  "error_login_incorrect": "Incorrect username or password. Please verify your credentials and try again.",
+  "search": "Search"
 }

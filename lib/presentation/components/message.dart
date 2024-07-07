@@ -1,13 +1,10 @@
-import 'dart:nativewrappers/_internal/vm/lib/mirrors_patch.dart';
 import 'dart:ui' as ui show TextHeightBehavior;
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart' as app;
-import 'package:password/core/utils/app_localization.dart';
 
-class Message extends StatefulWidget {
+class Message extends StatelessWidget {
   const Message(
-    this.id, {
+    this.data, {
     super.key,
     this.style,
     this.strutStyle,
@@ -37,53 +34,25 @@ class Message extends StatefulWidget {
   final Color? selectionColor;
   final ui.TextHeightBehavior? textHeightBehavior;
   final TextScaler? textScaler;
-  final String id;
-
-  @override
-  State<Message> createState() => _MessageState();
-}
-
-class _MessageState extends State<Message> {
-  late app.AppLocalizations localizations;
-
-  @override
-  void initState() {
-    localizations = AppLocalization.of(context);
-    super.initState();
-  }
+  final String data;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      translate(widget.id),
-      style: widget.style,
-      strutStyle: widget.strutStyle,
-      textAlign: widget.textAlign,
-      textDirection: widget.textDirection,
-      locale: widget.locale,
-      softWrap: widget.softWrap,
-      overflow: widget.overflow,
-      maxLines: widget.maxLines,
-      semanticsLabel: widget.semanticsLabel,
-      textWidthBasis: widget.textWidthBasis,
-      selectionColor: widget.selectionColor,
-      textHeightBehavior: widget.textHeightBehavior,
-      textScaler: widget.textScaler ?? TextScaler.noScaling,
+      data,
+      style: style,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textDirection: textDirection,
+      locale: locale,
+      softWrap: softWrap,
+      overflow: overflow,
+      maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
+      textWidthBasis: textWidthBasis,
+      selectionColor: selectionColor,
+      textHeightBehavior: textHeightBehavior,
+      textScaler: textScaler ?? TextScaler.noScaling,
     );
-  }
-
-  String translate(String id) {
-    try {
-      final argument =
-          reflect(localizations).getField(Symbol(id)).reflectee.toString();
-
-      if (argument.isNotEmpty) {
-        return argument;
-      }
-
-      return id;
-    } catch (e) {
-      return id;
-    }
   }
 }

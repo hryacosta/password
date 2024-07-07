@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:password/core/utils/app_localization.dart';
 import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/views/home/home_page.dart';
 import 'package:password/presentation/views/settings/settings_page.dart';
@@ -17,19 +18,20 @@ class _TabletPageState extends State<TabletPage> {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalization.of(context);
     return Row(
       children: [
         NavigationRail(
-          destinations: const [
+          destinations: [
             NavigationRailDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home),
-              label: Message('Home'),
+              icon: const Icon(Icons.home_outlined),
+              selectedIcon: const Icon(Icons.home),
+              label: Message(localization.home),
             ),
             NavigationRailDestination(
-              icon: Icon(Icons.settings_outlined),
-              selectedIcon: Icon(Icons.settings),
-              label: Message('Settings'),
+              icon: const Icon(Icons.settings_outlined),
+              selectedIcon: const Icon(Icons.settings),
+              label: Message(localization.settings),
             ),
           ],
           selectedIndex: _selectedIndex,
@@ -42,7 +44,7 @@ class _TabletPageState extends State<TabletPage> {
         Expanded(
           child: Scaffold(
             appBar: AppBar(
-              title: const Message('Home Page'),
+              title: Message(localization.home),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.info_sharp),
@@ -62,8 +64,8 @@ class _TabletPageState extends State<TabletPage> {
                       children: [
                         const Icon(Icons.add, size: 16, color: Colors.white),
                         const SizedBox(width: 2),
-                        Text(
-                          'Nuevo elemento',
+                        Message(
+                          localization.newElement,
                           style: GoogleFonts.roboto(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -101,6 +103,7 @@ class _TabletPageState extends State<TabletPage> {
   }
 
   void addElement() {
+    final localization = AppLocalization.of(context);
     showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -110,7 +113,7 @@ class _TabletPageState extends State<TabletPage> {
             builder: (context, controller) {
               return SearchBar(
                 controller: controller,
-                hintText: 'Search',
+                hintText: localization.search,
                 padding: const WidgetStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
@@ -143,7 +146,7 @@ class _TabletPageState extends State<TabletPage> {
               return List<ListTile>.generate(5, (int index) {
                 final item = 'item $index';
                 return ListTile(
-                  title: Text(item),
+                  title: Message(item),
                   onTap: () {
                     setState(() {
                       controller.closeView(item);
@@ -153,7 +156,7 @@ class _TabletPageState extends State<TabletPage> {
               });
             },
           ),
-          content: const Text('You are in the football universe!'),
+          content: const Message('You are in the football universe!'),
         );
       },
     );
@@ -172,7 +175,7 @@ class Profile extends StatelessWidget {
           child: Icon(Icons.person),
         ),
         SizedBox(height: 8),
-        Text('John Doe'),
+        Message('John Doe'),
       ],
     );
   }

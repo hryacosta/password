@@ -27,12 +27,12 @@ class _DesktopPageState extends State<DesktopPage> {
             NavigationRailDestination(
               icon: const Icon(Icons.home_outlined),
               selectedIcon: const Icon(Icons.home),
-              label: Text(localization.home),
+              label: Message(localization.home),
             ),
             NavigationRailDestination(
               icon: const Icon(Icons.settings_outlined),
               selectedIcon: const Icon(Icons.settings),
-              label: Text(localization.settings),
+              label: Message(localization.settings),
             ),
           ],
           selectedIndex: _selectedIndex,
@@ -69,7 +69,7 @@ class _DesktopPageState extends State<DesktopPage> {
                       children: [
                         const Icon(Icons.add, size: 16, color: Colors.white),
                         const SizedBox(width: 2),
-                        Text(
+                        Message(
                           AppLocalization.of(context).newElement,
                           style: GoogleFonts.roboto(
                             fontSize: 14,
@@ -106,11 +106,11 @@ class _DesktopPageState extends State<DesktopPage> {
 
     switch (_selectedIndex) {
       case 0:
-        return Text(localization.home);
+        return Message(localization.home);
       case 1:
-        return Text(localization.settings);
+        return Message(localization.settings);
       default:
-        return Text(localization.home);
+        return Message(localization.home);
     }
   }
 
@@ -147,7 +147,7 @@ class Profile extends StatelessWidget {
           child: Icon(Icons.person),
         ),
         SizedBox(height: 8),
-        Text('John Doe'),
+        Message('John Doe'),
       ],
     );
   }

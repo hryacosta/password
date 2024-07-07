@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password/core/utils/app_localization.dart';
 import 'package:password/presentation/components/button.dart';
 import 'package:password/presentation/components/input/input_field.dart';
 import 'package:password/presentation/providers/home_provider.dart';
@@ -22,22 +23,29 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalization.of(context);
     return Container(
       margin: const EdgeInsets.all(24),
       child: Column(
         children: [
           InputField(
             onChange: (String value) {},
-            labelText: 'username',
+            labelText: localization.username,
           ),
           InputField(
             onChange: (String value) {},
-            labelText: 'password',
+            labelText: localization.password,
           ),
           const SizedBox(
             height: 24,
           ),
-          SizedBox(width: 400, child: Button(label: 'add', onPress: onPress)),
+          SizedBox(
+            width: 400,
+            child: Button(
+              label: localization.add,
+              onPress: onPress,
+            ),
+          ),
         ],
       ),
     );
