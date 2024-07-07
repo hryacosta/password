@@ -23,8 +23,6 @@ void main() {
         stackTrace: stack,
         time: DateTime.now(),
       );
-
-      // FirebaseCrashlytics.instance.recordError(error, stack);
     },
   );
 }

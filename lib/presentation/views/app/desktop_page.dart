@@ -5,6 +5,7 @@ import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/route/app_route.dart';
 import 'package:password/presentation/views/home/dialog_new_element.dart';
 import 'package:password/presentation/views/home/home_page.dart';
+import 'package:password/presentation/views/password/password_page.dart';
 import 'package:password/presentation/views/settings/settings_page.dart';
 
 class DesktopPage extends StatefulWidget {
@@ -28,6 +29,11 @@ class _DesktopPageState extends State<DesktopPage> {
               icon: const Icon(Icons.home_outlined),
               selectedIcon: const Icon(Icons.home),
               label: Message(localization.home),
+            ),
+            NavigationRailDestination(
+              icon: const Icon(Icons.password_outlined),
+              selectedIcon: const Icon(Icons.password),
+              label: Message(localization.password),
             ),
             NavigationRailDestination(
               icon: const Icon(Icons.settings_outlined),
@@ -89,6 +95,8 @@ class _DesktopPageState extends State<DesktopPage> {
                   case 0:
                     return const HomePage();
                   case 1:
+                    return const PasswordPage();
+                  case 2:
                     return const SettingsPage();
                   default:
                     return const HomePage();

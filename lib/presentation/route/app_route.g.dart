@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
       $homeRoute,
       $settingsRoute,
       $loginRoute,
+      $passwordRoute,
     ];
 
 RouteBase get $appRoute => GoRouteData.$route(
@@ -93,6 +94,29 @@ extension $LoginRouteExtension on LoginRoute {
 
   String get location => GoRouteData.$location(
         '/login',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $passwordRoute => GoRouteData.$route(
+      path: '/password',
+      name: 'password',
+      factory: $PasswordRouteExtension._fromState,
+    );
+
+extension $PasswordRouteExtension on PasswordRoute {
+  static PasswordRoute _fromState(GoRouterState state) => const PasswordRoute();
+
+  String get location => GoRouteData.$location(
+        '/password',
       );
 
   void go(BuildContext context) => context.go(location);

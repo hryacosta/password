@@ -24,7 +24,7 @@ class _HomeMobileState extends State<HomeMobile> {
           children: [
             const Spacer(),
             Button(
-              label: 'logout',
+              label: localization.logout,
               onPress: loginOut,
             ),
             const Spacer(),

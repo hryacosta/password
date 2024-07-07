@@ -6,6 +6,7 @@ import 'package:password/core/services/authentication_service.dart';
 import 'package:password/presentation/views/app/app_page.dart';
 import 'package:password/presentation/views/home/home_page.dart';
 import 'package:password/presentation/views/login/login_page.dart';
+import 'package:password/presentation/views/password/password_page.dart';
 import 'package:password/presentation/views/settings/settings_page.dart';
 
 part 'app_route.g.dart';
@@ -53,6 +54,15 @@ class LoginRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const LoginPage();
+}
+
+@TypedGoRoute<PasswordRoute>(path: '/password', name: 'password')
+class PasswordRoute extends GoRouteData {
+  const PasswordRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const PasswordPage();
 }
 
 final $routerConfig = GoRouter(routes: $appRoutes);

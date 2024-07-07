@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:password/core/utils/app_localization.dart';
 import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/views/home/home_page.dart';
+import 'package:password/presentation/views/password/password_page.dart';
 import 'package:password/presentation/views/settings/settings_page.dart';
 
 class TabletPage extends StatefulWidget {
@@ -27,6 +28,11 @@ class _TabletPageState extends State<TabletPage> {
               icon: const Icon(Icons.home_outlined),
               selectedIcon: const Icon(Icons.home),
               label: Message(localization.home),
+            ),
+            NavigationRailDestination(
+              icon: const Icon(Icons.password_outlined),
+              selectedIcon: const Icon(Icons.password),
+              label: Message(localization.password),
             ),
             NavigationRailDestination(
               icon: const Icon(Icons.settings_outlined),
@@ -84,6 +90,8 @@ class _TabletPageState extends State<TabletPage> {
                   case 0:
                     return const HomePage();
                   case 1:
+                    return const PasswordPage();
+                  case 2:
                     return const SettingsPage();
                   default:
                     return const HomePage();
