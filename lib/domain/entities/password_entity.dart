@@ -9,7 +9,7 @@ base class PasswordEntity extends Equatable {
     this.updatedAt = '',
   });
 
-  const PasswordEntity.create({
+  const PasswordEntity.arg({
     required this.password,
     required this.username,
     required this.title,
