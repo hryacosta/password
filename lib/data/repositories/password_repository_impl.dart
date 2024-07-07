@@ -39,4 +39,14 @@ class PasswordRepositoryImpl implements PasswordRepository {
       return left(LocalFailure(error));
     }
   }
+
+  @override
+  Future<Either<Failure, int>> count() async {
+    try {
+      final res = await localDataSource.counts();
+      return right(res);
+    } catch (error) {
+      return left(LocalFailure(error));
+    }
+  }
 }

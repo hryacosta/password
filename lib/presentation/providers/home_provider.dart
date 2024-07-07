@@ -6,6 +6,7 @@ import 'package:password/core/config/injectable.dart';
 import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/usecases/add_password.dart';
+import 'package:password/domain/usecases/get_count_passwords.dart';
 import 'package:password/domain/usecases/get_spaces.dart';
 
 class HomeProvider with ChangeNotifier {
@@ -49,7 +50,7 @@ class HomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> createNewPassword() async {
+  Future<void> addPassword() async {
     await sl<AddPassword>()(
       PasswordEntity.arg(
         username: username,
@@ -59,5 +60,14 @@ class HomeProvider with ChangeNotifier {
     );
 
     _cleanAllState();
+  }
+
+  Future<int> totalPasswords() async {
+    final result = await sl<GetCountPasswords>().call();
+
+    return result.fold(
+      (l) => 0,
+      (r) => r,
+    );
   }
 }

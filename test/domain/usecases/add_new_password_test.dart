@@ -3,24 +3,24 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/failures/failure.dart';
-import 'package:password/domain/usecases/add_new_password.dart';
+import 'package:password/domain/usecases/add_password.dart';
 
 import '../../mocks/mock_password_repository.dart';
 
 void main() {
-  late AddNewPassword useCase;
+  late AddPassword useCase;
   late MockPasswordRepository repository;
 
   setUp(() {
     repository = MockPasswordRepository();
-    useCase = AddNewPassword(repository);
+    useCase = AddPassword(repository);
   });
 
   setUpAll(() {
     registerFallbackValue(
       const PasswordEntity(
         title: 'Test Title',
-        username: 'testuser',
+        username: 'tester',
         password: 'testPassword123#',
         uuid: '12345',
       ),
@@ -30,7 +30,7 @@ void main() {
   test('should add a new password to the repository', () async {
     const passwordEntity = PasswordEntity(
       title: 'Test Title',
-      username: 'testuser',
+      username: 'tester',
       password: 'testPassword123#',
       uuid: '12345',
     );
@@ -45,7 +45,7 @@ void main() {
   test('should return a failure when adding a new password fails', () async {
     const passwordEntity = PasswordEntity(
       title: 'Test Title',
-      username: 'testuser',
+      username: 'tester',
       password: 'testPassword123#',
       uuid: '12345',
     );

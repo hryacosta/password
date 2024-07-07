@@ -14,6 +14,10 @@ abstract class PasswordRepository {
       PasswordRepositoryImpl(localDataSource: localDataSource);
 
   Future<Either<Failure, bool>> add(PasswordEntity arg);
+
   Future<Either<Failure, bool>> delete(PasswordEntity arg);
+
   Future<Either<Failure, bool>> update(PasswordEntity arg);
+
+  Future<Either<Failure, int>> count();
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:password/core/utils/app_localization.dart';
 import 'package:password/presentation/components/button.dart';
 import 'package:password/presentation/components/input/input_field.dart';
+import 'package:password/presentation/components/message.dart';
 import 'package:password/presentation/providers/home_provider.dart';
 import 'package:password/presentation/route/app_route.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,10 @@ class _HomePageState extends State<HomePage> {
             margin: const EdgeInsets.all(24),
             child: Column(
               children: [
+                const Message('Total passwords: 0'),
+                const SizedBox(
+                  height: 45,
+                ),
                 InputField(
                   onChange: _provider.changeTitle,
                   labelText: localization.login,
@@ -63,7 +68,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void onPress() {}
+  Future<void> onPress() async {
+    await _provider.addPassword();
+  }
 
   void onPressed() {
     const LoginRoute().go(context);

@@ -22,4 +22,6 @@ abstract class PasswordLocalDataSource {
   Future<List<PasswordModel>> getAllPasswords();
 
   Future<PasswordModel> getPassword(PasswordModel id);
+
+  Future<int> counts();
 }

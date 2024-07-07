@@ -2,6 +2,7 @@ import 'package:password/core/db/db_schema.dart';
 import 'package:password/core/services/db_service.dart';
 import 'package:password/data/datasources/password_local_datasource.dart';
 import 'package:password/data/models/password_model.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
 class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
@@ -55,5 +56,18 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
     await database.close();
 
     return id;
+  }
+
+  @override
+  Future<int> counts() async {
+    final database = await db.open();
+
+    final count = Sqflite.firstIntValue(
+      await database.rawQuery('SELECT COUNT(*) FROM $tablePassword'),
+    );
+
+    await database.close();
+
+    return count ?? 0;
   }
 }
