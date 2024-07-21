@@ -47,7 +47,15 @@ class PasswordRepositoryImpl implements PasswordRepository {
   @override
   Future<Either<Failure, bool>> update(PasswordEntity arg) async {
     try {
-      await localDataSource.updatePassword(arg as PasswordModel);
+      final params = PasswordModel(
+        uuid: arg.uuid,
+        username: arg.username,
+        password: arg.password,
+        updatedAt: arg.updatedAt,
+        title: arg.title,
+      );
+
+      await localDataSource.updatePassword(params);
       return right(true);
     } catch (error) {
       return left(LocalFailure(error));

@@ -44,5 +44,28 @@ void main() {
 
       expect(result, equals(left<Failure, bool>(LocalFailure(error))));
     });
+
+    test('counts() should return the number of passwords in the database',
+        () async {
+      when(() => localDataSource.counts()).thenAnswer((_) async => 1);
+
+      final result = await repository.count();
+
+      verify(() => localDataSource.counts()).called(1);
+
+      expect(result, equals(right<Failure, int>(1)));
+    });
+
+    test('update() should update an existing password in the local data source',
+        () async {
+      when(() => localDataSource.updatePassword(any()))
+          .thenAnswer((_) async => tPasswordModel);
+
+      final result = await repository.update(tPasswordModel);
+
+      verify(() => localDataSource.updatePassword(any()));
+
+      expect(result, equals(right<Failure, bool>(true)));
+    });
   });
 }
