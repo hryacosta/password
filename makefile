@@ -89,7 +89,7 @@ upload_symbols_ios:
 
 testWithCoverage:
 	@echo "╠ Running Flutter test with coverage"
-	@flutter test --coverage
+	@flutter test -r expanded --coverage
 	@echo "╠ Generate HTML report Note: on macOS you need to have lco installed on your system (`brew install lcov`) to use this: "
 	@genhtml coverage/lcov.info -o coverage/html
 	@echo "╠ Open the report"

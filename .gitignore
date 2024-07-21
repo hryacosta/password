@@ -61,3 +61,4 @@ app.*.map.json
 
 # Coverage
 coverage/
+flutter_jank_metrics_01.json

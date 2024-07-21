@@ -29,7 +29,15 @@ class PasswordRepositoryImpl implements PasswordRepository {
   @override
   Future<Either<Failure, bool>> delete(PasswordEntity arg) async {
     try {
-      await localDataSource.deletePassword(arg as PasswordModel);
+      final params = PasswordModel(
+        uuid: arg.uuid,
+        username: arg.username,
+        password: arg.password,
+        updatedAt: arg.updatedAt,
+        title: arg.title,
+      );
+
+      await localDataSource.deletePassword(params);
       return right(true);
     } catch (error) {
       return left(LocalFailure(error));
