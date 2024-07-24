@@ -67,5 +67,18 @@ void main() {
 
       expect(result, equals(right<Failure, bool>(true)));
     });
+
+    test(
+        'delete() should delete an existing password from the local data source',
+        () async {
+      when(() => localDataSource.deletePassword(any()))
+          .thenAnswer((_) async => {});
+
+      final result = await repository.delete(tPasswordModel);
+
+      verify(() => localDataSource.deletePassword(any()));
+
+      expect(result, equals(right<Failure, bool>(true)));
+    });
   });
 }
