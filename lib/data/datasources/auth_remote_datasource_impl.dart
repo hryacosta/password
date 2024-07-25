@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:password/core/extension/http_response.dart';
+import 'package:password/core/services/space_api.dart';
+import 'package:password/core/utils/http_response.dart';
 import 'package:password/data/datasources/auth_remote_datasource.dart';
-import 'package:password/data/datasources/space_api.dart';
 import 'package:password/data/models/session_model.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:password/core/services/space_api.dart';
 import 'package:password/data/datasources/auth_remote_datasource.dart';
-import 'package:password/data/datasources/space_api.dart';
 import 'package:password/data/models/session_model.dart';
 
 import '../../fixtures/fixture_reader.dart';

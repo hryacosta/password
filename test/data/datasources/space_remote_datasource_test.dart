@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:password/data/datasources/space_api.dart';
+import 'package:password/core/services/space_api.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/domain/entities/space_entity.dart';
 

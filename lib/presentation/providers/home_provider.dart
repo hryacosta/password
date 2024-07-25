@@ -52,7 +52,7 @@ class HomeProvider with ChangeNotifier {
 
   Future<void> addPassword() async {
     await sl<AddPassword>().call(
-      PasswordEntity.arg(
+      PasswordEntity(
         username: username,
         password: password,
         title: title,

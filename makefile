@@ -98,9 +98,16 @@ testWithCoverage:
 test: testWithCoverage
 
 i: 
-	@echo "╠ Running Flutter pub add" $(lib)
+	@echo "╠ Running Flutter pub add" $(lib) ${argument}
 	@flutter pub add $(lib)
 d: 
 	@echo "╠ Running Flutter pub remove" $(lib)
 	@flutter pub remove $(lib)
+
+idev: 
+	@echo "╠ Running Flutter pub add" $(lib) ${argument}
+	@flutter pub add dev:$(lib)
+ddev: 
+	@echo "╠ Running Flutter pub remove" $(lib)
+	@flutter pub remove dev:$(lib)
 

@@ -1,4 +1,4 @@
-import 'package:password/data/datasources/api.dart';
+import 'package:password/core/utils/api.dart';
 
 class SpaceApi implements Api {
   factory SpaceApi() {

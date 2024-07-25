@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:password/core/services/db_service.dart';
+import 'package:password/core/services/app_database.dart';
 import 'package:password/data/datasources/password_local_datasource_impl.dart';
 import 'package:password/data/models/password_model.dart';
 import 'package:uuid/uuid.dart';
@@ -8,10 +8,10 @@ import 'package:uuid/uuid.dart';
 abstract class PasswordLocalDataSource {
   @factoryMethod
   factory PasswordLocalDataSource.from({
-    required DBService db,
     required Uuid uuid,
+    required AppDatabase database,
   }) =>
-      PasswordLocalDataSourceImpl(db: db, uuid: uuid);
+      PasswordLocalDataSourceImpl(uuid: uuid, database: database);
 
   Future<void> addPassword(PasswordModel password);
 

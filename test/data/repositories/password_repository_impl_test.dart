@@ -51,7 +51,7 @@ void main() {
 
           verify(
             () => mockLocalDataSource.addPassword(
-              PasswordModel.arg(
+              PasswordModel(
                 username: passwordEntity.username,
                 password: passwordEntity.password,
                 title: passwordEntity.title,

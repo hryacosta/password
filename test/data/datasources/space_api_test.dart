@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:password/data/datasources/space_api.dart';
+import 'package:password/core/services/space_api.dart';
 
 void main() {
   group('SpaceApi', () {

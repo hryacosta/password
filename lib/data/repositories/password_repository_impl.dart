@@ -14,7 +14,7 @@ class PasswordRepositoryImpl implements PasswordRepository {
   Future<Either<Failure, bool>> add(PasswordEntity arg) async {
     try {
       await localDataSource.addPassword(
-        PasswordModel.arg(
+        PasswordModel(
           username: arg.username,
           password: arg.password,
           title: arg.title,

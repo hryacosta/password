@@ -9,15 +9,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
-import 'package:dio/dio.dart' as _i6;
+import 'package:dio/dio.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:password/core/config/register_module.dart' as _i21;
-import 'package:password/core/services/db_service.dart' as _i7;
-import 'package:password/data/datasources/auth_remote_datasource.dart' as _i9;
+import 'package:password/core/services/app_database.dart' as _i5;
+import 'package:password/data/datasources/auth_remote_datasource.dart' as _i10;
 import 'package:password/data/datasources/password_local_datasource.dart'
-    as _i10;
-import 'package:password/data/datasources/space_remote_datasource.dart' as _i8;
+    as _i8;
+import 'package:password/data/datasources/space_remote_datasource.dart' as _i9;
 import 'package:password/domain/repositories/authentication_repository.dart'
     as _i12;
 import 'package:password/domain/repositories/password_repository.dart' as _i11;
@@ -29,7 +29,7 @@ import 'package:password/domain/usecases/get_count_passwords.dart' as _i16;
 import 'package:password/domain/usecases/get_spaces.dart' as _i18;
 import 'package:password/domain/usecases/sign_in.dart' as _i14;
 import 'package:password/domain/usecases/update_space.dart' as _i20;
-import 'package:shared_preferences/shared_preferences.dart' as _i5;
+import 'package:shared_preferences/shared_preferences.dart' as _i6;
 import 'package:uuid/uuid.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -46,27 +46,27 @@ Future<_i1.GetIt> $initGetIt(
   final registerModule = _$RegisterModule();
   gh.factory<_i3.Connectivity>(() => registerModule.connectivity);
   gh.factory<_i4.Uuid>(() => registerModule.uuid);
-  await gh.factoryAsync<_i5.SharedPreferences>(
+  gh.factory<_i5.AppDatabase>(() => registerModule.database);
+  await gh.factoryAsync<_i6.SharedPreferences>(
     () => registerModule.prefs,
     preResolve: true,
   );
-  gh.singleton<_i6.Dio>(() => registerModule.dio);
-  gh.singleton<_i7.DBService>(() => const _i7.DBService());
-  gh.factory<_i8.SpaceRemoteDataSource>(
-      () => _i8.SpaceRemoteDataSource.from(client: gh<_i6.Dio>()));
-  gh.factory<_i9.AuthRemoteDataSource>(
-      () => _i9.AuthRemoteDataSource.from(client: gh<_i6.Dio>()));
-  gh.factory<_i10.PasswordLocalDataSource>(
-      () => _i10.PasswordLocalDataSource.from(
-            db: gh<_i7.DBService>(),
+  gh.singleton<_i7.Dio>(() => registerModule.dio);
+  gh.factory<_i8.PasswordLocalDataSource>(
+      () => _i8.PasswordLocalDataSource.from(
             uuid: gh<_i4.Uuid>(),
+            database: gh<_i5.AppDatabase>(),
           ));
+  gh.factory<_i9.SpaceRemoteDataSource>(
+      () => _i9.SpaceRemoteDataSource.from(client: gh<_i7.Dio>()));
+  gh.factory<_i10.AuthRemoteDataSource>(
+      () => _i10.AuthRemoteDataSource.from(client: gh<_i7.Dio>()));
   gh.factory<_i11.PasswordRepository>(() => _i11.PasswordRepository.from(
-      localDataSource: gh<_i10.PasswordLocalDataSource>()));
+      localDataSource: gh<_i8.PasswordLocalDataSource>()));
   gh.factory<_i12.AuthRepository>(() => _i12.AuthRepository.from(
-      remoteDateSource: gh<_i9.AuthRemoteDataSource>()));
+      remoteDateSource: gh<_i10.AuthRemoteDataSource>()));
   gh.factory<_i13.SpaceRepository>(() => _i13.SpaceRepository.from(
-      remoteDateSource: gh<_i8.SpaceRemoteDataSource>()));
+      remoteDateSource: gh<_i9.SpaceRemoteDataSource>()));
   gh.lazySingleton<_i14.SignIn>(() => _i14.SignIn(gh<_i12.AuthRepository>()));
   gh.lazySingleton<_i15.AddPassword>(
       () => _i15.AddPassword(gh<_i11.PasswordRepository>()));

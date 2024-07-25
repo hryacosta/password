@@ -1,38 +1,33 @@
-import 'package:password/core/db/db_schema.dart';
-import 'package:password/core/services/db_service.dart';
-import 'package:password/core/utils/logger.dart';
+import 'package:drift/drift.dart';
+import 'package:password/core/services/app_database.dart';
 import 'package:password/data/datasources/password_local_datasource.dart';
 import 'package:password/data/models/password_model.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
 class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
-  PasswordLocalDataSourceImpl({required this.db, required this.uuid});
+  PasswordLocalDataSourceImpl({required this.database, required this.uuid});
 
-  final DBService db;
   final Uuid uuid;
+  final AppDatabase database;
 
   @override
-  Future<void> addPassword(PasswordModel arg) async {
-    final values = arg.copyWith(
-      updatedAt: DateTime.now().toIso8601String(),
-      uuid: uuid.v4(),
-    );
-
-    final database = await db.open();
-
-    await database.insert(tablePassword, values.toJson());
-
-    await database.close();
+  Future<void> addPassword(PasswordModel param) async {
+    await database.into(database.password).insert(
+          PasswordCompanion(
+            title: Value(param.title),
+            uuid: Value(uuid.v4()),
+            username: Value(param.username),
+            password: Value(param.password),
+            updatedAt: Value(DateTime.now()),
+          ),
+        );
   }
 
   @override
-  Future<void> deletePassword(PasswordModel arg) async {
-    final database = await db.open();
-
-    await database.delete(tablePassword, where: 'id =?', whereArgs: [arg.uuid]);
-
-    await database.close();
+  Future<void> deletePassword(PasswordModel param) async {
+    await (database.delete(database.password)
+          ..where((element) => element.uuid.equals(param.uuid.toString())))
+        .go();
   }
 
   @override
@@ -46,28 +41,26 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
   }
 
   @override
-  Future<PasswordModel> updatePassword(PasswordModel id) async {
-    final database = await db.open();
+  Future<PasswordModel> updatePassword(PasswordModel param) async {
+    await (database.update(database.password)
+          ..where((element) => element.uuid.equals(param.uuid.toString())))
+        .write(
+      PasswordCompanion(
+        title: Value(param.title),
+        uuid: Value(param.uuid.toString()),
+        username: Value(param.username),
+        password: Value(param.password),
+        updatedAt: Value(DateTime.now()),
+      ),
+    );
 
-    await database.update(tablePassword, id.toJson());
-
-    await database.close();
-
-    return id;
+    return param;
   }
 
   @override
   Future<int> counts() async {
-    final database = await db.open();
+    final result = await database.select(database.password).get();
 
-    final count = Sqflite.firstIntValue(
-      await database.rawQuery('SELECT COUNT(*) FROM $tablePassword'),
-    );
-
-    logger.d(count);
-
-    await database.close();
-
-    return count ?? 0;
+    return result.length;
   }
 }

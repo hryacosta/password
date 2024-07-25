@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:password/core/extension/http_response.dart';
-import 'package:password/data/datasources/space_api.dart';
+import 'package:password/core/services/space_api.dart';
+import 'package:password/core/utils/http_response.dart';
 import 'package:password/data/datasources/space_remote_datasource.dart';
 import 'package:password/data/models/space_model.dart';
 import 'package:password/domain/entities/space_entity.dart';

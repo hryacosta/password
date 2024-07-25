@@ -8,18 +8,27 @@ part of 'password_model.dart';
 
 PasswordModel _$PasswordModelFromJson(Map<String, dynamic> json) =>
     PasswordModel(
-      uuid: json['uuid'] as String,
+      title: json['title'] as String,
       username: json['username'] as String,
       password: json['password'] as String,
-      updatedAt: json['updated_at'] as String? ?? '',
-      title: json['title'] as String,
+      uuid: json['uuid'] as String?,
+      updatedAt: json['updated_at'] as String?,
     );
 
-Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) =>
-    <String, dynamic>{
-      'uuid': instance.uuid,
-      'username': instance.username,
-      'password': instance.password,
-      'title': instance.title,
-      'updated_at': instance.updatedAt,
-    };
+Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) {
+  final val = <String, dynamic>{
+    'username': instance.username,
+    'password': instance.password,
+    'title': instance.title,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('uuid', instance.uuid);
+  writeNotNull('updated_at', instance.updatedAt);
+  return val;
+}

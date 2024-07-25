@@ -6,29 +6,21 @@ part 'password_model.g.dart';
 @JsonSerializable(
   includeIfNull: false,
 )
-base class PasswordModel extends PasswordEntity {
+class PasswordModel extends PasswordEntity {
   const PasswordModel({
-    required super.uuid,
+    required super.title,
     required super.username,
     required super.password,
-    required super.updatedAt,
-    required super.title,
+    super.uuid,
+    super.updatedAt,
   });
 
   factory PasswordModel.fromJson(Map<String, dynamic> json) =>
       _$PasswordModelFromJson(json);
 
-  const PasswordModel.arg({
-    required super.username,
-    required super.password,
-    required super.title,
-    super.updatedAt = '',
-    super.uuid = '',
-  });
-
   @override
   @JsonKey(name: 'updated_at')
-  String get updatedAt {
+  String? get updatedAt {
     return super.updatedAt;
   }
 
