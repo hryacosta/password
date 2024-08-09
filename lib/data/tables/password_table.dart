@@ -1,5 +1,7 @@
 import 'package:drift/drift.dart';
+import 'package:password/data/models/password_model.dart';
 
+@UseRowClass(PasswordModel)
 class Password extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get uuid => text().unique()();

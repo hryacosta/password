@@ -15,8 +15,10 @@ class PasswordRepositoryImpl implements PasswordRepository {
     try {
       await localDataSource.addPassword(
         PasswordModel(
+          uuid: arg.uuid,
           username: arg.username,
           password: arg.password,
+          updatedAt: arg.updatedAt,
           title: arg.title,
         ),
       );
@@ -29,15 +31,15 @@ class PasswordRepositoryImpl implements PasswordRepository {
   @override
   Future<Either<Failure, bool>> delete(PasswordEntity arg) async {
     try {
-      final params = PasswordModel(
-        uuid: arg.uuid,
-        username: arg.username,
-        password: arg.password,
-        updatedAt: arg.updatedAt,
-        title: arg.title,
+      await localDataSource.deletePassword(
+        PasswordModel(
+          uuid: arg.uuid,
+          username: arg.username,
+          password: arg.password,
+          updatedAt: arg.updatedAt,
+          title: arg.title,
+        ),
       );
-
-      await localDataSource.deletePassword(params);
       return right(true);
     } catch (error) {
       return left(LocalFailure(error));
@@ -47,15 +49,15 @@ class PasswordRepositoryImpl implements PasswordRepository {
   @override
   Future<Either<Failure, bool>> update(PasswordEntity arg) async {
     try {
-      final params = PasswordModel(
-        uuid: arg.uuid,
-        username: arg.username,
-        password: arg.password,
-        updatedAt: arg.updatedAt,
-        title: arg.title,
+      await localDataSource.updatePassword(
+        PasswordModel(
+          uuid: arg.uuid,
+          username: arg.username,
+          password: arg.password,
+          updatedAt: arg.updatedAt,
+          title: arg.title,
+        ),
       );
-
-      await localDataSource.updatePassword(params);
       return right(true);
     } catch (error) {
       return left(LocalFailure(error));

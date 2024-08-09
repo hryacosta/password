@@ -31,10 +31,10 @@ void main() {
     });
 
     test('should create a JSON object from an instance', () {
-      const passwordModel = PasswordModel(
+      final passwordModel = PasswordModel(
         username: 'testuser',
         password: 'testPassword123#',
-        updatedAt: '2023-01-01T12:00:00Z',
+        updatedAt: DateTime.parse('2023-01-01T12:00:00Z'),
         title: 'Test Password',
         uuid: '12345',
       );
@@ -44,15 +44,15 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['username'], equals('testuser'));
       expect(json['password'], equals('testPassword123#'));
-      expect(json['updated_at'], equals('2023-01-01T12:00:00Z'));
+      expect(json['updated_at'], equals('2023-01-01T12:00:00.000Z'));
       expect(json['title'], equals('Test Password'));
     });
 
     test('should create a copy of the instance with updated values', () {
-      const originalPasswordModel = PasswordModel(
+      final originalPasswordModel = PasswordModel(
         username: 'testuser',
         password: 'testPassword123#',
-        updatedAt: '2023-01-01T12:00:00Z',
+        updatedAt: DateTime.parse('2023-01-01T12:00:00Z'),
         title: 'Test Password',
         uuid: '12345',
       );
@@ -60,13 +60,16 @@ void main() {
       final updatedPasswordModel = originalPasswordModel.copyWith(
         username: 'newuser',
         password: 'newPassword456&',
-        updatedAt: '2023-01-02T13:00:00Z',
+        updatedAt: DateTime.parse('2023-01-02T13:00:00Z'),
         title: 'Updated Password',
       );
 
       expect(updatedPasswordModel.username, equals('newuser'));
       expect(updatedPasswordModel.password, equals('newPassword456&'));
-      expect(updatedPasswordModel.updatedAt, equals('2023-01-02T13:00:00Z'));
+      expect(
+        updatedPasswordModel.updatedAt?.toIso8601String(),
+        equals('2023-01-02T13:00:00.000Z'),
+      );
       expect(updatedPasswordModel.title, equals('Updated Password'));
     });
   });

@@ -11,8 +11,8 @@ class PasswordModel extends PasswordEntity {
     required super.title,
     required super.username,
     required super.password,
-    super.uuid,
-    super.updatedAt,
+    required super.uuid,
+    required super.updatedAt,
   });
 
   factory PasswordModel.fromJson(Map<String, dynamic> json) =>
@@ -20,7 +20,7 @@ class PasswordModel extends PasswordEntity {
 
   @override
   @JsonKey(name: 'updated_at')
-  String? get updatedAt {
+  DateTime? get updatedAt {
     return super.updatedAt;
   }
 
@@ -30,7 +30,7 @@ class PasswordModel extends PasswordEntity {
     String? uuid,
     String? username,
     String? password,
-    String? updatedAt,
+    DateTime? updatedAt,
     String? title,
   }) {
     return PasswordModel(

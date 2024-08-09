@@ -13,6 +13,7 @@ abstract class RegisterModule {
 
   Uuid get uuid => const Uuid();
 
+  @singleton
   AppDatabase get database => AppDatabase();
 
   @preResolve

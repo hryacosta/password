@@ -12,7 +12,9 @@ PasswordModel _$PasswordModelFromJson(Map<String, dynamic> json) =>
       username: json['username'] as String,
       password: json['password'] as String,
       uuid: json['uuid'] as String?,
-      updatedAt: json['updated_at'] as String?,
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) {
@@ -29,6 +31,6 @@ Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) {
   }
 
   writeNotNull('uuid', instance.uuid);
-  writeNotNull('updated_at', instance.updatedAt);
+  writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
   return val;
 }

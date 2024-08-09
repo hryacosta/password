@@ -4,7 +4,7 @@ part of 'app_database.dart';
 
 // ignore_for_file: type=lint
 class $PasswordTable extends Password
-    with TableInfo<$PasswordTable, PasswordData> {
+    with TableInfo<$PasswordTable, PasswordModel> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -57,7 +57,7 @@ class $PasswordTable extends Password
   String get actualTableName => $name;
   static const String $name = 'password';
   @override
-  VerificationContext validateIntegrity(Insertable<PasswordData> instance,
+  VerificationContext validateIntegrity(Insertable<PasswordModel> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -98,19 +98,17 @@ class $PasswordTable extends Password
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  PasswordData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  PasswordModel map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return PasswordData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      uuid: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
+    return PasswordModel(
+      title: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
       username: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}username'])!,
       password: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}password'])!,
-      title: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      uuid: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}uuid'])!,
       updatedAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}updated_at']),
     );
@@ -122,127 +120,7 @@ class $PasswordTable extends Password
   }
 }
 
-class PasswordData extends DataClass implements Insertable<PasswordData> {
-  final int id;
-  final String uuid;
-  final String username;
-  final String password;
-  final String title;
-  final DateTime? updatedAt;
-  const PasswordData(
-      {required this.id,
-      required this.uuid,
-      required this.username,
-      required this.password,
-      required this.title,
-      this.updatedAt});
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['uuid'] = Variable<String>(uuid);
-    map['username'] = Variable<String>(username);
-    map['password'] = Variable<String>(password);
-    map['title'] = Variable<String>(title);
-    if (!nullToAbsent || updatedAt != null) {
-      map['updated_at'] = Variable<DateTime>(updatedAt);
-    }
-    return map;
-  }
-
-  PasswordCompanion toCompanion(bool nullToAbsent) {
-    return PasswordCompanion(
-      id: Value(id),
-      uuid: Value(uuid),
-      username: Value(username),
-      password: Value(password),
-      title: Value(title),
-      updatedAt: updatedAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(updatedAt),
-    );
-  }
-
-  factory PasswordData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return PasswordData(
-      id: serializer.fromJson<int>(json['id']),
-      uuid: serializer.fromJson<String>(json['uuid']),
-      username: serializer.fromJson<String>(json['username']),
-      password: serializer.fromJson<String>(json['password']),
-      title: serializer.fromJson<String>(json['title']),
-      updatedAt: serializer.fromJson<DateTime?>(json['updatedAt']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'uuid': serializer.toJson<String>(uuid),
-      'username': serializer.toJson<String>(username),
-      'password': serializer.toJson<String>(password),
-      'title': serializer.toJson<String>(title),
-      'updatedAt': serializer.toJson<DateTime?>(updatedAt),
-    };
-  }
-
-  PasswordData copyWith(
-          {int? id,
-          String? uuid,
-          String? username,
-          String? password,
-          String? title,
-          Value<DateTime?> updatedAt = const Value.absent()}) =>
-      PasswordData(
-        id: id ?? this.id,
-        uuid: uuid ?? this.uuid,
-        username: username ?? this.username,
-        password: password ?? this.password,
-        title: title ?? this.title,
-        updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
-      );
-  PasswordData copyWithCompanion(PasswordCompanion data) {
-    return PasswordData(
-      id: data.id.present ? data.id.value : this.id,
-      uuid: data.uuid.present ? data.uuid.value : this.uuid,
-      username: data.username.present ? data.username.value : this.username,
-      password: data.password.present ? data.password.value : this.password,
-      title: data.title.present ? data.title.value : this.title,
-      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('PasswordData(')
-          ..write('id: $id, ')
-          ..write('uuid: $uuid, ')
-          ..write('username: $username, ')
-          ..write('password: $password, ')
-          ..write('title: $title, ')
-          ..write('updatedAt: $updatedAt')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(id, uuid, username, password, title, updatedAt);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is PasswordData &&
-          other.id == this.id &&
-          other.uuid == this.uuid &&
-          other.username == this.username &&
-          other.password == this.password &&
-          other.title == this.title &&
-          other.updatedAt == this.updatedAt);
-}
-
-class PasswordCompanion extends UpdateCompanion<PasswordData> {
+class PasswordCompanion extends UpdateCompanion<PasswordModel> {
   final Value<int> id;
   final Value<String> uuid;
   final Value<String> username;
@@ -268,7 +146,7 @@ class PasswordCompanion extends UpdateCompanion<PasswordData> {
         username = Value(username),
         password = Value(password),
         title = Value(title);
-  static Insertable<PasswordData> custom({
+  static Insertable<PasswordModel> custom({
     Expression<int>? id,
     Expression<String>? uuid,
     Expression<String>? username,
@@ -372,7 +250,7 @@ typedef $$PasswordTableUpdateCompanionBuilder = PasswordCompanion Function({
 class $$PasswordTableTableManager extends RootTableManager<
     _$AppDatabase,
     $PasswordTable,
-    PasswordData,
+    PasswordModel,
     $$PasswordTableFilterComposer,
     $$PasswordTableOrderingComposer,
     $$PasswordTableCreateCompanionBuilder,

@@ -13,7 +13,7 @@ class PasswordEntity extends Equatable {
   final String password;
   final String title;
   final String? uuid;
-  final String? updatedAt;
+  final DateTime? updatedAt;
 
   @override
   List<Object?> get props => [uuid, username, password, title, updatedAt];

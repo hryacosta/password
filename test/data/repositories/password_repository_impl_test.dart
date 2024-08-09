@@ -26,7 +26,7 @@ void main() {
         username: 'tester',
         password: 'testPassword123#',
         uuid: '12345',
-        updatedAt: DateTime.now().toIso8601String(),
+        updatedAt: DateTime.now(),
       ),
     );
   });
@@ -37,11 +37,12 @@ void main() {
       test(
         'add() should return right(true) when adding a password is successful',
         () async {
-          const passwordEntity = PasswordEntity(
+          final passwordEntity = PasswordEntity(
             title: 'Test Title',
             username: 'tester',
             password: 'testPassword123#',
             uuid: '12345',
+            updatedAt: DateTime.now(),
           );
 
           when(() => mockLocalDataSource.addPassword(any()))
@@ -55,6 +56,8 @@ void main() {
                 username: passwordEntity.username,
                 password: passwordEntity.password,
                 title: passwordEntity.title,
+                uuid: passwordEntity.uuid,
+                updatedAt: passwordEntity.updatedAt,
               ),
             ),
           );

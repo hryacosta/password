@@ -14,25 +14,28 @@ void main() {
     });
 
     test('should have correct properties', () {
-      const passwordEntity = PasswordEntity(
+      final passwordEntity = PasswordEntity(
         title: 'Test Title',
         username: 'testuser',
         password: 'testpassword',
-        updatedAt: '2022-01-01 12:00:00',
+        updatedAt: DateTime.parse('2022-01-01 12:00:00'),
         uuid: '12345',
       );
       expect(passwordEntity.title, 'Test Title');
       expect(passwordEntity.username, 'testuser');
       expect(passwordEntity.password, 'testpassword');
-      expect(passwordEntity.updatedAt, '2022-01-01 12:00:00');
+      expect(
+        passwordEntity.updatedAt?.toIso8601String(),
+        '2022-01-01T12:00:00.000',
+      );
     });
 
     test('should return correct props', () {
-      const passwordEntity = PasswordEntity(
+      final passwordEntity = PasswordEntity(
         title: 'Test Title',
         username: 'testuser',
         password: 'testpassword',
-        updatedAt: '2022-01-01 12:00:00',
+        updatedAt: DateTime.parse('2022-01-01 12:00:00'),
         uuid: '12345',
       );
       expect(passwordEntity.props, [
@@ -40,7 +43,7 @@ void main() {
         'testuser',
         'testpassword',
         'Test Title',
-        '2022-01-01 12:00:00',
+        DateTime.parse('2022-01-01 12:00:00'),
       ]);
     });
   });

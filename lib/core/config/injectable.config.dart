@@ -13,7 +13,7 @@ import 'package:dio/dio.dart' as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:password/core/config/register_module.dart' as _i21;
-import 'package:password/core/services/app_database.dart' as _i5;
+import 'package:password/core/services/app_database.dart' as _i6;
 import 'package:password/data/datasources/auth_remote_datasource.dart' as _i10;
 import 'package:password/data/datasources/password_local_datasource.dart'
     as _i8;
@@ -29,7 +29,7 @@ import 'package:password/domain/usecases/get_count_passwords.dart' as _i16;
 import 'package:password/domain/usecases/get_spaces.dart' as _i18;
 import 'package:password/domain/usecases/sign_in.dart' as _i14;
 import 'package:password/domain/usecases/update_space.dart' as _i20;
-import 'package:shared_preferences/shared_preferences.dart' as _i6;
+import 'package:shared_preferences/shared_preferences.dart' as _i5;
 import 'package:uuid/uuid.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -46,16 +46,16 @@ Future<_i1.GetIt> $initGetIt(
   final registerModule = _$RegisterModule();
   gh.factory<_i3.Connectivity>(() => registerModule.connectivity);
   gh.factory<_i4.Uuid>(() => registerModule.uuid);
-  gh.factory<_i5.AppDatabase>(() => registerModule.database);
-  await gh.factoryAsync<_i6.SharedPreferences>(
+  await gh.factoryAsync<_i5.SharedPreferences>(
     () => registerModule.prefs,
     preResolve: true,
   );
+  gh.singleton<_i6.AppDatabase>(() => registerModule.database);
   gh.singleton<_i7.Dio>(() => registerModule.dio);
   gh.factory<_i8.PasswordLocalDataSource>(
       () => _i8.PasswordLocalDataSource.from(
             uuid: gh<_i4.Uuid>(),
-            database: gh<_i5.AppDatabase>(),
+            database: gh<_i6.AppDatabase>(),
           ));
   gh.factory<_i9.SpaceRemoteDataSource>(
       () => _i9.SpaceRemoteDataSource.from(client: gh<_i7.Dio>()));
