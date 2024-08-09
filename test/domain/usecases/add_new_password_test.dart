@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:password/domain/entities/credential_entity.dart';
 import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/add_password.dart';
@@ -20,8 +21,10 @@ void main() {
     registerFallbackValue(
       const PasswordEntity(
         title: 'Test Title',
-        username: 'tester',
-        password: 'testPassword123#',
+        credential: CredentialEntity(
+          username: 'tester',
+          password: 'testPassword123#',
+        ),
         uuid: '12345',
       ),
     );
@@ -30,8 +33,10 @@ void main() {
   test('should add a new password to the repository', () async {
     const passwordEntity = PasswordEntity(
       title: 'Test Title',
-      username: 'tester',
-      password: 'testPassword123#',
+      credential: CredentialEntity(
+        username: 'tester',
+        password: 'testPassword123#',
+      ),
       uuid: '12345',
     );
     when(() => repository.add(any())).thenAnswer((_) async => right(true));
@@ -45,8 +50,10 @@ void main() {
   test('should return a failure when adding a new password fails', () async {
     const passwordEntity = PasswordEntity(
       title: 'Test Title',
-      username: 'tester',
-      password: 'testPassword123#',
+      credential: CredentialEntity(
+        username: 'tester',
+        password: 'testPassword123#',
+      ),
       uuid: '12345',
     );
     when(() => repository.add(any())).thenAnswer(

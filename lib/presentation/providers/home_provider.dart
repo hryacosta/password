@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:password/core/config/injectable.dart';
+import 'package:password/domain/entities/credential_entity.dart';
 import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/entities/space_entity.dart';
 import 'package:password/domain/usecases/add_password.dart';
@@ -13,9 +14,9 @@ class HomeProvider with ChangeNotifier {
   HomeProvider();
 
   List<SpaceEntity> spaces = [];
+  String _username = '';
+  String _password = '';
 
-  String password = '';
-  String username = '';
   String title = '';
 
   Future<List<SpaceEntity>> getSpaces() async {
@@ -29,12 +30,12 @@ class HomeProvider with ChangeNotifier {
   }
 
   void changePassword(String password) {
-    this.password = password;
+    _password = password;
     notifyListeners();
   }
 
   void changeUsername(String username) {
-    this.username = username;
+    _username = username;
     notifyListeners();
   }
 
@@ -44,8 +45,8 @@ class HomeProvider with ChangeNotifier {
   }
 
   void _cleanAllState() {
-    password = '';
-    username = '';
+    _password = '';
+    _username = '';
     title = '';
     notifyListeners();
   }
@@ -53,8 +54,10 @@ class HomeProvider with ChangeNotifier {
   Future<void> addPassword() async {
     await sl<AddPassword>().call(
       PasswordEntity(
-        username: username,
-        password: password,
+        credential: CredentialEntity(
+          username: _username,
+          password: _password,
+        ),
         title: title,
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:password/data/models/password_model.dart';
 import 'package:password/data/tables/password_table.dart';
 
 part 'app_database.g.dart';

@@ -18,7 +18,10 @@ void main() {
 
       expect(passwordModel.username, equals('testuser'));
       expect(passwordModel.password, equals('testPassword123#'));
-      expect(passwordModel.updatedAt, equals('2023-01-01T12:00:00Z'));
+      expect(
+        passwordModel.updatedAt?.toIso8601String(),
+        equals('2023-01-01T12:00:00.000Z'),
+      );
       expect(passwordModel.title, equals('Test Password'));
     });
 

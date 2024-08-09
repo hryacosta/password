@@ -19,8 +19,6 @@ PasswordModel _$PasswordModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) {
   final val = <String, dynamic>{
-    'username': instance.username,
-    'password': instance.password,
     'title': instance.title,
   };
 
@@ -32,5 +30,7 @@ Map<String, dynamic> _$PasswordModelToJson(PasswordModel instance) {
 
   writeNotNull('uuid', instance.uuid);
   writeNotNull('updated_at', instance.updatedAt?.toIso8601String());
+  val['username'] = instance.username;
+  val['password'] = instance.password;
   return val;
 }

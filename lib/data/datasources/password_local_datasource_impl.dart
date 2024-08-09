@@ -16,8 +16,8 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
           PasswordCompanion(
             title: Value(param.title),
             uuid: Value(uuid.v4()),
-            username: Value(param.username),
-            password: Value(param.password),
+            username: Value(param.credential.username),
+            password: Value(param.credential.password),
             updatedAt: Value(DateTime.now()),
           ),
         );
@@ -48,8 +48,8 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
       PasswordCompanion(
         title: Value(param.title),
         uuid: Value(param.uuid.toString()),
-        username: Value(param.username),
-        password: Value(param.password),
+        username: Value(param.credential.username),
+        password: Value(param.credential.password),
         updatedAt: Value(DateTime.now()),
       ),
     );

@@ -2,11 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:password/data/models/credential_model.dart';
 import 'package:password/data/models/session_model.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/authentication_repository.dart';
-import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
 import '../../mocks/mock_auth_remote_data_source.dart';
 
@@ -20,8 +20,7 @@ void main() {
   });
 
   group('signIn', () {
-    final params = {'username': 'test', 'password': 'password'};
-    const tParam = sign_in.Param(username: 'test', password: 'password');
+    const tCredential = CredentialModel(username: 'test', password: 'password');
 
     const tSessionEntity = SessionModel(
       idToken: 'idToken',
@@ -31,11 +30,11 @@ void main() {
     );
 
     test('should return SessionEntity when the call is successful', () async {
-      when(() => mockRemoteDataSource.signIn(params)).thenAnswer(
+      when(() => mockRemoteDataSource.signIn(tCredential)).thenAnswer(
         (_) async => tSessionEntity,
       );
 
-      final result = await repository.signIn(tParam);
+      final result = await repository.signIn(tCredential);
 
       expect(result.isRight(), true);
 
@@ -44,7 +43,7 @@ void main() {
 
     test('should return ServerFailure when the call is unsuccessful', () async {
       // arrange
-      when(() => mockRemoteDataSource.signIn(params)).thenThrow(
+      when(() => mockRemoteDataSource.signIn(tCredential)).thenThrow(
         DioException(
           response: Response(
             data: '{"message": "Server error"}',
@@ -56,7 +55,7 @@ void main() {
       );
 
       // act
-      final result = await repository.signIn(tParam);
+      final result = await repository.signIn(tCredential);
 
       // assert
       expect(result.isLeft(), true);

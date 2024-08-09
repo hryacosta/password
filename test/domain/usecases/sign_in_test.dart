@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:password/domain/entities/credential_entity.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/usecases/sign_in.dart';
@@ -11,7 +12,7 @@ void main() {
   late SignIn useCase;
   late MockAuthRepository mockAuthRepository;
 
-  const params = Param(
+  const params = CredentialEntity(
     username: 'EMAIL',
     password: 'PASSWORD',
   );
@@ -42,14 +43,6 @@ void main() {
     verify(() => mockAuthRepository.signIn(params));
 
     verifyNoMoreInteractions(mockAuthRepository);
-  });
-
-  test('should params instance equatable', () {
-    const params2 = Param(username: 'EMAIL', password: 'PASSWORD');
-    const params3 = Param(username: 'EMAIL_1', password: 'PASSWORD');
-
-    expect(params, equals(params2));
-    expect(params, isNot(equals(params3)));
   });
 
   test('should return ServerFailure when sign in fails', () async {

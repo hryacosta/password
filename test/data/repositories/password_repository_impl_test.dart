@@ -3,6 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:password/data/models/password_model.dart';
 import 'package:password/data/repositories/password_repository_impl.dart';
+import 'package:password/domain/entities/credential_entity.dart';
 import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 
@@ -39,8 +40,10 @@ void main() {
         () async {
           final passwordEntity = PasswordEntity(
             title: 'Test Title',
-            username: 'tester',
-            password: 'testPassword123#',
+            credential: const CredentialEntity(
+              username: 'tester',
+              password: 'testPassword123#',
+            ),
             uuid: '12345',
             updatedAt: DateTime.now(),
           );
@@ -53,8 +56,8 @@ void main() {
           verify(
             () => mockLocalDataSource.addPassword(
               PasswordModel(
-                username: passwordEntity.username,
-                password: passwordEntity.password,
+                username: passwordEntity.credential.username,
+                password: passwordEntity.credential.password,
                 title: passwordEntity.title,
                 uuid: passwordEntity.uuid,
                 updatedAt: passwordEntity.updatedAt,
@@ -71,8 +74,10 @@ void main() {
         () async {
           const passwordEntity = PasswordEntity(
             title: 'Test Title',
-            username: 'tester',
-            password: 'testPassword123#',
+            credential: CredentialEntity(
+              username: 'tester',
+              password: 'testPassword123#',
+            ),
             uuid: '12345',
           );
 
@@ -98,8 +103,10 @@ void main() {
       test('delete() should delete a password from the database', () async {
         const passwordEntity = PasswordEntity(
           title: 'Test Title',
-          username: 'tester',
-          password: 'testPassword123#',
+          credential: CredentialEntity(
+            username: 'tester',
+            password: 'testPassword123#',
+          ),
           uuid: '12345',
         );
 

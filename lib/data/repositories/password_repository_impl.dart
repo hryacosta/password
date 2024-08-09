@@ -16,10 +16,10 @@ class PasswordRepositoryImpl implements PasswordRepository {
       await localDataSource.addPassword(
         PasswordModel(
           uuid: arg.uuid,
-          username: arg.username,
-          password: arg.password,
-          updatedAt: arg.updatedAt,
           title: arg.title,
+          password: arg.credential.password,
+          username: arg.credential.username,
+          updatedAt: arg.updatedAt,
         ),
       );
       return right(true);
@@ -34,10 +34,10 @@ class PasswordRepositoryImpl implements PasswordRepository {
       await localDataSource.deletePassword(
         PasswordModel(
           uuid: arg.uuid,
-          username: arg.username,
-          password: arg.password,
-          updatedAt: arg.updatedAt,
           title: arg.title,
+          password: arg.credential.password,
+          username: arg.credential.username,
+          updatedAt: arg.updatedAt,
         ),
       );
       return right(true);
@@ -52,10 +52,10 @@ class PasswordRepositoryImpl implements PasswordRepository {
       await localDataSource.updatePassword(
         PasswordModel(
           uuid: arg.uuid,
-          username: arg.username,
-          password: arg.password,
-          updatedAt: arg.updatedAt,
           title: arg.title,
+          password: arg.credential.password,
+          username: arg.credential.username,
+          updatedAt: arg.updatedAt,
         ),
       );
       return right(true);

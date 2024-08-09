@@ -1,20 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:password/domain/entities/credential_entity.dart';
 
 class PasswordEntity extends Equatable {
   const PasswordEntity({
     required this.title,
-    required this.username,
-    required this.password,
+    required this.credential,
     this.uuid,
     this.updatedAt,
   });
 
-  final String username;
-  final String password;
+  final CredentialEntity credential;
   final String title;
   final String? uuid;
   final DateTime? updatedAt;
 
   @override
-  List<Object?> get props => [uuid, username, password, title, updatedAt];
+  List<Object?> get props => [uuid, credential, title, updatedAt];
 }

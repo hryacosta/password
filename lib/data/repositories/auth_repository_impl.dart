@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:password/data/datasources/auth_remote_datasource.dart';
+import 'package:password/data/models/credential_model.dart';
+import 'package:password/domain/entities/credential_entity.dart';
 import 'package:password/domain/entities/session_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/authentication_repository.dart';
-import 'package:password/domain/usecases/sign_in.dart' as sign_in;
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({
@@ -14,14 +15,14 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   @override
-  Future<Either<Failure, SessionEntity>> signIn(sign_in.Param args) async {
+  Future<Either<Failure, SessionEntity>> signIn(CredentialEntity args) async {
     try {
-      final body = {
-        'username': args.username,
-        'password': args.password,
-      };
-
-      final result = await remoteDataSource.signIn(body);
+      final result = await remoteDataSource.signIn(
+        CredentialModel(
+          password: args.password,
+          username: args.username,
+        ),
+      );
 
       return right(result);
     } on DioException catch (error) {
