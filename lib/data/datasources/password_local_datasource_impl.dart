@@ -11,8 +11,8 @@ class PasswordLocalDataSourceImpl implements PasswordLocalDataSource {
   final AppDatabase database;
 
   @override
-  Future<void> addPassword(PasswordModel param) async {
-    await database.into(database.password).insert(
+  Future<int> addPassword(PasswordModel param) async {
+    return database.into(database.password).insert(
           PasswordCompanion(
             title: Value(param.title),
             uuid: Value(uuid.v4()),

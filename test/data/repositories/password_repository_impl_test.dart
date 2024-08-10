@@ -7,7 +7,7 @@ import 'package:password/domain/entities/credential_entity.dart';
 import 'package:password/domain/entities/password_entity.dart';
 import 'package:password/domain/failures/failure.dart';
 
-import '../../mocks/mocks_password_local_data_source.dart';
+import '../../mocks/mock_password_local_data_source.dart';
 
 void main() {
   late MockPasswordLocalDataSource mockLocalDataSource;
@@ -49,7 +49,7 @@ void main() {
           );
 
           when(() => mockLocalDataSource.addPassword(any()))
-              .thenAnswer((_) async {});
+              .thenAnswer((_) async => 1);
 
           final result = await repository.add(passwordEntity);
 

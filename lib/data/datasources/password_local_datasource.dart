@@ -13,7 +13,7 @@ abstract class PasswordLocalDataSource {
   }) =>
       PasswordLocalDataSourceImpl(uuid: uuid, database: database);
 
-  Future<void> addPassword(PasswordModel password);
+  Future<int> addPassword(PasswordModel password);
 
   Future<PasswordModel> updatePassword(PasswordModel id);
 

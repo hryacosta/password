@@ -6,7 +6,7 @@ import 'package:password/domain/failures/failure.dart';
 import 'package:password/domain/repositories/password_repository.dart';
 
 import '../../fixtures/fixture_reader.dart';
-import '../../mocks/mocks_password_local_data_source.dart';
+import '../../mocks/mock_password_local_data_source.dart';
 
 void main() {
   late PasswordRepository repository;
@@ -24,8 +24,7 @@ void main() {
 
   group('PasswordRepository', () {
     test('should add a new password to the local data source', () async {
-      when(() => localDataSource.addPassword(any()))
-          .thenAnswer((_) async => true);
+      when(() => localDataSource.addPassword(any())).thenAnswer((_) async => 1);
 
       final result = await repository.add(tPasswordModel);
 
@@ -69,8 +68,8 @@ void main() {
     });
 
     test(
-        'delete() should delete an existing password from the local data source',
-        () async {
+        'delete() should delete an existing password from the local '
+        'data source', () async {
       when(() => localDataSource.deletePassword(any()))
           .thenAnswer((_) async => {});
 
