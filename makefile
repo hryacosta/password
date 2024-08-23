@@ -1,3 +1,23 @@
+ifeq (add,$(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(RUN_ARGS):;@:)
+endif
+
+ifeq (remove,$(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(RUN_ARGS):;@:)
+endif
+
+ifeq (add_dev,$(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(RUN_ARGS):;@:)
+endif
+
+ifeq (remove_dev,$(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(RUN_ARGS):;@:)
+endif
+
 ok: install genL10n build_runner
 
 update: install genL10n
@@ -97,17 +117,18 @@ testWithCoverage:
 
 test: testWithCoverage
 
-i: 
+add: 
 	@echo "╠ Running Flutter pub add" $(lib) ${argument}
 	@flutter pub add $(lib)
-d: 
+remove: 
 	@echo "╠ Running Flutter pub remove" $(lib)
 	@flutter pub remove $(lib)
 
-idev: 
+add_dev: 
 	@echo "╠ Running Flutter pub add" $(lib) ${argument}
 	@flutter pub add dev:$(lib)
-ddev: 
+
+remove_dev: 
 	@echo "╠ Running Flutter pub remove" $(lib)
 	@flutter pub remove dev:$(lib)
 
